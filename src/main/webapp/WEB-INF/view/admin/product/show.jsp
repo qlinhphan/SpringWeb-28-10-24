@@ -175,7 +175,8 @@
                         <th>Target</th>
                         <th>Action</th>
                         <th>
-                            <button type="button" class="btn btn-danger">Create Product</button>
+                            <button type="button" class="btn btn-danger"><a href="/create/product">Create
+                                    Product</a></button>
                         </th>
                     </tr>
                     <tr>
