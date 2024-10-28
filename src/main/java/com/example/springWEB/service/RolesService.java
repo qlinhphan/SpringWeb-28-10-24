@@ -3,17 +3,18 @@ package com.example.springWEB.service;
 import org.springframework.stereotype.Service;
 
 import com.example.springWEB.domain.Roles;
-import com.example.springWEB.repository.RoleRepository;
+import com.example.springWEB.repository.RolesRepository;
 
 @Service
 public class RolesService {
-    private RoleRepository roleRepository;
 
-    public RolesService(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
+    private RolesRepository rolesRepository;
+
+    public RolesService(RolesRepository rolesRepository) {
+        this.rolesRepository = rolesRepository;
     }
 
     public Roles findRolesByName(String name) {
-        return this.roleRepository.findByName(name);
+        return this.rolesRepository.findByName(name);
     }
 }

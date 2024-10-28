@@ -13,5 +13,4 @@ public class HomePageControll {
     public String homepage(Model model) {
         return "/client/show";
     }
-
 }

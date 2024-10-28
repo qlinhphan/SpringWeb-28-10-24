@@ -45,6 +45,8 @@ public class UserControll {
     @PostMapping("/create/user/finish")
     public String postMethodName(Model model, @ModelAttribute("newUser") Users us,
             @RequestParam("fileName") MultipartFile file) {
+        String kq = us.getRoles().getName();
+        System.out.println(kq);
         String linkImage = "";
         try {
             byte[] bytes;
@@ -73,8 +75,8 @@ public class UserControll {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        us.setAvatar(linkImage);
         us.setRoles(this.rolesService.findRolesByName(us.getRoles().getName()));
+        us.setAvatar(linkImage);
         Users user = this.userService.createUser(us);
         return "hello";
     }
