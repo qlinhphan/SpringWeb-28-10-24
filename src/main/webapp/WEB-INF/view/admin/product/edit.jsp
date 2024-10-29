@@ -159,34 +159,43 @@
                                                 style="border-radius: 21px; box-shadow: 9px 9px 4px grey;">
                                         </div>
                                         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                                            <form>
+                                            <form:form method="post" action="/editProduct/finish"
+                                                modelAttribute="product">
 
                                                 <!-- Email input -->
+                                                <div data-mdb-input-init class="form-outline mb-4"
+                                                    style="display: none;">
+                                                    <form:input type="text" id="form3Example3"
+                                                        class="form-control form-control-lg"
+                                                        placeholder="Enter a valid email address" value="${product.id}"
+                                                        path="id" />
+                                                    <label class="form-label" for="form3Example3">Id</label>
+                                                </div>
                                                 <div data-mdb-input-init class="form-outline mb-4">
-                                                    <input type="text" id="form3Example3"
+                                                    <form:input type="text" id="form3Example3"
                                                         class="form-control form-control-lg"
                                                         placeholder="Enter a valid email address"
-                                                        value="${product.name}" />
+                                                        value="${product.name}" path="name" />
                                                     <label class="form-label" for="form3Example3">Name</label>
                                                 </div>
 
                                                 <div style="display: flex;">
                                                     <!-- Password input -->
                                                     <div data-mdb-input-init class="form-outline mb-3">
-                                                        <input type="text" id="form3Example4"
+                                                        <form:input type="text" id="form3Example4"
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter password" style="width: 180px;"
-                                                            value="${product.price}" />
+                                                            value="${product.price}" path="price" />
                                                         <label class="form-label" for="form3Example4">Price</label>
                                                     </div>
 
                                                     <!-- fullname -->
                                                     <div data-mdb-input-init class="form-outline mb-3">
-                                                        <input type="text" id="form3Example4"
+                                                        <form:input type="text" id="form3Example4"
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter password"
                                                             style="width: 180px; margin-left: 31px;"
-                                                            value="${product.detailDes}" />
+                                                            value="${product.detailDes}" path="detailDes" />
                                                         <label class="form-label" for="form3Example4"
                                                             style="margin-left: 31px;">Detail Description</label>
                                                     </div>
@@ -195,50 +204,53 @@
                                                 <div style="display: flex;">
                                                     <!-- address -->
                                                     <div data-mdb-input-init class="form-outline mb-3">
-                                                        <input type="text" id="form3Example4"
+                                                        <form:input type="text" id="form3Example4"
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter password" style="width: 180px;"
-                                                            value="${product.shortDes}" />
+                                                            value="${product.shortDes}" path="shortDes" />
                                                         <label class="form-label" for="form3Example4">Short
                                                             Description</label>
                                                     </div>
 
                                                     <!-- phone -->
                                                     <div data-mdb-input-init class="form-outline mb-3">
-                                                        <input type="text" id="form3Example4"
+                                                        <form:input type="text" id="form3Example4"
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter password"
                                                             style="width: 180px; margin-left: 31px;"
-                                                            value="${product.quantity}" />
+                                                            value="${product.quantity}" path="quantity" />
                                                         <label class="form-label" for="form3Example4"
                                                             style="margin-left: 31px;">Quantity</label>
                                                     </div>
                                                 </div>
 
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option value="Apple">Apple</option>
-                                                    <option value="Dell">Dell</option>
-                                                    <option value="Acer">Acer</option>
-                                                    <option value="HP">HP</option>
-                                                    <option value="Asus">Asus</option>
-                                                    <option value="Microsoft">Microsoft</option>
-                                                    <option value="Lenovo">Lenovo</option>
-                                                    <option value="Msi">Msi</option>
-                                                </select>
+                                                <form:select class="form-select" aria-label="Default select example"
+                                                    path="factory">
+                                                    <form:option value="Apple">Apple</form:option>
+                                                    <form:option value="Dell">Dell</form:option>
+                                                    <form:option value="Acer">Acer</form:option>
+                                                    <form:option value="HP">HP</form:option>
+                                                    <form:option value="Asus">Asus</form:option>
+                                                    <form:option value="Microsoft">Microsoft</form:option>
+                                                    <form:option value="Lenovo">Lenovo</form:option>
+                                                    <form:option value="Msi">Msi</form:option>
+                                                </form:select>
                                                 <p>Factory: ${product.factory}</p>
 
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option value="Study">Study</option>
-                                                    <option value="Game">Game</option>
-                                                    <option value="Graphics">Graphics</option>
-                                                    <option value="Code">Code</option>
-                                                    <option value="Normal">Normal</option>
-                                                </select>
+                                                <form:select class="form-select" aria-label="Default select example"
+                                                    path="target">
+                                                    <form:option value="Study">Study</form:option>
+                                                    <form:option value="Game">Game</form:option>
+                                                    <form:option value="Graphics">Graphics</form:option>
+                                                    <form:option value="Code">Code</form:option>
+                                                    <form:option value="Normal">Normal</form:option>
+                                                </form:select>
                                                 <p>Target: ${product.target}</p>
 
                                                 <div data-mdb-input-init class="form-outline mb-3"
                                                     style="margin-top: 17px;">
-                                                    <input type="file" class="form-control" id="customFile" />
+                                                    <input type="file" class="form-control" id="customFile"
+                                                        name="image" />
                                                     <p>Image: ${product.image}</p>
                                                 </div>
 
@@ -251,7 +263,7 @@
                                                 </div>
 
 
-                                            </form>
+                                            </form:form>
                                         </div>
                                     </div>
                                 </div>

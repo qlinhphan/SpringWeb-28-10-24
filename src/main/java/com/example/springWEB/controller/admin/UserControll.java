@@ -131,7 +131,7 @@ public class UserControll {
     public String delUserFinish(Model model, @ModelAttribute("current") Users user) {
         System.out.println(user.getId());
         this.userService.deleteUserById(user.getId());
-        return "hello";
+        return "redirect:/table/user";
     }
 
 }

@@ -101,4 +101,29 @@ public class ProductControll {
         return "/admin/product/edit";
     }
 
+    @PostMapping("/editProduct/finish")
+    public String FinishEdit(Model model, @ModelAttribute("product") Products pro) {
+        long id = pro.getId();
+        System.out.println(id);
+        Products current = this.productsService.findProductById(id);
+
+        try {
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        if (current != null) {
+            current.setName(pro.getName());
+            current.setPrice(pro.getPrice());
+            current.setDetailDes(pro.getDetailDes());
+            current.setShortDes(pro.getShortDes());
+            current.setQuantity(pro.getQuantity());
+            current.setFactory(pro.getFactory());
+            current.setTarget(pro.getTarget());
+        }
+        this.productsService.saveProduct(current);
+        return "hello";
+    }
+
 }

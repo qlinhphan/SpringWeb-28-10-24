@@ -51,5 +51,4 @@ public class Oders {
     public String toString() {
         return "Oders [id=" + id + ", totalPrice=" + totalPrice + "]";
     }
-
 }
