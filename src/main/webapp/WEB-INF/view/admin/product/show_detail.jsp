@@ -8,15 +8,21 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
+            <title>Exactly User</title>
             <link rel="stylesheet" href="/css/demos.css">
-            <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-            <link href="/css/styles.css" rel="stylesheet" />
-            <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
                 integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
                 crossorigin="anonymous">
-
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+            <meta name="description" content="" />
+            <meta name="author" content="" />
+            <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+            <link href="/css/styles.css" rel="stylesheet" />
+            <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+                integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+                crossorigin="anonymous" referrerpolicy="no-referrer" />
         </head>
         </head>
 
@@ -63,16 +69,16 @@
                                     Dashboard
                                 </a>
                                 <a class="nav-link" href="/table/user">
-                                    <div class=" sb-nav-link-icon"><i class="fa-solid fa-users"></i>
+                                    <div class=" sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
                                     </div>
                                     User
                                 </a>
                                 <a class="nav-link" href="/adminProduct">
-                                    <div class="sb-nav-link-icon"><i class="fa-brands fa-product-hunt"></i></div>
+                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                     Product
                                 </a>
-                                <a class="nav-link" href="/adminOrder">
-                                    <div class="sb-nav-link-icon"><i class="fa-regular fa-newspaper"></i></div>
+                                <a class="nav-link" href="adminOrder">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                     Order
                                 </a>
                                 <!-- <div class="sb-sidenav-menu-heading">Interface</div>
@@ -151,115 +157,61 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <section class="vh-100">
-                                <div class="container-fluid h-custom">
-                                    <div class="row d-flex justify-content-center align-items-center h-100">
-                                        <div class="col-md-9 col-lg-6 col-xl-5">
-                                            <img src="/images/product/create-product.jpeg" class="img-fluid"
-                                                alt="Sample image"
-                                                style="border-radius: 21px; box-shadow: 9px 9px 4px grey;">
-                                        </div>
-                                        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                                            <form:form action="/create/product/finish" method="post"
-                                                modelAttribute="newProduct" enctype="multipart/form-data">
+                            <h1 class="mt-4">View Product:</h1>
+                            <ol class="breadcrumb mb-4">
+                                <li class="breadcrumb-item active">exactly View Product:</li>
+                            </ol>
 
-                                                <!-- Email input -->
-                                                <div data-mdb-input-init class="form-outline mb-4">
-                                                    <form:input type="text" id="form3Example3"
-                                                        class="form-control form-control-lg"
-                                                        placeholder="Enter a valid email address" path="name" />
-                                                    <label class="form-label" for="form3Example3">Name</label>
-                                                </div>
-
-                                                <div style="display: flex;">
-                                                    <!-- Password input -->
-                                                    <div data-mdb-input-init class="form-outline mb-3">
-                                                        <form:input type="text" id="form3Example4"
-                                                            class="form-control form-control-lg"
-                                                            placeholder="Enter password" style="width: 180px;"
-                                                            path="price" />
-                                                        <label class="form-label" for="form3Example4">Price</label>
-                                                    </div>
-
-                                                    <!-- fullname -->
-                                                    <div data-mdb-input-init class="form-outline mb-3">
-                                                        <form:input type="text" id="form3Example4"
-                                                            class="form-control form-control-lg"
-                                                            placeholder="Enter password"
-                                                            style="width: 180px; margin-left: 31px;" path="detailDes" />
-                                                        <label class="form-label" for="form3Example4"
-                                                            style="margin-left: 31px;">Detail Description</label>
-                                                    </div>
-                                                </div>
-
-                                                <div style="display: flex;">
-                                                    <!-- address -->
-                                                    <div data-mdb-input-init class="form-outline mb-3">
-                                                        <form:input type="text" id="form3Example4"
-                                                            class="form-control form-control-lg"
-                                                            placeholder="Enter password" style="width: 180px;"
-                                                            path="shortDes" />
-                                                        <label class="form-label" for="form3Example4">Short
-                                                            Description</label>
-                                                    </div>
-
-                                                    <!-- phone -->
-                                                    <div data-mdb-input-init class="form-outline mb-3">
-                                                        <form:input type="text" id="form3Example4"
-                                                            class="form-control form-control-lg"
-                                                            placeholder="Enter password"
-                                                            style="width: 180px; margin-left: 31px;" path="quantity" />
-                                                        <label class="form-label" for="form3Example4"
-                                                            style="margin-left: 31px;">Quantity</label>
-                                                    </div>
-                                                </div>
-
-                                                <form:select class="form-select" aria-label="Default select example"
-                                                    path="factory">
-                                                    <form:option value="Apple">Apple</form:option>
-                                                    <form:option value="Dell">Dell</form:option>
-                                                    <form:option value="Acer">Acer</form:option>
-                                                    <form:option value="HP">HP</form:option>
-                                                    <form:option value="Asus">Asus</form:option>
-                                                    <form:option value="Microsoft">Microsoft</form:option>
-                                                    <form:option value="Lenovo">Lenovo</form:option>
-                                                    <form:option value="Msi">Msi</form:option>
-                                                </form:select>
-                                                <p>Factory</p>
-
-                                                <form:select class="form-select" aria-label="Default select example"
-                                                    path="target">
-                                                    <form:option value="Study">Study</form:option>
-                                                    <form:option value="Game">Game</form:option>
-                                                    <form:option value="Graphics">Graphics</form:option>
-                                                    <form:option value="Code">Code</form:option>
-                                                    <form:option value="Normal">Normal</form:option>
-                                                </form:select>
-                                                <p>Target</p>
-
-                                                <div data-mdb-input-init class="form-outline mb-3"
-                                                    style="margin-top: 17px;">
-                                                    <input type="file" class="form-control" id="customFile"
-                                                        name="imgProduct" />
-                                                </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Class</th>
+                                        <th scope="col">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-success">
+                                        <th scope="row">Id:</th>
+                                        <td>${product.id}</td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <th scope="row">Name:</th>
+                                        <td>${product.name}</td>
+                                    </tr>
+                                    <tr class="table-danger">
+                                        <th scope="row">Price:</th>
+                                        <td>${product.price}</td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <th scope="row">D-Description:</th>
+                                        <td>${product.detailDes}</td>
+                                    </tr>
+                                    <tr class="table-info">
+                                        <th scope="row">S-Description: </th>
+                                        <td>${product.shortDes}</td>
+                                    </tr>
+                                    <tr class="table-info">
+                                        <th scope="row">Quantity: </th>
+                                        <td>${product.quantity}</td>
+                                    </tr>
+                                    <tr class="table-info">
+                                        <th scope="row">Factory: </th>
+                                        <td>${product.factory}</td>
+                                    </tr>
+                                    <tr class="table-danger">
+                                        <th scope="row">Target:</th>
+                                        <td>${product.target}</td>
+                                    </tr>
+                                    <tr class="table-danger">
+                                        <th scope="row">Link Image:</th>
+                                        <td>${product.image}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
 
-                                                <div class="text-center text-lg-start mt-4 pt-2">
-                                                    <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                                                        class="btn btn-primary btn-lg"
-                                                        style="padding-left: 2.5rem; padding-right: 2.5rem;">Create a
-                                                        product</button>
-                                                </div>
-
-
-                                            </form:form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
                         </div>
                     </main>
-
                     <footer class="py-4 bg-light mt-auto">
                         <div class="container-fluid px-4">
                             <div class="d-flex align-items-center justify-content-between small">
@@ -274,6 +226,10 @@
                     </footer>
                 </div>
             </div>
+
+
+
+
 
 
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
