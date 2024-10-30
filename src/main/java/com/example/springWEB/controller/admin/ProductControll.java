@@ -76,7 +76,7 @@ public class ProductControll {
         }
         pro.setImage(linkImg);
         this.productsService.saveProduct(pro);
-        return "hello";
+        return "redirect:/adminProduct";
     }
 
     @GetMapping("/adminProduct")
@@ -130,7 +130,7 @@ public class ProductControll {
     @PostMapping("/del/finish")
     public String delProductFinish(Model model, @ModelAttribute("product") Products pro) {
         this.productsService.DeleteProductById(pro.getId());
-        return "hello";
+        return "redirect:/adminProduct";
     }
 
 }

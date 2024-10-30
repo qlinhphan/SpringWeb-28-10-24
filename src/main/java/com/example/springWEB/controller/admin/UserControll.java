@@ -78,7 +78,7 @@ public class UserControll {
         us.setRoles(this.rolesService.findRolesByName(us.getRoles().getName()));
         us.setAvatar(linkImage);
         Users user = this.userService.createUser(us);
-        return "hello";
+        return "redirect:/table/user";
     }
 
     @GetMapping("/table/user")
@@ -116,7 +116,7 @@ public class UserControll {
             searchUser.setPhone(us.getPhone());
         }
         this.userService.createUser(searchUser);
-        return "hello";
+        return "redirect:/table/user";
     }
 
     // hien thi giao dien xoa nguoi dung

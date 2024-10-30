@@ -43,27 +43,14 @@
                 <!-- Navbar Search-->
                 <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                     <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-                            aria-describedby="btnNavbarSearch" />
                         <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
-                                class="fas fa-search"></i></button>
+                                class="fas fa-search"></i><a href="/homePage/client"
+                                style="color: wheat; margin-left: 17px; text-decoration: none;">Page
+                                User</a></button>
                     </div>
                 </form>
                 <!-- Navbar-->
-                <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">Settings</a></li>
-                            <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="#!">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
+
             </nav>
             <div id="layoutSidenav">
                 <div id="layoutSidenav_nav">
@@ -162,7 +149,7 @@
                         <div class="container-fluid px-4">
                             <h1 class="mt-4">List Product</h1>
                             <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item active">List Product:</li>
+                                <li class="breadcrumb-item active">List Products:</li>
                             </ol>
                         </div>
 
@@ -189,10 +176,13 @@
 
                                     <td>
                                         <button type="button" class="btn btn-primary"><a
-                                                href="/showDetail/${product.id}" style="color: wheat">View</a></button>
+                                                href="/showDetail/${product.id}"
+                                                style="color: wheat; text-decoration: none;">View</a></button>
                                         <button type="button" class="btn btn-secondary"><a
-                                                href="/editProduct/${product.id}" style="color: wheat">Edit</a></button>
+                                                href="/editProduct/${product.id}"
+                                                style="color: wheat; text-decoration: none;">Edit</a></button>
                                         <button type="button" class="btn btn-success"><a
+                                                style="color: wheat; text-decoration: none;"
                                                 href="/del/product/${product.id}">Delete</a></button>
                                     </td>
                                 </tr>

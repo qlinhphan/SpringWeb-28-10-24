@@ -155,14 +155,14 @@
                                 <div class="container-fluid h-custom">
                                     <div class="row d-flex justify-content-center align-items-center h-100">
                                         <div class="col-md-9 col-lg-6 col-xl-5">
-                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                                                class="img-fluid" alt="Sample image">
+                                            <img src="/images/avatar/user_delete.png" class="img-fluid"
+                                                alt="Sample image">
                                         </div>
                                         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                                             <form:form method="post" action="/del/user/finish" modelAttribute="current">
 
-                                                <!-- Email input -->
-                                                <div data-mdb-input-init class="form-outline mb-4">
+
+                                                <!-- <div data-mdb-input-init class="form-outline mb-4">
                                                     <form:input type="text" id="form3Example3"
                                                         class="form-control form-control-lg"
                                                         placeholder="Enter a valid email address" value="${current.id}"
@@ -177,7 +177,7 @@
                                                     <label class="form-label" for="form3Example3">Email</label>
                                                 </div>
 
-                                                <!-- Password input -->
+                                               
                                                 <div data-mdb-input-init class="form-outline mb-3">
                                                     <form:input type="password" id="form3Example4"
                                                         class="form-control form-control-lg"
@@ -186,7 +186,7 @@
                                                     <label class="form-label" for="form3Example4">Password</label>
                                                 </div>
 
-                                                <!-- fullname -->
+                                               
                                                 <div data-mdb-input-init class="form-outline mb-3">
                                                     <form:input type="text" id="form3Example4"
                                                         class="form-control form-control-lg"
@@ -195,7 +195,7 @@
                                                     <label class="form-label" for="form3Example4">Full Name</label>
                                                 </div>
 
-                                                <!-- address -->
+                                                
                                                 <div data-mdb-input-init class="form-outline mb-3">
                                                     <form:input type="text" id="form3Example4"
                                                         class="form-control form-control-lg"
@@ -204,7 +204,7 @@
                                                     <label class="form-label" for="form3Example4">Address</label>
                                                 </div>
 
-                                                <!-- phone -->
+                                                
                                                 <div data-mdb-input-init class="form-outline mb-3">
                                                     <form:input type="text" id="form3Example4"
                                                         class="form-control form-control-lg"
@@ -218,6 +218,19 @@
                                                         class="btn btn-primary btn-lg"
                                                         style="padding-left: 2.5rem; padding-right: 2.5rem;">Delete This
                                                         User</button>
+                                                </div> -->
+                                                <div class="alert alert-success" role="alert">
+                                                    <h4 class="alert-heading">Warning!</h4>
+                                                    <p>Do you want to delete this user with Id: <span
+                                                            style="color: red">${current.id}</span>
+                                                    </p>
+                                                    <form:input type="text" value="${current.id}" style="display: none;"
+                                                        path="id" />
+                                                    <p>And if you delete, you can't restore it. Are you sure?</p>
+                                                    <hr>
+                                                    <div style="display: flex; gap: 17px">
+                                                        <button type="submit" class="btn btn-danger">Yes</button>
+                                                    </div>
                                                 </div>
                                             </form:form>
                                         </div>
