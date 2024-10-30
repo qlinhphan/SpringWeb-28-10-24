@@ -122,7 +122,15 @@ public class ProductControll {
 
     @GetMapping("/del/product/{id}")
     public String delProduct(Model model, @PathVariable long id) {
+        Products pro = this.productsService.findProductById(id);
+        model.addAttribute("product", pro);
         return "/admin/product/del";
+    }
+
+    @PostMapping("/del/finish")
+    public String delProductFinish(Model model, @ModelAttribute("product") Products pro) {
+        this.productsService.DeleteProductById(pro.getId());
+        return "hello";
     }
 
 }

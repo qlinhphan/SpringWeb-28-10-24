@@ -159,7 +159,7 @@
                                                 style="border-radius: 21px; box-shadow: 9px 9px 4px grey;">
                                         </div>
                                         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                                            <form>
+                                            <form:form action="/del/finish" method="post" modelAttribute="product">
 
 
                                                 <!-- <div data-mdb-input-init class="form-outline mb-4"
@@ -253,17 +253,19 @@
                                                 </div> -->
                                                 <div class="alert alert-success" role="alert">
                                                     <h4 class="alert-heading">Warning!</h4>
-                                                    <p>Do you want to delete this product with Id:
+                                                    <p>Do you want to delete this product with Id: <span
+                                                            style="color: red">${product.id}</span>
                                                     </p>
+                                                    <form:input type="text" value="${product.id}" style="display: none;"
+                                                        path="id" />
                                                     <p>And if you delete, you can't restore it. Are you sure?</p>
                                                     <hr>
                                                     <div style="display: flex; gap: 17px">
-                                                        <button type="button" class="btn btn-danger">Yes</button>
-                                                        <button type="button" class="btn btn-success">No</button>
+                                                        <button type="submit" class="btn btn-danger">Yes</button>
                                                     </div>
                                                 </div>
 
-                                            </form>
+                                            </form:form>
                                         </div>
                                     </div>
                                 </div>
