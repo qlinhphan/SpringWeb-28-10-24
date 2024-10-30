@@ -107,12 +107,6 @@ public class ProductControll {
         System.out.println(id);
         Products current = this.productsService.findProductById(id);
 
-        try {
-
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-
         if (current != null) {
             current.setName(pro.getName());
             current.setPrice(pro.getPrice());
@@ -123,7 +117,12 @@ public class ProductControll {
             current.setTarget(pro.getTarget());
         }
         this.productsService.saveProduct(current);
-        return "hello";
+        return "redirect:/adminProduct";
+    }
+
+    @GetMapping("/del/product/{id}")
+    public String delProduct(Model model, @PathVariable long id) {
+        return "/admin/product/del";
     }
 
 }

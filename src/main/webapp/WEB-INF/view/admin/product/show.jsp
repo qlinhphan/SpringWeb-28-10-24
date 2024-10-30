@@ -192,7 +192,8 @@
                                                 href="/showDetail/${product.id}" style="color: wheat">View</a></button>
                                         <button type="button" class="btn btn-secondary"><a
                                                 href="/editProduct/${product.id}" style="color: wheat">Edit</a></button>
-                                        <button type="button" class="btn btn-success">Delete</button>
+                                        <button type="button" class="btn btn-success"><a
+                                                href="/del/product/${product.id}">Delete</a></button>
                                     </td>
                                 </tr>
                             </c:forEach>
