@@ -25,4 +25,4 @@ public class HomePageControll {
         model.addAttribute("products", ds);
         return "/client/show";
     }
-}
+} // test
