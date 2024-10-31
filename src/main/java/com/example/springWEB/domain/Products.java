@@ -2,6 +2,7 @@ package com.example.springWEB.domain;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +19,10 @@ public class Products {
     private String name;
     private double price;
     private String image;
+
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDes;
+
     private String shortDes;
     private long quantity; // lg hang con lai
     private long sold; // lg hang da ban

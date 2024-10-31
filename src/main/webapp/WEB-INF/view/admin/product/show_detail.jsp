@@ -162,6 +162,8 @@
                                 <li class="breadcrumb-item active">exactly View Product:</li>
                             </ol>
 
+                            <img src="/images/product/${product.image}" alt="" class="img-thumbnail">
+
                             <table class="table">
                                 <thead>
                                     <tr>
