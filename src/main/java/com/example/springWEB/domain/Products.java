@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -33,8 +35,25 @@ public class Products {
     // vì 1 chi tiết đơn hàng thì mình cần biết nó gồm những sản phẩm nào, và điều
     // ngược lại thì ko nhất thiết cần phải biết
 
+    // product n => 1 factory
+
     public long getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Products [id=" + id + ", name=" + name + ", price=" + price + ", image=" + image + ", detailDes="
+                + detailDes + ", shortDes=" + shortDes + ", quantity=" + quantity + ", sold=" + sold + ", factory="
+                + factory + ", target=" + target + "]";
+    }
+
+    public String getFactory() {
+        return factory;
+    }
+
+    public void setFactory(String factory) {
+        this.factory = factory;
     }
 
     public void setId(long id) {
@@ -97,13 +116,13 @@ public class Products {
         this.sold = sold;
     }
 
-    public String getFactory() {
-        return factory;
-    }
+    // public String getFactory() {
+    // return factory;
+    // }
 
-    public void setFactory(String factory) {
-        this.factory = factory;
-    }
+    // public void setFactory(String factory) {
+    // this.factory = factory;
+    // }
 
     public String getTarget() {
         return target;
@@ -111,13 +130,6 @@ public class Products {
 
     public void setTarget(String target) {
         this.target = target;
-    }
-
-    @Override
-    public String toString() {
-        return "Products [id=" + id + ", name=" + name + ", price=" + price + ", image=" + image + ", detailDes="
-                + detailDes + ", shortDes=" + shortDes + ", quantity=" + quantity + ", sold=" + sold + ", factory="
-                + factory + ", target=" + target + "]";
     }
 
 }

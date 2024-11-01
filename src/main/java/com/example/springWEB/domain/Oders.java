@@ -2,8 +2,6 @@ package com.example.springWEB.domain;
 
 import java.util.List;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud.Order;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

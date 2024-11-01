@@ -46,8 +46,8 @@ public class ProductControll {
     public String createProductOk(Model model, @ModelAttribute("newProduct") Products pro,
             @RequestParam("imgProduct") MultipartFile file) {
         String linkImg = "";
-        String kqs = pro.getFactory();
-        System.out.println(kqs);
+        // String kqs = pro.getFactory();
+        // System.out.println(kqs);
         try {
             byte[] bytes;
             bytes = file.getBytes();
@@ -113,7 +113,7 @@ public class ProductControll {
             current.setDetailDes(pro.getDetailDes());
             current.setShortDes(pro.getShortDes());
             current.setQuantity(pro.getQuantity());
-            current.setFactory(pro.getFactory());
+            // current.setFactory(pro.getFactory());
             current.setTarget(pro.getTarget());
         }
         this.productsService.saveProduct(current);
