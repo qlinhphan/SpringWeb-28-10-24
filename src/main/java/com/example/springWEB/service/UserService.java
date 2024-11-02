@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.springWEB.domain.Users;
+import com.example.springWEB.domain.dto.RegisterDTO;
 import com.example.springWEB.repository.UserRepository;
 
 @Service
@@ -30,6 +31,14 @@ public class UserService {
 
     public void deleteUserById(long id) {
         this.userRepository.deleteById(id);
+    }
+
+    public Users registerDtoToUser(RegisterDTO re) {
+        Users kq = new Users();
+        kq.setFullname(re.getFirstName() + " " + re.getLastName());
+        kq.setEmail(re.getEmail());
+        kq.setPassword(re.getPassword());
+        return kq;
     }
 
 }

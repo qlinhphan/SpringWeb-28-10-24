@@ -23,3 +23,7 @@ INSERT INTO trang.products VALUES
 (9, '15.6 inch, FHD (1920 x 1080), IPS, 144 Hz, 250 nits, Acer ComfyView LED-backlit', 'ASUS', '1711081080930-asus-03.png', 'Laptop Acer Nitro V', 26999000, 99, ' NVIDIA GeForce RTX 4050', 0, 'MONG-NHE'),
 (10, 'Dell Inspiron N3520 la chiec laptop ly tuong cho cong viec hang ngay. Bo vi xu ly Intel Core i5 the he thu 12 hieu suat cao, man hinh lon 15,6 inch Full HD 120Hz muot ma, thiet ke ben bi se giup ban giai quyet cong viec nhanh chong moi luc moi noi.', 'DELL', '1711081278418-dell-02.png', 'Laptop Dell Latitude 3420', 21399000, 99, ' Intel Iris Xe Graphics', 0, 'MONG-NHE');
 
+auth: register => first name, last name, email, password, confirm password
+
+
+Mapper laf chuyen doi du lieu va thuong duoc thuc hien trong kieu can chuyen doi
