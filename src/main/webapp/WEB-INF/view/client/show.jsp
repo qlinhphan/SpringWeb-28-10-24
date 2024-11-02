@@ -301,7 +301,11 @@
                                                                     style="top: 10px; left: 10px;">Fruits</div>
                                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom"
                                                                     style="height: 221px;">
-                                                                    <h4>${product.name}</h4>
+                                                                    <marquee direction="right">
+                                                                        <h4 style="font-size: 17px;">${product.name}
+                                                                        </h4>
+                                                                    </marquee>
+
                                                                     <p>${product.shortDes}</p>
                                                                     <div
                                                                         class="d-flex justify-content-between flex-lg-wrap">

@@ -172,6 +172,7 @@
                                     <td>${product.id}</td>
                                     <td>${product.name}</td>
 
+
                                     <td>${product.factory}</td>
 
                                     <td>

@@ -37,6 +37,12 @@ public class RegisterControll {
         Users kq = new Users();
         kq = this.userService.registerDtoToUser(re);
         kq.setRoles(this.rolesRepository.findByName("User"));
+        String pass = re.getPassword();
+        String repass = re.getRepeatPassword();
+        if (!pass.equals(repass)) {
+            System.out.println("Not Save, Because repeat-Pass and Pass are different");
+            return "client/auth/noSave";
+        }
         this.userService.createUser(kq);
         return "hello";
     }
