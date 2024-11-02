@@ -113,7 +113,7 @@ public class ProductControll {
             current.setDetailDes(pro.getDetailDes());
             current.setShortDes(pro.getShortDes());
             current.setQuantity(pro.getQuantity());
-            // current.setFactory(pro.getFactory());
+            current.setFactory(pro.getFactory());
             current.setTarget(pro.getTarget());
         }
         this.productsService.saveProduct(current);
