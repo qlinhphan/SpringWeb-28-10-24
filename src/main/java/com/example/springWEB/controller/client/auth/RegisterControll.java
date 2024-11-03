@@ -40,11 +40,19 @@ public class RegisterControll {
         String pass = re.getPassword();
         String repass = re.getRepeatPassword();
         if (!pass.equals(repass)) {
-            System.out.println("Not Save, Because repeat-Pass and Pass are different");
-            return "client/auth/noSave";
+            model.addAttribute("showMess", true);
         }
+
+        if (this.userService.existsByEmailUser(re.getEmail())) {
+            model.addAttribute("emailExist", true);
+        }
+
+        if (model.containsAttribute("showMess") || model.containsAttribute("emailExist")) {
+            return "/client/auth/register";
+        }
+
         this.userService.createUser(kq);
-        return "hello";
+        return "/client/auth/login";
     }
 
 }

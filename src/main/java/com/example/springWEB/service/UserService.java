@@ -34,13 +34,15 @@ public class UserService {
     }
 
     public Users registerDtoToUser(RegisterDTO re) {
-
         Users kq = new Users();
         kq.setFullname(re.getFirstName() + " " + re.getLastName());
         kq.setEmail(re.getEmail());
         kq.setPassword(re.getPassword());
-
         return kq;
+    }
+
+    public boolean existsByEmailUser(String email) {
+        return this.userRepository.existsByEmail(email);
     }
 
 }
