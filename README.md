@@ -27,3 +27,5 @@ auth: register => first name, last name, email, password, confirm password
 
 
 Mapper laf chuyen doi du lieu va thuong duoc thuc hien trong kieu can chuyen doi
+
+khi đăng ký tài khoản phải check xem email đã tồn tại hay chưa và pass và repass có trùng nhau hay không thì mới tiếp tục
