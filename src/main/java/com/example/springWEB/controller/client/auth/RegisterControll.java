@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.springWEB.domain.Roles;
 import com.example.springWEB.domain.Users;
@@ -31,24 +32,39 @@ public class RegisterControll {
         return "/client/auth/register";
     }
 
-    @PostMapping("/registerF")
-    public String registerF(Model model, @ModelAttribute("regisNew") RegisterDTO re) {
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "/client/auth/login";
+    }
+
+    @PostMapping("/login")
+    public String registerF(Model model, @ModelAttribute("regisNew") RegisterDTO re,
+            RedirectAttributes redirectAttributes) {
         System.out.println(re);
         Users kq = new Users();
         kq = this.userService.registerDtoToUser(re);
         kq.setRoles(this.rolesRepository.findByName("User"));
         String pass = re.getPassword();
         String repass = re.getRepeatPassword();
+        boolean hasER = false;
         if (!pass.equals(repass)) {
-            model.addAttribute("showMess", true);
+            // model.addAttribute("showMess", true);
+            redirectAttributes.addFlashAttribute("showMess", true);
+            hasER = true;
         }
 
         if (this.userService.existsByEmailUser(re.getEmail())) {
-            model.addAttribute("emailExist", true);
+            // model.addAttribute("emailExist", true);
+            redirectAttributes.addFlashAttribute("emailExist", true);
+            hasER = true;
         }
 
-        if (model.containsAttribute("showMess") || model.containsAttribute("emailExist")) {
-            return "/client/auth/register";
+        // if (model.containsAttribute("showMess") ||
+        // model.containsAttribute("emailExist")) {
+        // return "/client/auth/register";
+        // }
+        if (hasER) {
+            return "redirect:/register";
         }
 
         this.userService.createUser(kq);

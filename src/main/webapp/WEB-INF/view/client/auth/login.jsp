@@ -12,6 +12,12 @@
                 integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
                 crossorigin="anonymous">
 
+            <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css” />
+
+            <link rel=”stylesheet” href=”https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css”
+                integrity=”sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T”
+                crossorigin=”anonymous”>
+
             <title>Hello, world!</title>
 
             <style>
@@ -21,6 +27,17 @@
                     flex: 1;
                     height: 1px;
                     background: #eee;
+                }
+            </style>
+            <style>
+                body {
+                    padding: 100px 0;
+                    background-color: #efefef
+                }
+
+                a,
+                a:hover {
+                    color: #333
                 }
             </style>
         </head>
@@ -45,7 +62,14 @@
                                 <div data-mdb-input-init class="form-outline mb-4">
                                     <input type="password" id="form1Example23" class="form-control form-control-lg" />
                                     <label class="form-label" for="form1Example23">Password</label>
+
                                 </div>
+
+
+
+
+
+
 
                                 <!-- <div class="d-flex justify-content-around align-items-center mb-4">
                                     Checkbox 
@@ -62,7 +86,9 @@
                                     class="btn btn-primary btn-lg btn-block">Sign in</button>
 
                                 <div class="divider d-flex align-items-center my-4">
-                                    <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+                                    <p class="text-center fw-bold mx-3 mb-0 text-muted"><a href="/register">Do you need
+                                            an
+                                            account?</a></p>
                                 </div>
 
                                 <!-- <a data-mdb-ripple-init class="btn btn-primary btn-lg btn-block"

@@ -26,7 +26,7 @@
                                         <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
 
-                                            <form:form class="mx-1 mx-md-4" action="/registerF" method="post"
+                                            <form:form class="mx-1 mx-md-4" action="/login" method="post"
                                                 modelAttribute="regisNew">
 
                                                 <div class="d-flex flex-row align-items-center mb-4">
@@ -85,17 +85,17 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-check d-flex justify-content-center mb-5">
+                                                <!-- <div class="form-check d-flex justify-content-center mb-5">
                                                     <p id="pass" style="color: red; font-size: 11px;">
                                                     </p>
-                                                </div>
+                                                </div> -->
 
 
 
 
                                                 <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                                     <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                                                        class="btn btn-primary btn-lg">Create Account</button>
+                                                        class="btn btn-primary btn-lg" id="butt">Create Account</button>
                                                 </div>
 
 
@@ -103,13 +103,14 @@
                                                 <!-- <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Create Account</p> -->
                                                 <c:if test="${showMess}">
                                                     <script>
-                                                        document.getElementById('pass').innerHTML = "you can check and fix password and RepeatPass"
+                                                        // document.getElementById('pass').innerHTML = "you can check and fix password and RepeatPass"
+                                                        alert("you can check and fix password and RepeatPass")
                                                     </script>
                                                 </c:if>
 
                                                 <c:if test="${emailExist}">
                                                     <script>
-                                                        document.getElementById('email').innerHTML = "Email is exist in database"
+                                                        alert("Email is exist in database")
                                                     </script>
                                                 </c:if>
 
