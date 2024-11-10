@@ -54,7 +54,7 @@ public class UserControll {
 
             String rootPath = this.servletContext.getRealPath("/resources/images");
 
-            File dir = new File(rootPath + File.separator + "avatar");
+            File dir = new File(rootPath + File.separator + "product");
 
             if (!dir.exists()) {
                 dir.mkdirs();
@@ -63,9 +63,6 @@ public class UserControll {
             File serverFile = new File(dir.getAbsolutePath() + File.separator + System.currentTimeMillis() + "-"
                     + file.getOriginalFilename());
 
-            linkImage = System.currentTimeMillis() + "-"
-                    + file.getOriginalFilename();
-
             BufferedOutputStream stream = new BufferedOutputStream(
                     new FileOutputStream(serverFile));
 
@@ -73,7 +70,7 @@ public class UserControll {
             stream.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            // TODO: handle exception
         }
         us.setRoles(this.rolesService.findRolesByName(kq));
         us.setAvatar(linkImage);

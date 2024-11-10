@@ -19,7 +19,7 @@ public class HomePageControll {
         this.productsService = productsService;
     }
 
-    @GetMapping("/homePage/client")
+    @GetMapping("")
     public String homepage(Model model) {
         List<Products> ds = this.productsService.findAllProducts();
         model.addAttribute("products", ds);

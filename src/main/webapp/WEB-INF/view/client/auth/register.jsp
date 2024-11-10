@@ -26,7 +26,7 @@
                                         <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
 
-                                            <form:form class="mx-1 mx-md-4" action="/login" method="post"
+                                            <form:form class="mx-1 mx-md-4" action="/login" method="get"
                                                 modelAttribute="regisNew">
 
                                                 <div class="d-flex flex-row align-items-center mb-4">

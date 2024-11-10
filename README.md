@@ -37,3 +37,42 @@ khi đăng ký tài khoản phải check xem email đã tồn tại hay chưa v�
                                 <form:option value="User">User</form:option>
                             </form:select>
                         </div>
+
+
+// @Bean
+    // public SecurityFilterChain securityFilterChain(HttpSecurity http) throws
+    // Exception {
+    // http
+    // .csrf(AbstractHttpConfigurer::disable)
+    // .authorizeHttpRequests(
+    // authorizationManagerRequestMatcherRegistry ->
+    // authorizationManagerRequestMatcherRegistry
+    // .requestMatchers("/error").permitAll()
+    // .anyRequest().authenticated())
+    // .formLogin().loginPage("/loginMy").defaultSuccessUrl("/homePage/client",
+    // true).permitAll()
+    // .and()
+    // .logout().permitAll();
+
+    // return http.build();
+    // }
+
+    // @Bean
+    // public SecurityFilterChain securityFilterChain(HttpSecurity http) throws
+    // Exception {
+    // http
+    // .csrf(AbstractHttpConfigurer::disable)
+    // .authorizeHttpRequests(
+    // authorizationManagerRequestMatcherRegistry ->
+    // authorizationManagerRequestMatcherRegistry
+    // .requestMatchers("/error").permitAll()
+    // .requestMatchers("/login").permitAll() // Cho phép truy cập vào trang đăng
+    // nhập
+    // .anyRequest().authenticated()) // Yêu cầu xác thực cho các yêu cầu khác
+    // .formLogin().loginPage("/login").defaultSuccessUrl("/homePage/client",
+    // true).permitAll()
+    // .and()
+    // .logout().permitAll();
+
+    // return http.build();
+    // }

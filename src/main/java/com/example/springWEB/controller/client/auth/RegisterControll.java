@@ -32,15 +32,9 @@ public class RegisterControll {
         return "/client/auth/register";
     }
 
-    @GetMapping("/login")
-    public String login(Model model) {
-        return "/client/auth/login";
-    }
-
-    @PostMapping("/login")
-    public String registerF(Model model, @ModelAttribute("regisNew") RegisterDTO re,
+    @PostMapping("/register")
+    public String registerf(Model model, @ModelAttribute("regisNew") RegisterDTO re,
             RedirectAttributes redirectAttributes) {
-        System.out.println(re);
         Users kq = new Users();
         kq = this.userService.registerDtoToUser(re);
         kq.setRoles(this.rolesRepository.findByName("User"));
@@ -51,12 +45,14 @@ public class RegisterControll {
             // model.addAttribute("showMess", true);
             redirectAttributes.addFlashAttribute("showMess", true);
             hasER = true;
+            System.out.println("error repass");
         }
 
         if (this.userService.existsByEmailUser(re.getEmail())) {
             // model.addAttribute("emailExist", true);
             redirectAttributes.addFlashAttribute("emailExist", true);
             hasER = true;
+            System.out.println("email is exist");
         }
 
         // if (model.containsAttribute("showMess") ||
@@ -70,5 +66,47 @@ public class RegisterControll {
         this.userService.createUser(kq);
         return "/client/auth/login";
     }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "/client/auth/login";
+    }
+
+    // @PostMapping("/login")
+    // public String registerF(Model model, @ModelAttribute("regisNew") RegisterDTO
+    // re,
+    // RedirectAttributes redirectAttributes) {
+    // System.out.println(re);
+    // Users kq = new Users();
+    // kq = this.userService.registerDtoToUser(re);
+    // kq.setRoles(this.rolesRepository.findByName("User"));
+    // String pass = re.getPassword();
+    // String repass = re.getRepeatPassword();
+    // boolean hasER = false;
+    // if (!pass.equals(repass)) {
+    // // model.addAttribute("showMess", true);
+    // redirectAttributes.addFlashAttribute("showMess", true);
+    // hasER = true;
+    // System.out.println("error repass");
+    // }
+
+    // if (this.userService.existsByEmailUser(re.getEmail())) {
+    // // model.addAttribute("emailExist", true);
+    // redirectAttributes.addFlashAttribute("emailExist", true);
+    // hasER = true;
+    // System.out.println("email is exist");
+    // }
+
+    // // if (model.containsAttribute("showMess") ||
+    // // model.containsAttribute("emailExist")) {
+    // // return "/client/auth/register";
+    // // }
+    // if (hasER) {
+    // return "redirect:/register";
+    // }
+
+    // this.userService.createUser(kq);
+    // return "/client/auth/login";
+    // }
 
 }
