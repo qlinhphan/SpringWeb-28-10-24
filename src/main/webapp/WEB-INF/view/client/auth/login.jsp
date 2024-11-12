@@ -341,6 +341,12 @@ Created by Sobola Timilehin David
                                 </c:if>
 
                             </div>
+                            <div>
+                                <c:if test="${param.logout != null}">
+                                    <div class="my-2" style="color: green;">Logout success.</div>
+                                </c:if>
+
+                            </div>
                             <div class="login-group">
                                 <input type="text" class="login-control" placeholder="Email" name="username">
                             </div>

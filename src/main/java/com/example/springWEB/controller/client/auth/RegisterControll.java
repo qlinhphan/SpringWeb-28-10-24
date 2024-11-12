@@ -62,9 +62,10 @@ public class RegisterControll {
         if (hasER) {
             return "redirect:/register";
         }
-
+        System.out.println(kq);
         this.userService.createUser(kq);
-        return "/client/auth/login";
+        System.out.println("this is saved");
+        return "hello";
     }
 
     @GetMapping("/login")

@@ -18,13 +18,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 public class CustomSuccessHandler implements AuthenticationSuccessHandler {
+
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     protected String determineTargetUrl(final Authentication authentication) {
 
         Map<String, String> roleTargetUrlMap = new HashMap<>();
-        roleTargetUrlMap.put("ROLE_User", "/");
         roleTargetUrlMap.put("ROLE_Admin", "/adminDash");
+        roleTargetUrlMap.put("ROLE_User", "/");
 
         final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (final GrantedAuthority grantedAuthority : authorities) {
@@ -37,6 +38,21 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         throw new IllegalStateException();
     }
 
+    protected void handle(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            Authentication authentication) throws IOException {
+
+        String targetUrl = determineTargetUrl(authentication);
+
+        if (response.isCommitted()) {
+
+            return;
+        }
+
+        redirectStrategy.sendRedirect(request, response, targetUrl);
+    }
+
     protected void clearAuthenticationAttributes(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) {
@@ -46,16 +62,12 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
     }
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-            Authentication authentication) throws IOException {
-        String targetUrl = determineTargetUrl(authentication);
+    public void onAuthenticationSuccess(HttpServletRequest request,
+            HttpServletResponse response, Authentication authentication)
+            throws IOException {
 
-        if (response.isCommitted()) {
-
-            return;
-        }
-
-        redirectStrategy.sendRedirect(request, response, targetUrl);
+        handle(request, response, authentication);
         clearAuthenticationAttributes(request);
     }
+
 }

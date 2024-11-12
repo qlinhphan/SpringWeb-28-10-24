@@ -35,6 +35,56 @@
 
                     <!-- Template Stylesheet -->
                     <link href="/css/client/style.css" rel="stylesheet">
+
+
+                    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+                    <style>
+                        .dropbtn {
+                            background-color: #4CAF50;
+                            color: white;
+                            padding: 16px;
+                            font-size: 16px;
+                            border: none;
+                            cursor: pointer;
+                        }
+
+                        .dropdown {
+                            position: relative;
+                            display: inline-block;
+                        }
+
+                        .dropdown-content {
+                            display: none;
+                            position: absolute;
+                            background-color: #f9f9f9;
+                            min-width: 160px;
+                            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                            z-index: 1;
+                        }
+
+                        .dropdown-content a {
+                            color: black;
+                            padding: 12px 16px;
+                            text-decoration: none;
+                            display: block;
+                        }
+
+                        .dropdown-content a:hover {
+                            background-color: #f1f1f1
+                        }
+
+                        .dropdown:hover .dropdown-content {
+                            display: block;
+                        }
+
+                        .dropdown:hover .dropbtn {
+                            background-color: #3e8e41;
+                        }
+                    </style>
+
                 </head>
 
                 <body>
@@ -92,19 +142,65 @@
                         <a href="contact.html" class="nav-item nav-link">Contact</a> -->
                                     </div>
                                     <div class="d-flex m-3 me-0">
-                                        <button
-                                            class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
-                                            data-bs-toggle="modal" data-bs-target="#searchModal"><i
-                                                class="fas fa-search text-primary"></i></button>
-                                        <a href="#" class="position-relative me-4 my-auto">
-                                            <i class="fa fa-shopping-bag fa-2x"></i>
-                                            <span
-                                                class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                                                style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
-                                        </a>
-                                        <a href="#" class="my-auto">
-                                            <i class="fas fa-user fa-2x"></i>
-                                        </a>
+                                        <c:if test="${not empty pageContext.request.userPrincipal}">
+
+
+                                            <a href="#" class="position-relative me-4 my-auto">
+                                                <i class="fa fa-shopping-bag fa-2x"></i>
+                                                <span
+                                                    class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+                                                    style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                                            </a>
+                                            <div class="dropdown" style="color: wheat;">
+
+                                                <a href="#" class="my-auto dropbtn"
+                                                    style="display: flex; border-radius: 17px;">
+                                                    <i class="fas fa-user fa-2x"></i>
+                                                </a>
+                                                <div class="dropdown-content">
+                                                    <div>
+                                                        <div style="margin-left: 16px;"><img
+                                                                src="/images/avatar/1730739674234-but-xoa-Artline-600x600.jpg"
+                                                                alt=""
+                                                                style="width: 50xp; height: 50px; border-radius: 50%;">
+                                                        </div>
+                                                        <div>
+                                                            <span
+                                                                style="margin-left: 16px; font-size: 12px; box-shadow: 1px 1px 12px black; color: grey;">${pageContext.request.userPrincipal.name}</span>
+                                                        </div>
+                                                    </div>
+                                                    <a href="#" style="font-size: 12px;">Quản Lý Tài Khoản</a>
+                                                    <a href="#" style="font-size: 12px;">Lịch Sử Mua Hàng</a>
+                                                    <hr>
+                                                    <form action="/logout" method="post">
+                                                        <div>
+                                                            <input type="hidden" name="${_csrf.parameterName}"
+                                                                value="${_csrf.token}" />
+                                                        </div>
+                                                        <button
+                                                            style="font-size: 12px; margin-left: 15px; margin-bottom: 14px; box-shadow: 2px 2px 4px grey;"
+                                                            type="submit">Đăng
+                                                            Xuất</button>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+
+                                        </c:if>
+
+                                        <c:if test="${empty pageContext.request.userPrincipal}">
+                                            <a href="#" class="position-relative me-4 my-auto">
+                                                <!-- <i class="fa fa-shopping-bag fa-2x"></i> -->
+                                                <a href="/login"
+                                                    style="color: black; text-decoration: none; box-shadow: 3px 3px 3px red; background-color: wheat;">Đăng
+                                                    nhập</a>
+                                                <!-- <span
+                                                    class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+                                                    style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span> -->
+                                            </a>
+                                        </c:if>
+
+
                                     </div>
                                 </div>
                             </nav>

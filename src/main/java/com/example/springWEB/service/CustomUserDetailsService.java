@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.example.springWEB.domain.Users;
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -20,11 +22,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        com.example.springWEB.domain.Users user = this.userService.findUsersByEmail(username);
-
+        Users user = this.userService.findUsersByEmail(username);
         if (user == null) {
-            throw new UsernameNotFoundException("no result");
+            throw new UsernameNotFoundException("user is exists");
         }
 
         return new User(

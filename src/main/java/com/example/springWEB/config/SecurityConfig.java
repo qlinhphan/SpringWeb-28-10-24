@@ -23,6 +23,11 @@ public class SecurityConfig {
         return firewall;
     }
 
+    // @Bean
+    // public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
+    // return new CustomSuccessHandler();
+    // }
+
     @Bean
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
         return new CustomSuccessHandler();
@@ -49,6 +54,9 @@ public class SecurityConfig {
                         .failureUrl("/login?error")
                         .successHandler(myAuthenticationSuccessHandler())
                         .permitAll());
+
+        // http
+        // .logout((logout) -> logout.logoutUrl("/logout"));
 
         return http.build();
     }
