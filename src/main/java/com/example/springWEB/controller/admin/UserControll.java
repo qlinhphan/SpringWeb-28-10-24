@@ -54,17 +54,20 @@ public class UserControll {
 
             String rootPath = this.servletContext.getRealPath("/resources/images");
 
-            File dir = new File(rootPath + File.separator + "product");
+            File dir = new File(rootPath + File.separator + "avatar");
 
             if (!dir.exists()) {
                 dir.mkdirs();
             }
 
-            File serverFile = new File(dir.getAbsolutePath() + File.separator + System.currentTimeMillis() + "-"
+            File server = new File(dir.getAbsolutePath() + File.separator + System.currentTimeMillis() + "-"
                     + file.getOriginalFilename());
 
+            linkImage = System.currentTimeMillis() + "-"
+                    + file.getOriginalFilename();
+
             BufferedOutputStream stream = new BufferedOutputStream(
-                    new FileOutputStream(serverFile));
+                    new FileOutputStream(server));
 
             stream.write(bytes);
             stream.close();

@@ -360,7 +360,10 @@ Created by Sobola Timilehin David
 
                             <div class="login-btn-group">
                                 <p>
-                                    <a href="">Forgotten password?</a>
+                                    <!-- <a href="">Forgotten password?</a> -->
+
+                                    <input type="checkbox" name="remember-me" style="margin-left: 15px;" /> Remember me
+
                                 </p>
                                 <div class="login-group">
                                     <button type="submit" class="_btn">

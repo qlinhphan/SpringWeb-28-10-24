@@ -18,7 +18,6 @@ public class UserService {
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        // this.passwordEncoder = passwordEncoder;
     }
 
     public Users createUser(Users us) {

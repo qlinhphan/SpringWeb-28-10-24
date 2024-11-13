@@ -1,5 +1,6 @@
 package com.example.springWEB.controller.client.auth;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class RegisterControll {
     public RegisterControll(UserService userService, RolesRepository rolesRepository) {
         this.userService = userService;
         this.rolesRepository = rolesRepository;
+
     }
 
     @GetMapping("/register")
@@ -71,6 +73,11 @@ public class RegisterControll {
     @GetMapping("/login")
     public String login(Model model) {
         return "/client/auth/login";
+    }
+
+    @GetMapping("/access-deny")
+    public String getMethodName(Model model) {
+        return "/client/auth/access-deny";
     }
 
     // @PostMapping("/login")

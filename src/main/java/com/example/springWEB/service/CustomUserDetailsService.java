@@ -22,15 +22,16 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users user = this.userService.findUsersByEmail(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("user is exists");
+        Users users = this.userService.findUsersByEmail(username);
+
+        if (users == null) {
+            throw new UsernameNotFoundException("this user is not exist");
         }
 
         return new User(
-                user.getEmail(),
-                "{noop}" + user.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRoles().getName())));
+                users.getEmail(),
+                "{noop}" + users.getPassword(),
+                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + users.getRoles().getName())));
     }
 
 }
