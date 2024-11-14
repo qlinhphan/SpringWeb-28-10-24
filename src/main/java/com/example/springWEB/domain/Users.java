@@ -4,9 +4,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 import java.util.List;
+
+import com.example.springWEB.domain.cart.Cart;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,6 +37,10 @@ public class Users {
     // users 1 => n orders
     @OneToMany(mappedBy = "users")
     private List<Oders> orders;
+
+    // users 1 -> 1 cart
+    @OneToOne(mappedBy = "users")
+    private Cart cart;
 
     public Roles getRoles() {
         return roles;
@@ -111,6 +118,14 @@ public class Users {
     public String toString() {
         return "Users [id=" + id + ", email=" + email + ", password=" + password + ", fullname=" + fullname
                 + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
 }

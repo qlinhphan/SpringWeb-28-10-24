@@ -409,11 +409,20 @@
                                                                             <fmt:formatNumber type="number"
                                                                                 value="${product.price}" />Vnd
                                                                         </p>
-                                                                        <a href="/detail/product/client/${product.id}"
-                                                                            class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                                                class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                                            Add to
-                                                                            cart</a>
+                                                                        <!-- /detail/product/client/${product.id} -->
+                                                                        <form:form
+                                                                            action="/add-product-to-card/${product.id}"
+                                                                            method="post"
+                                                                            class="btn border border-secondary rounded-pill px-3 text-primary">
+                                                                            <div>
+                                                                                <input type="hidden"
+                                                                                    name="${_csrf.parameterName}"
+                                                                                    value="${_csrf.token}" />
+                                                                            </div>
+                                                                            <button type="submit"
+                                                                                class="fa fa-shopping-bag me-2 text-primary">add
+                                                                                to card</button>
+                                                                        </form:form>
                                                                     </div>
                                                                 </div>
                                                             </div>

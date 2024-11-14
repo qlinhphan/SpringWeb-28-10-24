@@ -27,16 +27,6 @@ public class SecurityConfig {
                 return firewall;
         }
 
-        // @Bean
-        // public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
-        // return new CustomSuccessHandler();
-        // }
-
-        // @Bean
-        // public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
-        // return new CustomSuccessHandler();
-        // }
-
         @Bean
         public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
                 return new CustomSuccessHandlers();
@@ -50,7 +40,7 @@ public class SecurityConfig {
                                                                 DispatcherType.INCLUDE)
                                                 .permitAll()
 
-                                                .requestMatchers("/", "/login", "/client/**", "/detail/**", "/page403",
+                                                .requestMatchers("/", "/login", "/client/**", "/detail/**",
                                                                 "/css/**", "/js/**", "/images/**", "/register")
                                                 .permitAll()
 
@@ -61,10 +51,10 @@ public class SecurityConfig {
                                 .formLogin(formLogin -> formLogin
                                                 .loginPage("/login")
                                                 .failureUrl("/login?error")
-                                                .successHandler(myAuthenticationSuccessHandler())
+                                                .successHandler(myAuthenticationSuccessHandler()) // authorization
                                                 .permitAll())
 
-                                .exceptionHandling(ex -> ex.accessDeniedPage("/access-deny"))
+                                .exceptionHandling(ex -> ex.accessDeniedPage("/access-deny")) // page not allowed
                                 .rememberMe(reM -> reM.key("uniqueAndSecret").tokenValiditySeconds(86400))
                                 .logout(logout -> logout.deleteCookies("JSESSIONID"));
 

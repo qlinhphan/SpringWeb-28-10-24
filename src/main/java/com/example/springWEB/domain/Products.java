@@ -2,6 +2,8 @@ package com.example.springWEB.domain;
 
 import java.util.List;
 
+import com.example.springWEB.domain.cart.CartDetail;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +32,10 @@ public class Products {
     private long sold; // lg hang da ban
     private String factory; // nha sx
     private String target; // nhu cau sd
+
+    // product 1 -> n cart_detail
+    @OneToMany(mappedBy = "products")
+    private List<CartDetail> cartDetail;
 
     // product 1 => n orderDetail
     // vì 1 chi tiết đơn hàng thì mình cần biết nó gồm những sản phẩm nào, và điều
@@ -130,6 +136,14 @@ public class Products {
 
     public void setTarget(String target) {
         this.target = target;
+    }
+
+    public List<CartDetail> getCartDetail() {
+        return cartDetail;
+    }
+
+    public void setCartDetail(List<CartDetail> cartDetail) {
+        this.cartDetail = cartDetail;
     }
 
 }
