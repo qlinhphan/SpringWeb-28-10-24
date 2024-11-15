@@ -191,7 +191,7 @@
                                         <tr>
                                             <th scope="row">${user.id}</th>
                                             <td>${user.email}</td>
-                                            <td>${user.password}</td>
+                                            <td style="font-size: 17px;">${user.password}</td>
                                             <td>${user.roles.name}</td>
                                             <td>
                                                 <a href="/exactly/table/${user.id}" class="btn btn-success">View</a>

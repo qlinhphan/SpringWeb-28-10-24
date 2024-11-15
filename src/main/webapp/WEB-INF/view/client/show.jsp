@@ -104,7 +104,7 @@
                                 <div class="top-info ps-2">
                                     <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a
                                             href="https://www.google.com/maps/place/Ti%E1%BB%81n+H%E1%BA%A3i,+Ti%E1%BB%81n+H%E1%BA%A3i+District,+Thai+Binh/@20.4044091,106.5001131,15z/data=!3m1!4b1!4m6!3m5!1s0x3135f8c5b3919d0b:0x9ea9c50b834948b1!8m2!3d20.402609!4d106.5009617!16s%2Fg%2F122xl0yc?entry=ttu&g_ep=EgoyMDI0MTAyNy4wIKXMDSoASAFQAw%3D%3D"
-                                            class="text-white">Tien Hai, Thai Binh</a></small>
+                                            class="text-white">Tiền Hải, Thái Bình</a></small>
                                     <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#"
                                             class="text-white">qlinhphan@gmail.com</a></small>
                                 </div>
@@ -420,7 +420,8 @@
                                                                                     value="${_csrf.token}" />
                                                                             </div>
                                                                             <button type="submit"
-                                                                                class="fa fa-shopping-bag me-2 text-primary">add
+                                                                                class="fa fa-shopping-bag me-2 text-primary"
+                                                                                style="border: none;">add
                                                                                 to card</button>
                                                                         </form:form>
                                                                     </div>

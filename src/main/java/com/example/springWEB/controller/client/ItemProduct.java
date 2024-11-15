@@ -37,11 +37,11 @@ public class ItemProduct {
     // }
 
     @PostMapping("/add-product-to-card/{id}")
-    public String addProductToCard(Model model, @PathVariable long id,
-            @AuthenticationPrincipal UserDetails userDetails) {
+    public String addProductToCard(Model model, @PathVariable long id, @AuthenticationPrincipal UserDetails usd) {
         long idProduct = id;
-        String email = userDetails.getUsername();
-        System.out.println("EMAIL: " + email);
+        String email = usd.getUsername();
+        System.out.println("IDproduct: " + idProduct);
+        System.out.println("EMAILuser: " + email);
         this.productsService.addProductToCart(email, idProduct);
         return "redirect:/";
     }

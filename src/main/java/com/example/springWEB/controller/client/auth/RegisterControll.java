@@ -1,5 +1,8 @@
 package com.example.springWEB.controller.client.auth;
 
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +29,6 @@ public class RegisterControll {
     public RegisterControll(UserService userService, RolesRepository rolesRepository) {
         this.userService = userService;
         this.rolesRepository = rolesRepository;
-
     }
 
     @GetMapping("/register")

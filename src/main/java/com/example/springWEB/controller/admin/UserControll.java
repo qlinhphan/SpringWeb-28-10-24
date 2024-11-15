@@ -9,6 +9,8 @@ import java.security.Provider.Service;
 import java.util.List;
 
 import org.apache.tomcat.util.digester.SystemPropertySource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,11 +32,15 @@ public class UserControll {
     private final ServletContext servletContext;
     private UserService userService;
     private RolesService rolesService;
+    private PasswordEncoder passwordEncoder;
 
-    public UserControll(UserService userService, ServletContext servletContext, RolesService rolesService) {
+    @Autowired
+    public UserControll(UserService userService, ServletContext servletContext, RolesService rolesService,
+            PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.servletContext = servletContext;
         this.rolesService = rolesService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/create/user")
@@ -52,9 +58,9 @@ public class UserControll {
             byte[] bytes;
             bytes = file.getBytes();
 
-            String rootPath = this.servletContext.getRealPath("/resources/images");
+            String rootPath = this.servletContext.getRealPath("/resources/css");
 
-            File dir = new File(rootPath + File.separator + "avatar");
+            File dir = new File(rootPath + File.separator + "client");
 
             if (!dir.exists()) {
                 dir.mkdirs();
@@ -63,7 +69,7 @@ public class UserControll {
             File server = new File(dir.getAbsolutePath() + File.separator + System.currentTimeMillis() + "-"
                     + file.getOriginalFilename());
 
-            linkImage = System.currentTimeMillis() + "-"
+            linkImage = File.separator + System.currentTimeMillis() + "-"
                     + file.getOriginalFilename();
 
             BufferedOutputStream stream = new BufferedOutputStream(
@@ -71,12 +77,12 @@ public class UserControll {
 
             stream.write(bytes);
             stream.close();
-
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
         us.setRoles(this.rolesService.findRolesByName(kq));
         us.setAvatar(linkImage);
+        us.setPassword(passwordEncoder.encode(us.getPassword()));
         Users user = this.userService.createUser(us);
         return "redirect:/table/user";
     }
