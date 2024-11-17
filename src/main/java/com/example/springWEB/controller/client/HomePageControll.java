@@ -29,4 +29,9 @@ public class HomePageControll {
         return "/client/show";
     }
 
+    @GetMapping("/cart")
+    public String Cart(Model model) {
+        return "client/cart/cart";
+    }
+
 } // test

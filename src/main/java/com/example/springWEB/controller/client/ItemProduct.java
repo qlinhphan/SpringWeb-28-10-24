@@ -13,15 +13,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.springWEB.domain.Products;
 import com.example.springWEB.domain.Users;
+import com.example.springWEB.domain.cart.Cart;
+import com.example.springWEB.repository.CartRepository;
+import com.example.springWEB.service.CartService;
 import com.example.springWEB.service.ProductsService;
+import com.example.springWEB.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ItemProduct {
 
     private ProductsService productsService;
+    private UserService userService;
+    private CartService cartService;
 
-    public ItemProduct(ProductsService productsService) {
+    public ItemProduct(ProductsService productsService, UserService userService, CartService cartService) {
         this.productsService = productsService;
+        this.userService = userService;
+        this.cartService = cartService;
     }
 
     @GetMapping("/detail/product/client/{id}")
@@ -37,12 +47,18 @@ public class ItemProduct {
     // }
 
     @PostMapping("/add-product-to-card/{id}")
-    public String addProductToCard(Model model, @PathVariable long id, @AuthenticationPrincipal UserDetails usd) {
+    public String addProductToCard(Model model, @PathVariable long id, HttpSession session,
+            @AuthenticationPrincipal UserDetails userDetails) {
+        System.out.println("IDproduct: " + id);
         long idProduct = id;
-        String email = usd.getUsername();
-        System.out.println("IDproduct: " + idProduct);
-        System.out.println("EMAILuser: " + email);
-        this.productsService.addProductToCart(email, idProduct);
+        System.out.println("Email of users: " + userDetails.getUsername());
+        String email = userDetails.getUsername();
+        this.productsService.addProductToCart(idProduct, email);
+        Users user = this.userService.findUsersByEmail(email);
+        Cart cart = this.cartService.findCartByUser(user);
+        System.out.println(cart.getSum());
+        int sumCart = cart.getSum();
+        session.setAttribute("sumCart", sumCart);
         return "redirect:/";
     }
 

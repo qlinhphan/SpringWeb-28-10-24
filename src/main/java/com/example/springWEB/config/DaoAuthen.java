@@ -1,11 +1,11 @@
 package com.example.springWEB.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.security.Provider;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.springWEB.service.CustomUserDetailsService;
@@ -14,12 +14,12 @@ import com.example.springWEB.service.CustomUserDetailsService;
 @EnableWebSecurity
 public class DaoAuthen {
 
-    private CustomUserDetailsService customUserDetailsService;
     private PasswordEncoder passwordEncoder;
+    private CustomUserDetailsService customUserDetailsService;
 
-    public DaoAuthen(CustomUserDetailsService customUserDetailsService, PasswordEncoder passwordEncoder) {
-        this.customUserDetailsService = customUserDetailsService;
+    public DaoAuthen(PasswordEncoder passwordEncoder, CustomUserDetailsService customUserDetailsService) {
         this.passwordEncoder = passwordEncoder;
+        this.customUserDetailsService = customUserDetailsService;
     }
 
     @Bean
@@ -29,4 +29,5 @@ public class DaoAuthen {
         provider.setPasswordEncoder(passwordEncoder);
         return provider;
     }
+
 }

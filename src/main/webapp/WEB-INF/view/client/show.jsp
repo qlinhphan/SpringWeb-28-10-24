@@ -129,17 +129,6 @@
                                     <div class="navbar-nav mx-auto">
                                         <a href="index.html" class="nav-item nav-link active">Trang Chủ</a>
                                         <a href="shop.html" class="nav-item nav-link">Của Hàng</a>
-                                        <!-- <a href="shop-detail.html" class="nav-item nav-link">Shop Detail</a> -->
-                                        <!-- <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                <a href="cart.html" class="dropdown-item">Cart</a>
-                                <a href="chackout.html" class="dropdown-item">Chackout</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a> -->
                                     </div>
                                     <div class="d-flex m-3 me-0">
                                         <c:if test="${not empty pageContext.request.userPrincipal}">
@@ -149,7 +138,7 @@
                                                 <i class="fa fa-shopping-bag fa-2x"></i>
                                                 <span
                                                     class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                                                    style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                                                    style="top: -5px; left: 15px; height: 20px; min-width: 20px;">${sumCart}</span>
                                             </a>
                                             <div class="dropdown" style="color: wheat;">
 
@@ -199,8 +188,6 @@
                                                     style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span> -->
                                             </a>
                                         </c:if>
-
-
                                     </div>
                                 </div>
                             </nav>
@@ -238,16 +225,16 @@
                         <div class="container py-5">
                             <div class="row g-5 align-items-center">
                                 <div class="col-md-12 col-lg-7">
-                                    <h4 class="mb-3 text-secondary">100% Organic Foods</h4>
-                                    <h1 class="mb-5 display-3 text-primary">Organic Veggies & Fruits Foods</h1>
-                                    <div class="position-relative mx-auto">
+                                    <h4 class="mb-3 text-secondary">100% Sản Phẩm Chính Hãng</h4>
+                                    <h1 class="mb-5 display-3 text-primary">Hàng Chất Lượng & Giá Hời</h1>
+                                    <!-- <div class="position-relative mx-auto">
                                         <input
                                             class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill"
                                             type="number" placeholder="Search">
                                         <button type="submit"
                                             class="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100"
                                             style="top: 0; right: 25%;">Submit Now</button>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-md-12 col-lg-5">
                                     <div id="carouselId" class="carousel slide position-relative"
@@ -293,8 +280,8 @@
                                             <i class="fas fa-car-side fa-3x text-white"></i>
                                         </div>
                                         <div class="featurs-content text-center">
-                                            <h5>Free Shipping</h5>
-                                            <p class="mb-0">Free on order over $300</p>
+                                            <h5>Miễn Phí Vận Chuyển</h5>
+                                            <p class="mb-0">Với quảng đường nhỏ hơn 30km</p>
                                         </div>
                                     </div>
                                 </div>
@@ -304,8 +291,8 @@
                                             <i class="fas fa-user-shield fa-3x text-white"></i>
                                         </div>
                                         <div class="featurs-content text-center">
-                                            <h5>Security Payment</h5>
-                                            <p class="mb-0">100% security payment</p>
+                                            <h5>Thanh Toán An Toàn</h5>
+                                            <p class="mb-0">Không bị mất thông tin</p>
                                         </div>
                                     </div>
                                 </div>
@@ -315,8 +302,8 @@
                                             <i class="fas fa-exchange-alt fa-3x text-white"></i>
                                         </div>
                                         <div class="featurs-content text-center">
-                                            <h5>30 Day Return</h5>
-                                            <p class="mb-0">30 day money guarantee</p>
+                                            <h5>30 Ngày Trả Hàng</h5>
+                                            <p class="mb-0">Nếu sản phẩm lỗi</p>
                                         </div>
                                     </div>
                                 </div>
@@ -326,8 +313,8 @@
                                             <i class="fa fa-phone-alt fa-3x text-white"></i>
                                         </div>
                                         <div class="featurs-content text-center">
-                                            <h5>24/7 Support</h5>
-                                            <p class="mb-0">Support every time fast</p>
+                                            <h5>Hỗ Trợ 24/7</h5>
+                                            <p class="mb-0">Luôn Bên Cạnh Bạn</p>
                                         </div>
                                     </div>
                                 </div>

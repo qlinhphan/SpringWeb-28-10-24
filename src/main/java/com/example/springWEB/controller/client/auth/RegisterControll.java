@@ -1,24 +1,17 @@
 package com.example.springWEB.controller.client.auth;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.springWEB.domain.Roles;
 import com.example.springWEB.domain.Users;
 import com.example.springWEB.domain.dto.RegisterDTO;
 import com.example.springWEB.repository.RolesRepository;
 import com.example.springWEB.service.UserService;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class RegisterControll {

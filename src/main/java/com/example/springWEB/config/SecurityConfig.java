@@ -28,10 +28,6 @@ public class SecurityConfig {
                 return firewall;
         }
 
-        // @Bean
-        // public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
-        // return new CustomSuccessHandlers();
-        // }
         @Bean
         public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
                 return new CustomSuccessHandlers();
@@ -67,7 +63,6 @@ public class SecurityConfig {
                                 .exceptionHandling(ex -> ex.accessDeniedPage("/access-deny")) // page not allowed
                                 .rememberMe(reM -> reM.key("uniqueAndSecret").tokenValiditySeconds(86400))
                                 .logout(logout -> logout.deleteCookies("JSESSIONID"));
-
                 return http.build();
         }
 
