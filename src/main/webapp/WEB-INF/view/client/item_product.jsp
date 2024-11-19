@@ -182,7 +182,7 @@
                                         </button>
                                     </div>
                                 </div> -->
-                                <a href="#"
+                                <a href="/"
                                     class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
                                         class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                             </div>

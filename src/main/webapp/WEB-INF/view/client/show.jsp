@@ -134,11 +134,13 @@
                                         <c:if test="${not empty pageContext.request.userPrincipal}">
 
 
-                                            <a href="#" class="position-relative me-4 my-auto">
+                                            <a href="/cart" class="position-relative me-4 my-auto">
+
                                                 <i class="fa fa-shopping-bag fa-2x"></i>
+
                                                 <span
                                                     class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                                                    style="top: -5px; left: 15px; height: 20px; min-width: 20px;">${sumCart}</span>
+                                                    style="top: -5px; left: 15px; height: 20px; min-width: 20px;">${SumCarts}</span>
                                             </a>
                                             <div class="dropdown" style="color: wheat;">
 
@@ -226,7 +228,7 @@
                             <div class="row g-5 align-items-center">
                                 <div class="col-md-12 col-lg-7">
                                     <h4 class="mb-3 text-secondary">100% Sản Phẩm Chính Hãng</h4>
-                                    <h1 class="mb-5 display-3 text-primary">Hàng Chất Lượng & Giá Hời</h1>
+                                    <h1 class="mb-5 display-3 text-primary">Hàng Chất Lượng & Giá Hợp Lý</h1>
                                     <!-- <div class="position-relative mx-auto">
                                         <input
                                             class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill"
@@ -397,20 +399,45 @@
                                                                                 value="${product.price}" />Vnd
                                                                         </p>
                                                                         <!-- /detail/product/client/${product.id} -->
-                                                                        <form:form
-                                                                            action="/add-product-to-card/${product.id}"
-                                                                            method="post"
-                                                                            class="btn border border-secondary rounded-pill px-3 text-primary">
-                                                                            <div>
-                                                                                <input type="hidden"
-                                                                                    name="${_csrf.parameterName}"
-                                                                                    value="${_csrf.token}" />
-                                                                            </div>
-                                                                            <button type="submit"
-                                                                                class="fa fa-shopping-bag me-2 text-primary"
-                                                                                style="border: none;">add
-                                                                                to card</button>
-                                                                        </form:form>
+                                                                        <div
+                                                                            style="display: flex; justify-content: center; gap: 7px">
+                                                                            <form:form
+                                                                                action="/add-product-to-card/${product.id}"
+                                                                                method="post"
+                                                                                class="btn border border-secondary rounded-pill px-3 text-primary"
+                                                                                style="margin-top: 17px; display: flex; justify-content: center; align-items: center;">
+                                                                                <div>
+                                                                                    <input type="hidden"
+                                                                                        name="${_csrf.parameterName}"
+                                                                                        value="${_csrf.token}" />
+                                                                                </div>
+
+                                                                                <button type="submit"
+                                                                                    class="fa fa-shopping-bag me-2 text-primary"
+                                                                                    style="border: none;">add
+                                                                                    to card</button>
+
+
+                                                                            </form:form>
+                                                                            <form
+                                                                                action="/detail/product/client/${product.id}"
+                                                                                method="get"
+                                                                                class="btn border border-secondary rounded-pill px-3 text-primary"
+                                                                                style="margin-top: 17px; display: flex; justify-content: center; align-items: center;">
+                                                                                <!-- <div>
+                                                                                    <input type="hidden"
+                                                                                        name="${_csrf.parameterName}"
+                                                                                        value="${_csrf.token}" />
+                                                                                </div> -->
+
+                                                                                <button type="submit"
+                                                                                    class="fa fa-shopping-bag me-2 text-primary"
+                                                                                    style="border: none;">View Product
+                                                                                </button>
+
+
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>

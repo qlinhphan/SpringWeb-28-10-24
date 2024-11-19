@@ -13,6 +13,8 @@ import com.example.springWEB.repository.CartRepository;
 import com.example.springWEB.repository.ProductsRepository;
 import com.example.springWEB.repository.UserRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class ProductsService {
 

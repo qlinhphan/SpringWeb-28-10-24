@@ -35,6 +35,12 @@
                     <!-- Template Stylesheet -->
                     <link href="css/client/style.css" rel="stylesheet">
 
+                    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+                        rel="stylesheet"
+                        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+                        crossorigin="anonymous"> -->
+
+
                     <style>
                         .dropbtn {
                             background-color: #4CAF50;
@@ -78,6 +84,11 @@
                             background-color: #3e8e41;
                         }
                     </style>
+
+                    <script>
+                        let kq = document.getElementById("tongtien")
+                        kq.innerHTML = "thisss"
+                    </script>
                 </head>
 
                 <body>
@@ -96,9 +107,10 @@
                             <div class="d-flex justify-content-between">
                                 <div class="top-info ps-2">
                                     <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a
-                                            href="#" class="text-white">123 Street, New York</a></small>
+                                            href="https://www.google.com/maps/place/Ti%E1%BB%81n+H%E1%BA%A3i,+Ti%E1%BB%81n+H%E1%BA%A3i+District,+Thai+Binh/@20.4044091,106.5001131,15z/data=!3m1!4b1!4m6!3m5!1s0x3135f8c5b3919d0b:0x9ea9c50b834948b1!8m2!3d20.402609!4d106.5009617!16s%2Fg%2F122xl0yc?entry=ttu&g_ep=EgoyMDI0MTAyNy4wIKXMDSoASAFQAw%3D%3D"
+                                            class="text-white">Tiền Hải, Thái Bình</a></small>
                                     <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#"
-                                            class="text-white">Email@Example.com</a></small>
+                                            class="text-white">pxql@gmail.com</a></small>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +136,7 @@
                                                 <i class="fa fa-shopping-bag fa-2x"></i>
                                                 <span
                                                     class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                                                    style="top: -5px; left: 15px; height: 20px; min-width: 20px;">${sumCart}</span>
+                                                    style="top: -5px; left: 15px; height: 20px; min-width: 20px;">${SumCarts}</span>
                                             </a>
                                             <div class="dropdown" style="color: wheat;">
 
@@ -208,7 +220,7 @@
 
                     <!-- Single Page Header start -->
                     <div class="container-fluid page-header py-5">
-                        <h1 class="text-center text-white display-6">Your Cart</h1>
+                        <h1 class="text-center text-white display-6">Giỏ Hàng Của Bạn</h1>
 
                     </div>
                     <!-- Single Page Header End -->
@@ -221,142 +233,88 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Products</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Quantity</th>
-                                            <th scope="col">Total</th>
-                                            <th scope="col">Handle</th>
+                                            <!-- <th scope="col">Id</th> -->
+                                            <th scope="col">Sản Phẩm</th>
+                                            <th scope="col">Tên Sản Phẩm</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col">Số Lượng</th>
+                                            <th scope="col">Tổng tiền</th>
+                                            <th scope="col">Tùy chọn</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="d-flex align-items-center">
-                                                    <img src="img/vegetable-item-3.png"
-                                                        class="img-fluid me-5 rounded-circle"
-                                                        style="width: 80px; height: 80px;" alt="">
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <p class="mb-0 mt-4">Big Banana</p>
-                                            </td>
-                                            <td>
-                                                <p class="mb-0 mt-4">2.99 $</p>
-                                            </td>
-                                            <td>
-                                                <div class="input-group quantity mt-4" style="width: 100px;">
-                                                    <div class="input-group-btn">
-                                                        <button
-                                                            class="btn btn-sm btn-minus rounded-circle bg-light border">
-                                                            <i class="fa fa-minus"></i>
-                                                        </button>
+                                        <c:forEach var="cartDetail" items="${cartDetails}">
+                                            <tr>
+                                                <form:form action="/delete-product-from-cart" method="post"
+                                                    modelAttribute="deleteDetail">
+                                                    <div>
+                                                        <input type="hidden" name="${_csrf.parameterName}"
+                                                            value="${_csrf.token}" />
                                                     </div>
-                                                    <input type="text"
-                                                        class="form-control form-control-sm text-center border-0"
-                                                        value="1">
-                                                    <div class="input-group-btn">
-                                                        <button
-                                                            class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                            <i class="fa fa-plus"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="mb-0 mt-4">2.99 $</p>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-md rounded-circle bg-light border mt-4">
-                                                    <i class="fa fa-times text-danger"></i>
-                                                </button>
-                                            </td>
+                                                    <td style="display: none;">
+                                                        <p class="mb-0 mt-4">
+                                                            <form:input type="text" value="${cartDetail.id}"
+                                                                path="id" />
+                                                        </p>
+                                                    </td>
+                                                    <th scope="row">
+                                                        <div class="d-flex align-items-center">
+                                                            <img src="/images/product/${cartDetail.products.image}"
+                                                                class="img-fluid me-5 rounded-circle"
+                                                                style="width: 80px; height: 80px;" alt="">
+                                                        </div>
+                                                    </th>
 
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="d-flex align-items-center">
-                                                    <img src="img/vegetable-item-5.jpg"
-                                                        class="img-fluid me-5 rounded-circle"
-                                                        style="width: 80px; height: 80px;" alt="" alt="">
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <p class="mb-0 mt-4">Potatoes</p>
-                                            </td>
-                                            <td>
-                                                <p class="mb-0 mt-4">2.99 $</p>
-                                            </td>
-                                            <td>
-                                                <div class="input-group quantity mt-4" style="width: 100px;">
-                                                    <div class="input-group-btn">
-                                                        <button
-                                                            class="btn btn-sm btn-minus rounded-circle bg-light border">
-                                                            <i class="fa fa-minus"></i>
-                                                        </button>
-                                                    </div>
-                                                    <input type="text"
-                                                        class="form-control form-control-sm text-center border-0"
-                                                        value="1">
-                                                    <div class="input-group-btn">
-                                                        <button
-                                                            class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                            <i class="fa fa-plus"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="mb-0 mt-4">2.99 $</p>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-md rounded-circle bg-light border mt-4">
-                                                    <i class="fa fa-times text-danger"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="d-flex align-items-center">
-                                                    <img src="img/vegetable-item-2.jpg"
-                                                        class="img-fluid me-5 rounded-circle"
-                                                        style="width: 80px; height: 80px;" alt="" alt="">
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <p class="mb-0 mt-4">Awesome Brocoli</p>
-                                            </td>
-                                            <td>
-                                                <p class="mb-0 mt-4">2.99 $</p>
-                                            </td>
-                                            <td>
-                                                <div class="input-group quantity mt-4" style="width: 100px;">
-                                                    <div class="input-group-btn">
-                                                        <button
-                                                            class="btn btn-sm btn-minus rounded-circle bg-light border">
-                                                            <i class="fa fa-minus"></i>
-                                                        </button>
-                                                    </div>
-                                                    <input type="text"
-                                                        class="form-control form-control-sm text-center border-0"
-                                                        value="1">
-                                                    <div class="input-group-btn">
-                                                        <button
-                                                            class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                            <i class="fa fa-plus"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="mb-0 mt-4">2.99 $</p>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-md rounded-circle bg-light border mt-4">
-                                                    <i class="fa fa-times text-danger"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                                    <td>
+                                                        <p class="mb-0 mt-4">${cartDetail.products.name}</p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="mb-0 mt-4">
+
+                                                            <fmt:formatNumber type="number"
+                                                                value="${cartDetail.products.price}" />Vnd
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group quantity mt-4" style="width: 100px;">
+                                                            <!-- <div class="input-group-btn">
+                                                                <button
+                                                                    class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                                    <i class="fa fa-minus"></i>
+                                                                </button>
+                                                            </div> -->
+                                                            <form:input type="text"
+                                                                class="form-control form-control-sm text-center border-0"
+                                                                value="${cartDetail.quantity}" path="quantity" />
+                                                            <!-- <div class="input-group-btn">
+                                                                <button
+                                                                    class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </button>
+                                                            </div> -->
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <p class="mb-0 mt-4" id="tongtien">
+
+                                                            <fmt:formatNumber type="number"
+                                                                value="${cartDetail.price*cartDetail.quantity}" />
+                                                            Vnd
+                                                        </p>
+                                                    </td>
+                                                    <td>
+
+                                                        <button class="btn btn-md rounded-circle bg-light border mt-4"
+                                                            type="submit">
+                                                            <i class="fa fa-times text-danger"></i>
+                                                            <button>
+                                                </form:form>
+
+                                                </td>
+
+                                            </tr>
+                                        </c:forEach>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -367,31 +325,40 @@
                                     type="button">Apply
                                     Coupon</button>
                             </div> -->
-                            <div class="row g-4 justify-content-end">
+                            <div class="row g-4 justify-content-start">
                                 <div class="col-8"></div>
                                 <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
                                     <div class="bg-light rounded">
                                         <div class="p-4">
-                                            <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
+                                            <h1 class="display-6 mb-4">Thông Tin <span class="fw-normal">Đơn Hàng</span>
+                                            </h1>
                                             <div class="d-flex justify-content-between mb-4">
-                                                <h5 class="mb-0 me-4">Subtotal:</h5>
-                                                <p class="mb-0">$96.00</p>
+                                                <h5 class="mb-0 me-4">Giá Tiền</h5>
+                                                <p class="mb-0">
+                                                    <fmt:formatNumber type="number" value="${total}" />
+                                                    Vnd
+                                                </p>
                                             </div>
                                             <div class="d-flex justify-content-between">
-                                                <h5 class="mb-0 me-4">Shipping</h5>
+                                                <h5 class="mb-0 me-4">Giảm Giá</h5>
                                                 <div class="">
-                                                    <p class="mb-0">Flat rate: $3.00</p>
+                                                    <p class="mb-0">Chiết Khấu: 0Vnd</p>
                                                 </div>
                                             </div>
-                                            <p class="mb-0 text-end">Shipping to Ukraine.</p>
+                                            <p class="mb-0 text-end">Phí Vận Chuyển: 0Vnd</p>
                                         </div>
                                         <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                                            <h5 class="mb-0 ps-4 me-4">Total</h5>
-                                            <p class="mb-0 pe-4">$99.00</p>
+                                            <h5 class="mb-0 ps-4 me-4">Tạm Tính</h5>
+                                            <p class="mb-0 pe-4">
+                                                <fmt:formatNumber type="number" value="${total}" />
+                                                Vnd
+                                            </p>
                                         </div>
-                                        <button
-                                            class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
-                                            type="button">Proceed Checkout</button>
+                                        <form:form action="/checkout" method="get">
+                                            <button
+                                                class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
+                                                type="submit">Xác Nhận Đơn Hàng</button>
+                                        </form:form>
                                     </div>
                                 </div>
                             </div>
@@ -517,6 +484,10 @@
                     <script src="/js/client/waypoints.min.js"></script>
                     <script src="/js/client/lightbox.min.js"></script>
                     <script src="/js/client/owl.carousel.min.js"></script>
+                    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                        crossorigin="anonymous"></script> -->
+
 
                     <!-- Template Javascript -->
                     <script src="/js/client/main.js"></script>

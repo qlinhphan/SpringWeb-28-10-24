@@ -98,6 +98,7 @@ public class ProductControll {
     public String getMethodName(Model model, @PathVariable long id) {
         Products pro = this.productsService.findProductById(id);
         model.addAttribute("product", pro);
+
         return "/admin/product/edit";
     }
 

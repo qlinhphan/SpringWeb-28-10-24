@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.apache.tomcat.util.digester.SystemPropertySource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -129,7 +131,16 @@ public class UserControll {
     @GetMapping("/del/user/{id}")
     public String delUser(Model model, @PathVariable long id) {
         Users us = this.userService.findUserById(id);
-        model.addAttribute("current", us);
+        // System.out.println("USERSDETAIL: " + userDetails.getUsername()); lay ra email
+        // cua nguoi dung da dang nhap
+        if (us.getRoles().getName().equals("Admin")) {
+            System.out.println("THIS USER IS ADMIN");
+            model.addAttribute("current", us);
+            return "/admin/user/notDel";
+        } else {
+            System.out.println("THIS USER IS NOT ADMIN");
+            model.addAttribute("current", us);
+        }
         return "/admin/user/del";
     }
 

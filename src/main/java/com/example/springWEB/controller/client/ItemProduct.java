@@ -47,7 +47,7 @@ public class ItemProduct {
     // }
 
     @PostMapping("/add-product-to-card/{id}")
-    public String addProductToCard(Model model, @PathVariable long id, HttpSession session,
+    public String addProductToCard(Model model, @PathVariable long id,
             @AuthenticationPrincipal UserDetails userDetails) {
         System.out.println("IDproduct: " + id);
         long idProduct = id;
@@ -56,9 +56,9 @@ public class ItemProduct {
         this.productsService.addProductToCart(idProduct, email);
         Users user = this.userService.findUsersByEmail(email);
         Cart cart = this.cartService.findCartByUser(user);
-        System.out.println(cart.getSum());
-        int sumCart = cart.getSum();
-        session.setAttribute("sumCart", sumCart);
+        // System.out.println(cart.getSum());
+        // int sumCart = cart.getSum();
+        // session.setAttribute("sumCart", sumCart);
         return "redirect:/";
     }
 

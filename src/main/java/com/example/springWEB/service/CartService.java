@@ -18,4 +18,8 @@ public class CartService {
     public Cart findCartByUser(Users us) {
         return this.cartRepository.findByUsers(us);
     }
+
+    public Cart savaCart(Cart cart) {
+        return this.cartRepository.save(cart);
+    }
 }
