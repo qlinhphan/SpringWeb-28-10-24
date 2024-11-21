@@ -100,6 +100,9 @@ public class Oders {
 
     @Override
     public String toString() {
-        return "Oders [id=" + id + ", totalPrice=" + totalPrice + "]";
+        return "Oders [id=" + id + ", totalPrice=" + totalPrice + ", receiverName=" + receiverName
+                + ", receiverAddress=" + receiverAddress + ", receiverPhone=" + receiverPhone + ", status=" + status
+                + ", users=" + users + ", orderDetails=" + orderDetails + "]";
     }
+
 }

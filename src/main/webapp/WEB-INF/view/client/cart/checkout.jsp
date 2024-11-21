@@ -226,13 +226,12 @@
                         <div class="checkout-container">
                             <div class="left-side">
                                 <div class="text-box">
-                                    <h1 class="home-heading">Modern Home</h1>
-                                    <p class="home-price"><em>249.50 USD </em>/ 1 night</p>
+                                    <h1 class="home-heading">Laptop Store</h1>
+                                    <p class="home-price"><em>Chỉ từ 8.500.000 </em>/ 1 máy</p>
                                     <hr class="left-hr" />
-                                    <p class="home-desc"><em>Entire home </em>for <em>2 guest</em></p>
-                                    <p class="home-desc">
-                                        <em>Tue, July 23, 2022 </em>to <em>Thu, July 25, 2022</em>
-                                    </p>
+                                    <p class="home-desc"><em>Chúng tôi </em>hy vọng <em>bạn sẽ tìm thấy thứ mình thích
+                                            tại đây</em></p>
+
                                 </div>
                             </div>
 
@@ -243,15 +242,19 @@
                                         <table class="table">
                                             <tr>
                                                 <td>Tạm Tính</td>
-                                                <td class="price">499.00 USD</td>
+                                                <!-- <td class="price">${totals}</td> -->
+                                                <td class="price">
+                                                    <fmt:formatNumber type="number" value="${totals}" />
+                                                    Vnd
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Chiết Khấu</td>
-                                                <td class="price">0.00 USD</td>
+                                                <td class="price">0 Vnd</td>
                                             </tr>
                                             <tr>
                                                 <td>Giảm Giá</td>
-                                                <td class="price">499.00 USD</td>
+                                                <td class="price">0 Vnd</td>
                                             </tr>
                                             <tr>
                                                 <td>Hình Thức Thanh Toán</td>
@@ -259,7 +262,12 @@
                                             </tr>
                                             <tr class="total">
                                                 <td>Thành Tiền</td>
-                                                <td class="price">546.41 USD</td>
+
+                                                <td class="price">
+                                                    <fmt:formatNumber type="number" value="${totals}" />
+                                                    Vnd
+                                                </td>
+
                                             </tr>
                                         </table>
                                     </div>
@@ -267,75 +275,44 @@
 
                                 <div class="payment-info">
                                     <h3 class="payment-heading">Thông Tin Nhận Hàng</h3>
-                                    <form class="form-box" enctype="text/plain" method="get" target="_blank">
+                                    <form:form action="/create/order" method="post" modelAttribute="UserInfRec">
                                         <div>
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                        </div>
+                                        <!-- <div>
                                             <label for="full-name">Họ Tên</label>
-                                            <input id="full-name" name="full-name" placeholder="Nhập tên của bạn.. "
-                                                required type="text" />
-                                        </div>
-                                        <div>
-                                            <label for="full-name">Địa Chỉ</label>
-                                            <input id="full-name" name="full-name"
-                                                placeholder="Nhập địa chỉ nhận hàng..." required type="text" />
-                                        </div>
-                                        <div>
-                                            <label for="full-name">Số Điện Thoại</label>
-                                            <input id="full-name" name="full-name"
-                                                placeholder="Nhập số điện thoại nhận hàng..." required type="text" />
-                                        </div>
-
-                                        <!-- <div>
-                                            <label for="credit-card-num">Card Number
-                                                <span class="card-logos">
-                                                    <i class="card-logo fa-brands fa-cc-visa"></i>
-                                                    <i class="card-logo fa-brands fa-cc-amex"></i>
-                                                    <i class="card-logo fa-brands fa-cc-mastercard"></i>
-                                                    <i class="card-logo fa-brands fa-cc-discover"></i> </span></label>
-                                            <input id="credit-card-num" name="credit-card-num"
-                                                placeholder="1111-2222-3333-4444" required type="text" />
+                                            <form:input id="full-name" path="receiverName" />
                                         </div> -->
-
-                                        <!-- <div>
-                                            <p class="expires">Expires on:</p>
-                                            <div class="card-experation">
-                                                <label for="expiration-month">Month</label>
-                                                <select id="expiration-month" name="expiration-month" required>
-                                                    <option value="">Month:</option>
-                                                    <option value="">January</option>
-                                                    <option value="">February</option>
-                                                    <option value="">March</option>
-                                                    <option value="">April</option>
-                                                    <option value="">May</option>
-                                                    <option value="">June</option>
-                                                    <option value="">July</option>
-                                                    <option value="">August</option>
-                                                    <option value="">September</option>
-                                                    <option value="">October</option>
-                                                    <option value="">November</option>
-                                                    <option value="">Decemeber</option>
-                                                </select>
-
-                                                <label class="expiration-year">Year</label>
-                                                <select id="experation-year" name="experation-year" required>
-                                                    <option value="">Year</option>
-                                                    <option value="">2023</option>
-                                                    <option value="">2024</option>
-                                                    <option value="">2025</option>
-                                                    <option value="">2026</option>
-                                                </select>
+                                        <div class="form-group row">
+                                            <label for="inputPassword" class="col-sm-2 col-form-label">Họ Tên</label>
+                                            <div class="col-sm-10">
+                                                <form:input type="text" class="form-control"
+                                                    style="width: 68%; border: none; box-shadow: 1px 1px 2.5px grey;"
+                                                    path="receiverName" />
                                             </div>
-                                        </div> -->
+                                        </div>
+                                        <div class="form-group row" style="margin-top: 17px;">
+                                            <label for="inputPassword" class="col-sm-2 col-form-label">Địa Chỉ</label>
+                                            <div class="col-sm-10">
+                                                <form:input type="text" class="form-control"
+                                                    style="width: 68%; border: none; box-shadow: 1px 1px 2.5px grey;"
+                                                    path="receiverAddress" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" style="margin-top: 17px;">
+                                            <label for="inputPassword" class="col-sm-2 col-form-label">Số Điện
+                                                Thoại</label>
+                                            <div class="col-sm-10">
+                                                <form:input type="text" class="form-control"
+                                                    style="width: 68%; border: none; box-shadow: 1px 1px 2.5px grey;"
+                                                    path="receiverPhone" />
+                                            </div>
+                                        </div>
 
-                                        <!-- <div>
-                                            <label for="cvv">CVV</label>
-                                            <input id="cvv" name="cvv" placeholder="415" type="text" required />
-                                            <a class="cvv-info" href="#">What is CVV?</a>
-                                        </div> -->
-
-                                        <button class="btn">
-                                            <i class="fa-solid fa-lock"></i> Book Securely
+                                        <button class="btn" type="submit" style="margin-top: 15px;">
+                                            <i class="fa-solid fa-lock"></i> Đặt Hàng
                                         </button>
-                                    </form>
+                                    </form:form>
 
                                     <p class="footer-text">
                                         <i class="fa-solid fa-lock"></i>

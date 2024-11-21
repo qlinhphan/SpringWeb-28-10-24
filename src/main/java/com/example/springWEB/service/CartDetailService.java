@@ -15,9 +15,11 @@ import com.example.springWEB.repository.ProductsRepository;
 public class CartDetailService {
 
     private CartDetailRepository cartDetailRepository;
+    // private CartRepository cartRepository;
 
     public CartDetailService(CartDetailRepository cartDetailRepository) {
         this.cartDetailRepository = cartDetailRepository;
+        // this.cartRepository = cartRepository;
     }
 
     public List<CartDetail> findAllCartDetail() {
@@ -34,5 +36,9 @@ public class CartDetailService {
 
     public CartDetail findCartDetailById(long id) {
         return this.cartDetailRepository.findById(id);
+    }
+
+    public List<CartDetail> findCartDetailFromCart(Cart cart) {
+        return this.cartDetailRepository.findCartDetailByCart(cart);
     }
 }

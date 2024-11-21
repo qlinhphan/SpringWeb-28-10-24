@@ -22,4 +22,8 @@ public class CartService {
     public Cart savaCart(Cart cart) {
         return this.cartRepository.save(cart);
     }
+
+    public void deleteCartByUser(Users us) {
+        this.cartRepository.deleteByUsers(us);
+    }
 }

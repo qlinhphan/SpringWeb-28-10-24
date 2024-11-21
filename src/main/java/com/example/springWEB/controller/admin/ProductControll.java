@@ -19,7 +19,6 @@ import com.example.springWEB.service.ProductsService;
 import jakarta.servlet.ServletContext;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class ProductControll {

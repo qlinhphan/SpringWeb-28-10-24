@@ -76,3 +76,6 @@ khi đăng ký tài khoản phải check xem email đã tồn tại hay chưa v�
 
     // return http.build();
     // }
+
+
+    Khi nào khách hàng đã thanh toán nhớ lưu order và xóa đi cart lẫn cartDetail 

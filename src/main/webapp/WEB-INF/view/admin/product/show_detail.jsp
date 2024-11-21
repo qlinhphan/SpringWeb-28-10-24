@@ -153,6 +153,13 @@
                                     Tables
                                 </a> -->
                             </div>
+                            <div class="nav">
+                                <div class="sb-sidenav-menu-heading">Different</div>
+                                <a class="nav-link" href="/table/user">
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-house-user"></i></i></div>
+                                    Authorization
+                                </a>
+                            </div>
                         </div>
                         <div class="sb-sidenav-footer">
                             <div class="small">Logged in as:</div>

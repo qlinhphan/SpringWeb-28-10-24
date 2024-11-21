@@ -60,7 +60,11 @@ public class CartControll {
             total += cartDetail2.getPrice() * cartDetail2.getQuantity();
         }
         model.addAttribute("total", total);
+        session.setAttribute("totals", total);
         model.addAttribute("cartDetails", cartDetail);
+        // if(total==0){
+        // return ""
+        // }
         return "client/cart/cartDetail";
     }
 
