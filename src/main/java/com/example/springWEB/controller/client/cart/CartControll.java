@@ -49,23 +49,19 @@ public class CartControll {
 
     @GetMapping("/cart")
     public String Cart(Model model, @AuthenticationPrincipal UserDetails userDetails,
-            @ModelAttribute("deleteDetail") CartDetail cartDetails, HttpSession session) {
-        String email = userDetails.getUsername();
-        Users users = this.userService.findUsersByEmail(email);
-        // List<CartDetail> cartDetail = this.cartDetailService.findAllCartDetail();
-        Cart cart = this.cartService.findCartByUser(users);
-        List<CartDetail> cartDetail = this.cartDetailService.findCartDetailByCart(cart);
-        double total = 0;
-        for (CartDetail cartDetail2 : cartDetail) {
-            total += cartDetail2.getPrice() * cartDetail2.getQuantity();
+            @ModelAttribute("deleteDetail") CartDetail cartDetail, HttpSession session) {
+        Users user = this.userService.findUsersByEmail(userDetails.getUsername());
+        Cart cart = this.cartService.findCartByUser(user);
+        List<CartDetail> cartDetails = this.cartDetailService.findCartDetailByCart(cart);
+        int sumP = 0;
+        for (CartDetail cartDetail2 : cartDetails) {
+            sumP += cartDetail2.getQuantity();
         }
-        model.addAttribute("total", total);
-        session.setAttribute("totals", total);
-        model.addAttribute("cartDetails", cartDetail);
-        // if(total==0){
-        // return ""
-        // }
-        return "client/cart/cartDetail";
+        if (sumP == 0) {
+            session.setAttribute("SumCarts", 0);
+        }
+        model.addAttribute("cartDetails", cartDetails);
+        return "/client/cart/cartDetail";
     }
 
     @PostMapping("/delete-product-from-cart")

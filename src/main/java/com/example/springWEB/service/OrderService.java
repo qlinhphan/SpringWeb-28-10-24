@@ -36,4 +36,8 @@ public class OrderService {
         return this.orderRepository.findById(id);
     }
 
+    public void deleteOrderById(long id) {
+        this.orderRepository.deleteById(id);
+    }
+
 }

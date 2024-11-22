@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.springWEB.domain.Oders;
+import com.example.springWEB.domain.OrderDetail;
 import com.example.springWEB.domain.Users;
 import com.example.springWEB.domain.cart.Cart;
 import com.example.springWEB.domain.cart.CartDetail;
 import com.example.springWEB.domain.dto.UsersInfRecv;
 import com.example.springWEB.service.CartDetailService;
 import com.example.springWEB.service.CartService;
+import com.example.springWEB.service.OrderDetailService;
 import com.example.springWEB.service.OrderService;
 import com.example.springWEB.service.UserService;
 
@@ -32,13 +34,16 @@ public class checkoutControll {
     private UserService userService;
     private CartService cartService;
     private CartDetailService cartDetailService;
+    private OrderDetailService orderDetailService;
 
     public checkoutControll(OrderService orderService, UserService userService, CartService cartService,
-            CartDetailService cartDetailService) {
+            CartDetailService cartDetailService, OrderDetailService orderDetailService) {
         this.OrderService = orderService;
         this.userService = userService;
         this.cartDetailService = cartDetailService;
         this.cartService = cartService;
+        this.orderDetailService = orderDetailService;
+
     }
 
     @GetMapping("/checkout")
@@ -47,9 +52,7 @@ public class checkoutControll {
         if (session.getAttribute("SumCarts").equals(0)) {
             return "/client/cart/emptyCartDetail";
         }
-        // Users user = this.userService.findUsersByEmail(userDetails.getUsername());
-        // Cart cart = this.cartService.findCartByUser(user);
-        // CartDetail cartDetail = this.cartDetailService.findCartDetailById()
+
         return "/client/cart/checkout";
     }
 
@@ -57,32 +60,42 @@ public class checkoutControll {
     @PostMapping("/create/order")
     @Transactional
     public String postMethodName(Model model, @ModelAttribute("UserInfRec") UsersInfRecv usersInfRecv,
-            @AuthenticationPrincipal UserDetails userDetails, HttpSession session) {
-        Oders oders = new Oders();
-        oders.setReceiverName(usersInfRecv.getReceiverName());
-        oders.setReceiverAddress(usersInfRecv.getReceiverAddress());
-        oders.setReceiverPhone(usersInfRecv.getReceiverPhone());
-        oders.setUsers(this.userService.findUsersByEmail(userDetails.getUsername()));
-        oders.setStatus("Pending");
-        double sum = 0;
-        Users users = this.userService.findUsersByEmail(userDetails.getUsername());
-        Cart carts = this.cartService.findCartByUser(users);
-        List<CartDetail> cartDetail = this.cartDetailService.findCartDetailByCart(carts);
-        for (CartDetail cd : cartDetail) {
-            sum += cd.getPrice();
-        }
-        oders.setTotalPrice(sum);
-        this.OrderService.saveOrder(oders);
-
+            @AuthenticationPrincipal UserDetails userDetails) {
+        // luu order
+        Oders order = new Oders();
+        order.setReceiverAddress(usersInfRecv.getReceiverAddress());
+        order.setReceiverName(usersInfRecv.getReceiverName());
+        order.setReceiverPhone(usersInfRecv.getReceiverPhone());
+        order.setStatus("Pending");
+        // thong tin nguoi dung dang dang nhap hien tai
+        order.setUsers(this.userService.findUsersByEmail(userDetails.getUsername()));
+        double sumMoney = 0;
         Users user = this.userService.findUsersByEmail(userDetails.getUsername());
         Cart cart = this.cartService.findCartByUser(user);
         List<CartDetail> cartDetails = this.cartDetailService.findCartDetailByCart(cart);
         for (CartDetail cd : cartDetails) {
-            this.cartDetailService.deleteCartDetailById(cd.getId());
+            sumMoney += cd.getPrice() * cd.getQuantity();
+        }
+        order.setTotalPrice(sumMoney);
+        order = this.OrderService.saveOrder(order);
+
+        // luu orderDetail, phai xem chi tiet (trong orderDetail) co nhung san pham gi
+        // va
+        // so luong nhu nao, gia ra sao ma len nhung tang ay tien
+        for (CartDetail cd : cartDetails) {
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setPrice(cd.getPrice());
+            orderDetail.setQuantity(cd.getQuantity());
+            orderDetail.setProducts(cd.getProducts());
+            orderDetail.setOrders(order);
+            this.orderDetailService.saveOrderDetail(orderDetail);
         }
 
+        // xoa cartDetail
+        this.cartDetailService.deleteCartDetailByCartt(cart);
+
+        // xoa cart
         this.cartService.deleteCartByUser(user);
-        session.setAttribute("SumCarts", 0);
 
         return "hello";
     }

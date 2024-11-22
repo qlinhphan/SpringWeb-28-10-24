@@ -43,6 +43,30 @@ public class OrderDetail {
         this.price = price;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Oders getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Oders orders) {
+        this.orders = orders;
+    }
+
+    public Products getProducts() {
+        return products;
+    }
+
+    public void setProducts(Products products) {
+        this.products = products;
+    }
+
     @Override
     public String toString() {
         return "OrderDetail [quantity=" + quantity + ", price=" + price + "]";

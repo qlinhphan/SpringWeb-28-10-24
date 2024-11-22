@@ -173,11 +173,7 @@
                                         <th>Custom_Name</th>
                                         <th>Status</th>
                                         <th>Action</th>
-                                        <!-- <th>
-                            <button type="button" class="btn btn-danger"><a href=""
-                                    style="text-decoration: none; color: wheat">Create
-                                    Product</a></button>
-                        </th> -->
+
                                     </tr>
                                     <c:forEach items="${oders}" var="oder">
                                         <tr>
@@ -193,11 +189,12 @@
                                                 <button type="button" class="btn btn-primary"><a
                                                         href="/admin/order/detail/${oder.id}"
                                                         style="color: wheat; text-decoration: none;">View</a></button>
-                                                <button type="button" class="btn btn-secondary"><a href=""
+                                                <button type="button" class="btn btn-secondary"><a
+                                                        href="/admin/order/update/${oder.id}"
                                                         style="color: wheat; text-decoration: none;">Edit</a></button>
                                                 <button type="button" class="btn btn-success"><a
                                                         style="color: wheat; text-decoration: none;"
-                                                        href="">Delete</a></button>
+                                                        href="/admin/order/del/${oder.id}">Delete</a></button>
                                             </td>
                                         </tr>
                                     </c:forEach>

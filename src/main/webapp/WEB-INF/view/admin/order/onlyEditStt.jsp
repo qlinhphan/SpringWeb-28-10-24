@@ -195,78 +195,33 @@
                         <div id="layoutSidenav_content">
                             <main>
                                 <div class="container-fluid px-4">
-                                    <h1 class="mt-4">View Order:</h1>
+                                    <h1 class="mt-4">Edit Order:</h1>
                                     <ol class="breadcrumb mb-4">
-                                        <li class="breadcrumb-item active">exactly View Order:</li>
+                                        <li class="breadcrumb-item active">Edit Stt Of Order:</li>
                                     </ol>
 
+                                    <div
+                                        style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; flex-direction: column;">
+                                        <form:form action="/admin/order/update/finish" method="post"
+                                            modelAttribute="current">
+                                            <div style="display: none;">
+                                                <form:input type="text" value="${current.id}" path="id" />
+                                            </div>
+                                            <form:select class="form-select" aria-label="Default select example"
+                                                path="status">
+                                                <form:option value="Pending">Pending</form:option>
+                                                <form:option value="Finish">Finish</form:option>
+                                                <form:option value="Delivering">Delivering</form:option>
+                                            </form:select>
+                                            <button type="submit" class="btn btn-success"
+                                                style="margin-top: 17px;">Update
+                                                Order's Status</button>
+                                        </form:form>
+                                    </div>
 
 
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Class</th>
-                                                <th scope="col">Value</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="table-success">
-                                                <th scope="row">Id:</th>
-                                                <td>${order.id}</td>
-                                            </tr>
-                                            <tr class="table-success">
-                                                <th scope="row">Total_Price</th>
-                                                <td>${order.totalPrice}</td>
-                                            </tr>
-                                            <tr class="table-danger">
-                                                <th scope="row">User_Name</th>
-                                                <td>${order.receiverName}</td>
-                                            </tr>
-                                            <tr class="table-warning">
-                                                <th scope="row">Receiver_Address</th>
-                                                <td>${order.receiverAddress}</td>
-                                            </tr>
-                                            <tr class="table-info">
-                                                <th scope="row">Receiver_Phone </th>
-                                                <td>${order.receiverPhone}</td>
-                                            </tr>
-
-                                            <tr class="table-info">
-                                                <th scope="row">Status </th>
-                                                <td>${order.status}</td>
-                                            </tr>
-                                            <!-- <tr class="table-info">
-                                                <c:forEach items="${orderDetails}" var="orderDetail">
-                                                    <th scope="row">Product</th>
-                                                    <td>${orderDetail.products.name}</td>
-                                                    <th scope="row">Quantity</th>
-                                                    <td>${orderDetail.quantity}</td>
-                                                    <th scope="row">Price</th>
-                                                    <td>${orderDetail.price}</td>
-                                                </c:forEach>
-                                            </tr> -->
-
-                                        </tbody>
 
 
-                                    </table>
-                                    <table style="margin-top: 17px;">
-                                        <tr>
-                                            <th>Product</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
-                                        </tr>
-
-                                        <c:forEach items="${orderDetails}" var="orderDetail">
-                                            <tr>
-                                                <td>${orderDetail.products.name}</td>
-                                                <td>${orderDetail.quantity}</td>
-                                                <td>${orderDetail.price}</td>
-
-
-                                            </tr>
-                                        </c:forEach>
-                                    </table>
 
 
                                 </div>
