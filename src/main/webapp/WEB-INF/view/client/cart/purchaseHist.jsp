@@ -156,9 +156,8 @@
                                                                 style="margin-left: 16px; font-size: 12px; box-shadow: 1px 1px 12px black; color: grey;">${pageContext.request.userPrincipal.name}</span>
                                                         </div>
                                                     </div>
-                                                    <a href="" style="font-size: 12px;">Quản Lý Tài Khoản</a>
-                                                    <a href="/purcharseHist" style="font-size: 12px;">Lịch Sử Mua
-                                                        Hàng</a>
+                                                    <a href="#" style="font-size: 12px;">Quản Lý Tài Khoản</a>
+                                                    <a href="#" style="font-size: 12px;">Lịch Sử Mua Hàng</a>
                                                     <hr>
                                                     <form action="/logout" method="post">
                                                         <div>
@@ -221,7 +220,7 @@
 
                     <!-- Single Page Header start -->
                     <div class="container-fluid page-header py-5">
-                        <h1 class="text-center text-white display-6">Giỏ Hàng Của Bạn</h1>
+                        <h1 class="text-center text-white display-6">Hàng Bạn Đã Mua</h1>
 
                     </div>
                     <!-- Single Page Header End -->
@@ -240,78 +239,64 @@
                                             <th scope="col">Giá</th>
                                             <th scope="col">Số Lượng</th>
                                             <th scope="col">Tổng tiền</th>
-                                            <th scope="col">Tùy chọn</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="cartDetail" items="${cartDetails}">
+                                        <c:forEach var="orderDetail" items="${orderDetails}">
                                             <tr>
-                                                <form:form action="/delete-product-from-cart" method="post"
-                                                    modelAttribute="deleteDetail">
-                                                    <div>
-                                                        <input type="hidden" name="${_csrf.parameterName}"
-                                                            value="${_csrf.token}" />
+
+                                                <td style="display: none;">
+                                                    <p class="mb-0 mt-4">
+                                                        <input type="text" value="${orderDetail.id}" />
+                                                    </p>
+                                                </td>
+                                                <th scope="row">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="/images/product/${orderDetail.products.image}"
+                                                            class="img-fluid me-5 rounded-circle"
+                                                            style="width: 80px; height: 80px;" alt="">
                                                     </div>
-                                                    <td style="display: none;">
-                                                        <p class="mb-0 mt-4">
-                                                            <form:input type="text" value="${cartDetail.id}"
-                                                                path="id" />
-                                                        </p>
-                                                    </td>
-                                                    <th scope="row">
-                                                        <div class="d-flex align-items-center">
-                                                            <img src="/images/product/${cartDetail.products.image}"
-                                                                class="img-fluid me-5 rounded-circle"
-                                                                style="width: 80px; height: 80px;" alt="">
-                                                        </div>
-                                                    </th>
+                                                </th>
 
-                                                    <td>
-                                                        <p class="mb-0 mt-4">${cartDetail.products.name}</p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="mb-0 mt-4">
+                                                <td>
+                                                    <p class="mb-0 mt-4">${orderDetail.products.name}</p>
+                                                </td>
+                                                <td>
+                                                    <p class="mb-0 mt-4">
 
-                                                            <fmt:formatNumber type="number"
-                                                                value="${cartDetail.products.price}" />Vnd
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <div class="input-group quantity mt-4" style="width: 100px;">
-                                                            <!-- <div class="input-group-btn">
+                                                        <fmt:formatNumber type="number"
+                                                            value="${orderDetail.products.price}" />Vnd
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <div class="input-group quantity mt-4" style="width: 100px;">
+                                                        <!-- <div class="input-group-btn">
                                                                 <button
                                                                     class="btn btn-sm btn-minus rounded-circle bg-light border">
                                                                     <i class="fa fa-minus"></i>
                                                                 </button>
                                                             </div> -->
-                                                            <form:input type="text"
-                                                                class="form-control form-control-sm text-center border-0"
-                                                                value="${cartDetail.quantity}" path="quantity" />
-                                                            <!-- <div class="input-group-btn">
+                                                        <input type="text"
+                                                            class="form-control form-control-sm text-center border-0"
+                                                            value="${orderDetail.quantity}" />
+                                                        <!-- <div class="input-group-btn">
                                                                 <button
                                                                     class="btn btn-sm btn-plus rounded-circle bg-light border">
                                                                     <i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div> -->
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <p class="mb-0 mt-4" id="tongtien">
-
-                                                            <fmt:formatNumber type="number"
-                                                                value="${cartDetail.price*cartDetail.quantity}" />
-                                                            Vnd
-                                                        </p>
-                                                    </td>
-                                                    <td>
-
-                                                        <button class="btn btn-md rounded-circle bg-light border mt-4"
-                                                            type="submit">
-                                                            <i class="fa fa-times text-danger"></i>
-                                                            <button>
-                                                </form:form>
-
+                                                    </div>
                                                 </td>
+                                                <td>
+                                                    <p class="mb-0 mt-4" id="tongtien">
+
+                                                        <fmt:formatNumber type="number"
+                                                            value="${orderDetail.price*orderDetail.quantity}" />
+                                                        Vnd
+                                                    </p>
+                                                </td>
+
 
                                             </tr>
                                         </c:forEach>
@@ -326,43 +311,7 @@
                                     type="button">Apply
                                     Coupon</button>
                             </div> -->
-                            <div class="row g-4 justify-content-start">
-                                <div class="col-8"></div>
-                                <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
-                                    <div class="bg-light rounded">
-                                        <div class="p-4">
-                                            <h1 class="display-6 mb-4">Thông Tin <span class="fw-normal">Đơn Hàng</span>
-                                            </h1>
-                                            <div class="d-flex justify-content-between mb-4">
-                                                <h5 class="mb-0 me-4">Giá Tiền</h5>
-                                                <p class="mb-0">
-                                                    <fmt:formatNumber type="number" value="${SumM}" />
-                                                    Vnd
-                                                </p>
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <h5 class="mb-0 me-4">Giảm Giá</h5>
-                                                <div class="">
-                                                    <p class="mb-0">Chiết Khấu: 0Vnd</p>
-                                                </div>
-                                            </div>
-                                            <p class="mb-0 text-end">Phí Vận Chuyển: 0Vnd</p>
-                                        </div>
-                                        <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                                            <h5 class="mb-0 ps-4 me-4">Tạm Tính</h5>
-                                            <p class="mb-0 pe-4">
-                                                <fmt:formatNumber type="number" value="${SumM}" />
-                                                Vnd
-                                            </p>
-                                        </div>
-                                        <form:form action="/checkout" method="get">
-                                            <button
-                                                class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
-                                                type="submit">Xác Nhận Đơn Hàng</button>
-                                        </form:form>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <!-- Cart Page End -->

@@ -54,13 +54,17 @@ public class CartControll {
         Cart cart = this.cartService.findCartByUser(user);
         List<CartDetail> cartDetails = this.cartDetailService.findCartDetailByCart(cart);
         int sumP = 0;
+        long sumM = 0;
         for (CartDetail cartDetail2 : cartDetails) {
             sumP += cartDetail2.getQuantity();
+            sumM += cartDetail2.getPrice() * cartDetail2.getQuantity();
+
         }
         if (sumP == 0) {
             session.setAttribute("SumCarts", 0);
         }
         model.addAttribute("cartDetails", cartDetails);
+        model.addAttribute("SumM", sumM);
         return "/client/cart/cartDetail";
     }
 

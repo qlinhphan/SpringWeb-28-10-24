@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.springWEB.domain.Oders;
+import com.example.springWEB.domain.Users;
 import com.example.springWEB.domain.dto.UsersInfRecv;
 import com.example.springWEB.repository.OrderRepository;
 
@@ -38,6 +39,10 @@ public class OrderService {
 
     public void deleteOrderById(long id) {
         this.orderRepository.deleteById(id);
+    }
+
+    public List<Oders> findOrderByUser(Users user) {
+        return this.orderRepository.findByUsers(user);
     }
 
 }

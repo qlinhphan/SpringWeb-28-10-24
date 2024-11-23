@@ -161,7 +161,8 @@
                                                         </div>
                                                     </div>
                                                     <a href="#" style="font-size: 12px;">Quản Lý Tài Khoản</a>
-                                                    <a href="#" style="font-size: 12px;">Lịch Sử Mua Hàng</a>
+                                                    <a href="/purcharseHist" style="font-size: 12px;">Lịch Sử Mua
+                                                        Hàng</a>
                                                     <hr>
                                                     <form action="/logout" method="post">
                                                         <div>
