@@ -5,6 +5,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.jaxb.SpringDataJaxb.PageRequestDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -79,10 +83,14 @@ public class ProductControll {
     }
 
     @GetMapping("/adminProduct")
-    public String getProducts(Model model) {
-        List<Products> products = this.productsService.findAllProducts();
-        System.out.println(products);
+    public String getProducts(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+        Pageable pageable = PageRequest.of(page - 1, 3);
+        Page<Products> pagei = this.productsService.PaginationProduct(pageable);
+        List<Products> products = pagei.getContent();
         model.addAttribute("products", products);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", pageable.getPageSize());
+        // System.out.println(model.getAttribute("totalPages"));
         return "/admin/product/show";
     }
 

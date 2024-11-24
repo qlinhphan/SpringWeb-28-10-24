@@ -160,19 +160,19 @@
                             </ol>
                         </div>
 
+                        <th>
+                            <button type="button" class="btn btn-danger"><a href="/create/product"
+                                    style="text-decoration: none; color: wheat">Create
+                                    Product</a></button>
+                        </th>
 
-
-                        <table>
+                        <table style="margin-top: 17px;">
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Factory</th>
                                 <th>Action</th>
-                                <th>
-                                    <button type="button" class="btn btn-danger"><a href="/create/product"
-                                            style="text-decoration: none; color: wheat">Create
-                                            Product</a></button>
-                                </th>
+
                             </tr>
                             <c:forEach items="${products}" var="product">
                                 <tr>
@@ -197,6 +197,48 @@
                             </c:forEach>
 
                         </table>
+
+                        <nav aria-label="Page navigation example" style="margin-top: 17px;">
+                            <ul class="pagination justify-content-center">
+                                <c:if test="${currentPage < 2}">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="">Previous</a>
+                                    </li>
+                                </c:if>
+                                <c:if test="${currentPage > 1}">
+                                    <li class="page-item">
+                                        <a class="page-link" href="/adminProduct?page=${currentPage-1}">Previous</a>
+                                    </li>
+                                </c:if>
+
+
+                                <c:forEach begin="0" end="${totalPages}" varStatus="loop">
+
+                                    <li class="${(loop.index+1) eq currentPage ? 'page-item active' : 'page-item'}"><a
+                                            class="page-link"
+                                            href="/adminProduct?page=${loop.index+1}">${loop.index+1}</a></li>
+
+                                    <!-- <li class="page-item"><a class="page-link"
+                                            href="/adminProduct?page=${loop.index+1}">${loop.index+1}</a></li> -->
+                                </c:forEach>
+
+                                <!-- <li class="page-item"><a class="page-link" href="/adminProduct?page=2">2</a></li>
+                                <li class="page-item"><a class="page-link" href="/adminProduct?page=3">3</a></li> -->
+
+                                <c:if test="${currentPage > totalPages }">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </c:if>
+                                <c:if test="${currentPage <= totalPages }">
+                                    <li class="page-item">
+                                        <a class="page-link" href="/adminProduct?page=${currentPage+1}">Next</a>
+                                    </li>
+                                </c:if>
+
+
+                            </ul>
+                        </nav>
 
 
 

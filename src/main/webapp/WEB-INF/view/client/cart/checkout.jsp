@@ -244,7 +244,7 @@
                                                 <td>Tạm Tính</td>
                                                 <!-- <td class="price">${totals}</td> -->
                                                 <td class="price">
-                                                    <fmt:formatNumber type="number" value="${totals}" />
+                                                    <fmt:formatNumber type="number" value="${sums}" />
                                                     Vnd
                                                 </td>
                                             </tr>
@@ -264,7 +264,7 @@
                                                 <td>Thành Tiền</td>
 
                                                 <td class="price">
-                                                    <fmt:formatNumber type="number" value="${totals}" />
+                                                    <fmt:formatNumber type="number" value="${sums}" />
                                                     Vnd
                                                 </td>
 

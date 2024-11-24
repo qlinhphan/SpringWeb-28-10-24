@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,6 @@ import com.example.springWEB.service.OrderDetailService;
 import com.example.springWEB.service.OrderService;
 import com.example.springWEB.service.UserService;
 
-import ch.qos.logback.core.model.Model;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 
@@ -52,6 +52,14 @@ public class checkoutControll {
         if (session.getAttribute("SumCarts").equals(0)) {
             return "/client/cart/emptyCartDetail";
         }
+        Users user = this.userService.findUsersByEmail(userDetails.getUsername());
+        Cart cart = this.cartService.findCartByUser(user);
+        List<CartDetail> cartDetails = this.cartDetailService.findCartDetailByCart(cart);
+        int sums = 0;
+        for (CartDetail cartDetail : cartDetails) {
+            sums += cartDetail.getQuantity() * cartDetail.getPrice();
+        }
+        model.addAttribute("sums", sums);
 
         return "/client/cart/checkout";
     }
@@ -97,7 +105,7 @@ public class checkoutControll {
         // xoa cart
         this.cartService.deleteCartByUser(user);
 
-        return "hello";
+        return "/client/cart/finishOrder";
     }
 
 }

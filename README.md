@@ -78,4 +78,7 @@ khi đăng ký tài khoản phải check xem email đã tồn tại hay chưa v�
     // }
 
 
-    Khi nào khách hàng đã thanh toán nhớ lưu order và xóa đi cart lẫn cartDetail 
+    Khi nào khách hàng đã thanh toán nhớ lưu order, orderDetail và xóa đi cart lẫn cartDetail 
+    tại 1 phiên đăng nhập thì 1 người dùng có 1 cart và nhiều cartDetail
+    nhưng khi lưu xuống database thì 1 người dùng có nhiều order vì mua hàng các thời điểm khác nhau(ý là đặt cart này xong đặt cart khác) 
+    vaf 1 order thì có nhiều orderDetail
