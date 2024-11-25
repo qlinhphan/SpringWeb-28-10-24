@@ -10,6 +10,9 @@ import java.util.List;
 
 import org.apache.tomcat.util.digester.SystemPropertySource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -90,9 +93,15 @@ public class UserControll {
     }
 
     @GetMapping("/table/user")
-    public String tableUser(Model model) {
-        List<Users> us = this.userService.findAllUser();
+    public String tableUser(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+        Pageable pageable = PageRequest.of(page - 1, 2);
+        System.out.println(page);
+        Page<Users> usP = this.userService.findAllPage(pageable);
+        List<Users> us = usP.getContent();
         model.addAttribute("users", us);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPage", pageable.getPageSize());
+        // System.out.println("totalPage: " + pageable.getPageSize());
         return "/admin/user/table_fordash";
     }
 

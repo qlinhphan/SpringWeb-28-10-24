@@ -27,12 +27,41 @@
                             width: 100%;
                             margin: 0;
                         }
+
+                        button {
+
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin-left: 50%;
+                            margin-top: 7%;
+                            height: 61px;
+                            width: 170px;
+                            border-top-left-radius: 17px;
+                            border-bottom-right-radius: 17px;
+                            /* border-bottom-left-radius: 17px; */
+                            border: none;
+                            background-color: darkkhaki;
+                            box-shadow: 3px 3px 12px black;
+                            margin-left: 45%;
+                        }
+
+                        canvas,
+                        body {
+                            margin: 0;
+                            padding: 0;
+                        }
                     </style>
                 </head>
 
                 <body>
-                    <h1>Bạn Đã Hoàn Tất Đặt Hàng</h1>
-                    <canvas id="canvas"></canvas>
+
+                    <h1>Bạn Đã Hoàn Tất Đặt Hàng
+                        <button><a href="/">Tiếp Tục Mua Hàng</a></button>
+                    </h1>
+                    <canvas id="canvas">
+
+                    </canvas>
 
                     <script>
                         let W = window.innerWidth;

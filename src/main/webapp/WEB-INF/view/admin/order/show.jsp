@@ -45,14 +45,10 @@
                         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"
                             href="#!"><i class="fas fa-bars"></i></button>
                         <!-- Navbar Search-->
-                        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                            <div class="input-group">
-                                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
-                                        class="fas fa-search"></i><a href="/homePage/client"
-                                        style="color: wheat; margin-left: 17px; text-decoration: none;">Page
-                                        User</a></button>
-                            </div>
-                        </form>
+                        <div
+                            style="display: flex; justify-content: center; align-items: center; margin-top: 1.5%; margin-left: 33%;">
+                            <p style="color: aliceblue;">Hi, ${currentUserLogin}</p>
+                        </div>
                         <!-- Navbar-->
 
                     </nav>
@@ -200,6 +196,37 @@
                                     </c:forEach>
 
                                 </table>
+                                <nav aria-label="Page navigation example" style="margin-top: 17px;">
+                                    <ul class="pagination justify-content-center">
+
+                                        <c:if test="${currentPage < 2 }">
+                                            <li class="page-item disabled"><a class="page-link" href="">Previous</a>
+                                            </li>
+                                        </c:if>
+                                        <c:if test="${currentPage > 1 }">
+                                            <li class="page-item"><a class="page-link"
+                                                    href="/adminOrder?page=${currentPage-1}">Previous</a>
+                                            </li>
+                                        </c:if>
+
+                                        <c:forEach begin="0" end="${totalPage}" varStatus="loop">
+                                            <li
+                                                class="${(loop.index+1) eq currentPage ? 'page-item active' : 'page-item'}">
+                                                <a class="page-link"
+                                                    href="/adminOrder?page=${loop.index+1}">${loop.index+1}</a>
+                                            </li>
+                                        </c:forEach>
+
+                                        <c:if test="${currentPage > (totalPage-1) }">
+                                            <li class="page-item disabled"><a class="page-link" href="">Next</a></li>
+                                        </c:if>
+                                        <c:if test="${currentPage < totalPage }">
+                                            <li class="page-item"><a class="page-link"
+                                                    href="/adminOrder?page=${currentPage+1}">Next</a></li>
+                                        </c:if>
+
+                                    </ul>
+                                </nav>
                             </main>
                             <footer class="py-4 bg-light mt-auto">
                                 <div class="container-fluid px-4">

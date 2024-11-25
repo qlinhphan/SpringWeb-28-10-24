@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +59,10 @@ public class UserService {
 
     public Users findUsersByEmail(String email) {
         return this.userRepository.findByEmail(email);
+    }
+
+    public Page<Users> findAllPage(Pageable pageable) {
+        return this.userRepository.findAll(pageable);
     }
 
 }

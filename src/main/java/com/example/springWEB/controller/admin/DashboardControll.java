@@ -2,6 +2,8 @@ package com.example.springWEB.controller.admin;
 
 import java.util.List;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,8 @@ import com.example.springWEB.service.OrderService;
 import com.example.springWEB.service.ProductsService;
 import com.example.springWEB.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class DashboardControll {
 
@@ -25,10 +29,11 @@ public class DashboardControll {
         this.userService = userService;
         this.productsService = productsService;
         this.orderService = orderService;
+
     }
 
     @GetMapping("/adminDash")
-    public String adminDash(Model model) {
+    public String adminDash(Model model, @AuthenticationPrincipal UserDetails userDetails, HttpSession session) {
         List<Users> users = this.userService.findAllUser();
         int countUsers = 0;
         for (Users users2 : users) {
@@ -50,6 +55,8 @@ public class DashboardControll {
                 countOrders += 1;
             }
         }
+        Users us = this.userService.findUsersByEmail(userDetails.getUsername());
+        session.setAttribute("currentUserLogin", us.getFullname());
         model.addAttribute("countUsers", countUsers);
         model.addAttribute("countProducts", countProducts);
         model.addAttribute("countOrders", countOrders);

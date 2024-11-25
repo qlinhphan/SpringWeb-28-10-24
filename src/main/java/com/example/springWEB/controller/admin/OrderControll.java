@@ -2,6 +2,9 @@ package com.example.springWEB.controller.admin;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -45,10 +48,15 @@ public class OrderControll {
     }
 
     @GetMapping("/adminOrder")
-    public String getOrder(Model model) {
-        List<Oders> oders = this.orderService.findAllOders();
+    public String getOrder(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+        System.out.println(page);
+        Pageable pageable = PageRequest.of(page - 1, 2);
+        Page<Oders> pa = this.orderService.findAllByPage(pageable);
+        List<Oders> oders = pa.getContent();
         model.addAttribute("oders", oders);
-        System.out.println(oders);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPage", pa.getTotalPages() - 1);
+        System.out.println("totalPage: " + pa.getTotalPages());
         return "/admin/order/show";
     }
 

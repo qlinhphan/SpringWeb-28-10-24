@@ -2,6 +2,8 @@ package com.example.springWEB.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.springWEB.domain.Oders;
@@ -17,4 +19,6 @@ public interface OrderRepository extends JpaRepository<Oders, Long> {
     public Oders deleteById(long id);
 
     public List<Oders> findByUsers(Users user);
+
+    public Page<Oders> findAll(Pageable pageable);
 }
