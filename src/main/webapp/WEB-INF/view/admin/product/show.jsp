@@ -135,9 +135,9 @@
                             </div>
                             <div class="nav">
                                 <div class="sb-sidenav-menu-heading">Different</div>
-                                <a class="nav-link" href="/table/user">
+                                <a class="nav-link" href="/cmtCus">
                                     <div class="sb-nav-link-icon"><i class="fa-solid fa-house-user"></i></i></div>
-                                    Authorization
+                                    Customer's Cmt
                                 </a>
                             </div>
                         </div>
@@ -208,7 +208,7 @@
                                 </c:if>
 
 
-                                <c:forEach begin="0" end="${totalPages+2}" varStatus="loop">
+                                <c:forEach begin="0" end="${totalPages-1}" varStatus="loop">
 
                                     <li class="${(loop.index+1) eq currentPage ? 'page-item active' : 'page-item'}"><a
                                             class="page-link"
@@ -221,12 +221,13 @@
                                 <!-- <li class="page-item"><a class="page-link" href="/adminProduct?page=2">2</a></li>
                                 <li class="page-item"><a class="page-link" href="/adminProduct?page=3">3</a></li> -->
 
-                                <c:if test="${currentPage > totalPages }">
+                                <c:if test="${currentPage == totalPages }">
                                     <li class="page-item disabled">
-                                        <a class="page-link" href="#">Next</a>
+                                        <a class="page-link" href="/">Next</a>
                                     </li>
                                 </c:if>
-                                <c:if test="${currentPage <= totalPages }">
+
+                                <c:if test="${currentPage < totalPages }">
                                     <li class="page-item">
                                         <a class="page-link" href="/adminProduct?page=${currentPage+1}">Next</a>
                                     </li>

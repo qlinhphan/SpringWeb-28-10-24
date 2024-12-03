@@ -1,5 +1,6 @@
 package com.example.springWEB.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.springWEB.domain.Users;
+import com.example.springWEB.domain.cart.feedBack;
 import com.example.springWEB.domain.dto.RegisterDTO;
 import com.example.springWEB.repository.UserRepository;
 
@@ -43,12 +45,8 @@ public class UserService {
 
     public Users registerDtoToUser(RegisterDTO re) {
         Users kq = new Users();
-        // kq.setFullname(re.getFirstName() + " " + re.getLastName());
-        // kq.setEmail(re.getEmail());
-        // kq.setPassword(re.getPassword());
         kq.setFullname(re.getFirstName() + " " + re.getLastName());
         kq.setEmail(re.getEmail());
-        // kq.setPassword(re.getPassword());
         kq.setPassword(passwordEncoder.encode(re.getPassword()));
         return kq;
     }
@@ -63,6 +61,17 @@ public class UserService {
 
     public Page<Users> findAllPage(Pageable pageable) {
         return this.userRepository.findAll(pageable);
+    }
+
+    // public Users fromFeedbackToUsers(feedBack feed) {
+    // Users us = new Users();
+    // us.setContent(feed.getContent());
+    // us.setDate(new Date());
+    // return us;
+    // }
+
+    public Users saveUser(Users us) {
+        return this.userRepository.save(us);
     }
 
 }

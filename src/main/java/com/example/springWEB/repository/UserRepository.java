@@ -22,4 +22,5 @@ public interface UserRepository extends JpaRepository<Users, Long> {
     public Users findByEmail(String email);
 
     public Page<Users> findAll(Pageable pageable);
+
 }

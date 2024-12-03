@@ -1,5 +1,6 @@
 package com.example.springWEB.controller.client.cart;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.springWEB.domain.Oders;
 import com.example.springWEB.domain.OrderDetail;
@@ -26,7 +26,6 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class checkoutControll {
@@ -85,6 +84,7 @@ public class checkoutControll {
             sumMoney += cd.getPrice() * cd.getQuantity();
         }
         order.setTotalPrice(sumMoney);
+        order.setDateOrder(new Date());
         order = this.OrderService.saveOrder(order);
 
         // luu orderDetail, phai xem chi tiet (trong orderDetail) co nhung san pham gi

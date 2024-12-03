@@ -68,10 +68,10 @@
 
                                     <div class="nav">
                                         <div class="sb-sidenav-menu-heading">Different</div>
-                                        <a class="nav-link" href="/table/user">
+                                        <a class="nav-link" href="/cmtCus">
                                             <div class="sb-nav-link-icon"><i class="fa-solid fa-house-user"></i></i>
                                             </div>
-                                            Authorization
+                                            Customer's Cmt
                                         </a>
                                     </div>
                                 </div>
@@ -84,10 +84,7 @@
                         <div id="layoutSidenav_content">
                             <main>
                                 <div class="container-fluid px-4">
-                                    <h1 class="mt-4">Dashboard</h1>
-                                    <ol class="breadcrumb mb-4">
-                                        <li class="breadcrumb-item active">Thống Kê Chi Tiết</li>
-                                    </ol>
+                                    <h1 class="mt-4" style="font-size: 19px;">Dashboard</h1>
                                     <div class="row">
                                         <div class="col-xl-4 col-md-6">
                                             <div class="card bg-primary text-white mb-4">
@@ -126,14 +123,47 @@
                                             </div>
                                         </div>
                                     </div>
+
+
                                     <div class="row">
-                                        <div class="col-xl-12">
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="card bg-primary text-white mb-4">
+                                                <div class="card-body">Đơn Hàng Chờ Xác Nhận (${pending})</div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="card bg-success text-white mb-4">
+                                                <div class="card-body">Đơn Hàng Đang Vận Chuyển (${delivering})</div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="card bg-danger text-white mb-4">
+                                                <div class="card-body">Đơn Hàng Đã Vẫn Chuyển (${finish})</div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6">
                                             <div class="card mb-4">
                                                 <div class="card-header">
                                                     <i class="fas fa-chart-area me-1"></i>
-                                                    Thống Kê Đơn Hàng Bán Ra Theo Ngày
+                                                    Thống Kê Doanh Thu Qua Các Ngày
                                                 </div>
-                                                <div class="card-body"><canvas id="myAreaChart" width="100%"
+                                                <div class="card-body"><canvas id="myBarChart" width="100%"
+                                                        height="40"></canvas></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="card mb-4">
+                                                <div class="card-header">
+                                                    <i class="fas fa-chart-area me-1"></i>
+                                                    Thống Kê Doanh Thu Trong Các Tháng
+                                                </div>
+                                                <div class="card-body"><canvas id="myBarCharts" width="100%"
                                                         height="40"></canvas></div>
                                             </div>
                                         </div>
@@ -171,10 +201,219 @@
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
                         crossorigin="anonymous"></script>
                     <script src="/js/chart-area-demo.js"></script>
-                    <script src="/js/chart-bar-demo.js"></script>
+                    <script>
+                        // Set new default font family and font color to mimic Bootstrap's default styling
+                        Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+                        Chart.defaults.global.defaultFontColor = '#292b2c';
+
+                        // Bar Chart Example
+                        let dataDate = [
+                            <c:forEach var="order" items="${orders}" varStatus="status">
+                                <c:if test="${status.index > 0}">,</c:if>
+                                "<c:out value="${order.dateOrder}" />"
+                            </c:forEach>
+                        ]
+
+                        //
+                        let dataDateFinal = []
+                        for (let i = 0; i < dataDate.length; i++) {
+                            dataDateFinal.push(dataDate[i].split(" ")[0])    //cut cai gio di
+                        }
+
+                        let dataMoney = [
+                            <c:forEach var="order" items="${orders}" varStatus="status">
+                                <c:if test="${status.index > 0}">,</c:if>
+                                "<c:out value="${order.totalPrice}" />"
+                            </c:forEach>
+                        ]
+
+                        let money = []
+                        for (let i = 0; i < dataDateFinal.length; i++) {
+                            money[i] = parseFloat(dataMoney[i])
+                            dataMoney[i] = money[i]
+                        }
+
+                        for (let i = 0; i < dataDateFinal.length; i++) {
+                            for (let j = i + 1; j < dataDateFinal.length; j++) {
+                                if (dataDateFinal[i] === dataDateFinal[j]) {
+                                    money[i] = money[i] + money[j]
+                                }
+                            }
+                        }
+
+                        for (let i = 0; i < dataDateFinal.length; i++) {
+                            for (let j = i + 1; j < dataDateFinal.length; j++) {
+                                if (dataDateFinal[i] === dataDateFinal[j]) {
+                                    dataDateFinal.splice(j, 1)
+                                    money.splice(j, 1)
+                                    j--
+                                }
+                            }
+                        }
+
+
+                        var ctx = document.getElementById("myBarChart");
+                        var myLineChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: dataDateFinal,
+
+                                datasets: [{
+                                    label: "Revenue",
+                                    backgroundColor: "rgba(2,117,216,1)",
+                                    borderColor: "rgba(2,117,216,1)",
+                                    data: money,
+                                }],
+                            },
+                            options: {
+                                scales: {
+                                    xAxes: [{
+                                        time: {
+                                            unit: 'day'
+                                        },
+                                        gridLines: {
+                                            display: false
+                                        },
+                                        ticks: {
+                                            maxTicksLimit: 6
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        ticks: {
+                                            min: 0,
+                                            max: 400000000,
+                                            maxTicksLimit: 5
+                                        },
+                                        gridLines: {
+                                            display: true
+                                        }
+                                    }],
+                                },
+                                legend: {
+                                    display: false
+                                }
+                            }
+                        });
+
+                        myLineChart.update();
+
+
+                    </script>
+
+                    <script>
+                        // Set new default font family and font color to mimic Bootstrap's default styling
+                        Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+                        Chart.defaults.global.defaultFontColor = '#292b2c';
+
+                        // Bar Chart Example
+                        let dataDates = [
+                            <c:forEach var="order" items="${orders}" varStatus="status">
+                                <c:if test="${status.index > 0}">,</c:if>
+                                "<c:out value="${order.dateOrder}" />"
+                            </c:forEach>
+                        ]
+
+                        //
+                        let months = []
+                        for (let i = 0; i < dataDates.length; i++) {
+                            months.push(dataDate[i].split("-")[1])
+                        }
+
+
+                        let dataMoneys = [
+                            <c:forEach var="order" items="${orders}" varStatus="status">
+                                <c:if test="${status.index > 0}">,</c:if>
+                                "<c:out value="${order.totalPrice}" />"
+                            </c:forEach>
+                        ]
+
+                        let moneys = []
+                        for (let i = 0; i < dataMoneys.length; i++) {
+                            dataMoneys[i] = parseFloat(dataMoneys[i])
+                            moneys.push(dataMoneys[i])
+                        }
+
+
+
+                        for (let i = 0; i < months.length; i++) {
+                            for (let j = i + 1; j < months.length; j++) {
+                                if (months[i] === months[j]) {
+                                    moneys[i] = moneys[i] + moneys[j]
+                                }
+                            }
+                        }
+
+                        for (let i = 0; i < months.length; i++) {
+                            for (let j = i + 1; j < months.length; j++) {
+                                if (months[i] === months[j]) {
+                                    months.splice(j, 1)
+                                    moneys.splice(j, 1)
+                                    j--
+                                }
+                            }
+                        }
+                        let k = 122;
+                        var b = [];
+                        for (var i = 0; i < 2; i++) {
+                            console.log(k);
+                            b.push("rgba(54," + k + ",91,1)");
+                            k += 12;
+                        }
+                        console.log(b);
+
+                        var ctx = document.getElementById("myBarCharts");
+                        var myLineChart = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: months,
+
+                                datasets: [{
+                                    label: ["MeMe", "MoMO"],
+                                    backgroundColor: b,
+                                    borderColor: " rgba(2, 177, 216, 1)",
+                                    boderWidth: 5,
+                                    data: moneys,
+                                }],
+                            },
+                            options: {
+                                scales: {
+                                    xAxes: [{
+                                        time: {
+                                            unit: 'day'
+                                        },
+                                        gridLines: {
+                                            display: false
+                                        },
+                                        ticks: {
+                                            maxTicksLimit: 6
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        ticks: {
+                                            min: 0,
+                                            max: 400000000,
+                                            maxTicksLimit: 5
+                                        },
+                                        gridLines: {
+                                            display: true
+                                        }
+                                    }],
+                                },
+                                legend: {
+                                    display: false
+                                }
+                            }
+                        });
+
+
+
+                    </script>
+
+
                     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
                         crossorigin="anonymous"></script>
                     <script src="/js/datatables-simple-demo.js"></script>
+
                 </body>
 
                 </html>

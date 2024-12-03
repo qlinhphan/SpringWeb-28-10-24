@@ -89,8 +89,9 @@ public class ProductControll {
         List<Products> products = pagei.getContent();
         model.addAttribute("products", products);
         model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", pageable.getPageSize());
+        model.addAttribute("totalPages", pagei.getTotalPages());
         // System.out.println(model.getAttribute("totalPages"));
+        // System.out.println("TOTAL: " + pagei.getTotalPages());
         return "/admin/product/show";
     }
 

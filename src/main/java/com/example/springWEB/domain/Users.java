@@ -7,9 +7,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+import java.util.Date;
 import java.util.List;
 
 import com.example.springWEB.domain.cart.Cart;
+import com.example.springWEB.domain.cart.feedBack;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +29,8 @@ public class Users {
     private String address;
     private String phone;
     private String avatar;
+    // private String content;
+    // private Date date;
 
     // roleId
     // users n -> 1 roles
@@ -41,6 +45,10 @@ public class Users {
     // users 1 -> 1 cart
     @OneToOne(mappedBy = "users")
     private Cart cart;
+
+    // 1 user -> n feed
+    @OneToMany(mappedBy = "user")
+    private List<feedBack> feed;
 
     public Roles getRoles() {
         return roles;
@@ -127,5 +135,21 @@ public class Users {
     public void setCart(Cart cart) {
         this.cart = cart;
     }
+
+    // public String getContent() {
+    // return content;
+    // }
+
+    // public void setContent(String content) {
+    // this.content = content;
+    // }
+
+    // public Date getDate() {
+    // return date;
+    // }
+
+    // public void setDate(Date date) {
+    // this.date = date;
+    // }
 
 }

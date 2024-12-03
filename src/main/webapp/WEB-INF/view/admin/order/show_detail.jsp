@@ -169,10 +169,10 @@
                                     </div>
                                     <div class="nav">
                                         <div class="sb-sidenav-menu-heading">Different</div>
-                                        <a class="nav-link" href="/table/user">
+                                        <a class="nav-link" href="/cmtCus">
                                             <div class="sb-nav-link-icon"><i class="fa-solid fa-house-user"></i></i>
                                             </div>
-                                            Authorization
+                                            Customer's Cmt
                                         </a>
                                     </div>
                                 </div>

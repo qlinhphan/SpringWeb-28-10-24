@@ -60,9 +60,10 @@
                             </div>
                             <div class="nav">
                                 <div class="sb-sidenav-menu-heading">Different</div>
-                                <a class="nav-link" href="/table/user">
+                                <a class="nav-link" href="/cmtCus">
                                     <div class="sb-nav-link-icon"><i class="fa-solid fa-house-user"></i></i></div>
-                                    Authorization
+                                    Customer's Cmt
+
                                 </a>
                             </div>
                         </div>
@@ -121,10 +122,12 @@
                                 <ul class="pagination justify-content-center">
 
                                     <c:if test="${currentPage < 2 }">
-                                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                        <li class="page-item disabled"><a class="page-link"
+                                                href="/table/user?page=${currentPage-1}">Previous</a></li>
                                     </c:if>
                                     <c:if test="${currentPage > 1 }">
-                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                        <li class="page-item"><a class="page-link"
+                                                href="/table/user?page=${currentPage-1}">Previous</a></li>
                                     </c:if>
 
                                     <c:forEach begin="0" end="${totalPage}" varStatus="loop">
@@ -136,10 +139,12 @@
 
 
                                     <c:if test="${currentPage > totalPage}">
-                                        <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                                        <li class="page-item disabled"><a class="page-link"
+                                                href="/table/user?page=${currentPage+1}">Next</a></li>
                                     </c:if>
                                     <c:if test="${currentPage <= totalPage}">
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                        <li class="page-item"><a class="page-link"
+                                                href="/table/user?page=${currentPage+1}">Next</a></li>
                                     </c:if>
                                 </ul>
                             </nav>

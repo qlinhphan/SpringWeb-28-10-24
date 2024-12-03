@@ -119,7 +119,7 @@
                         <div class="container px-0">
                             <nav class="navbar navbar-light bg-white navbar-expand-xl">
                                 <a href="/" class="navbar-brand">
-                                    <h1 class="text-primary display-6">Laptop Shop</h1>
+                                    <h1 class="text-primary display-6">LaptopShop</h1>
                                 </a>
                                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#navbarCollapse">
@@ -127,8 +127,8 @@
                                 </button>
                                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                                     <div class="navbar-nav mx-auto">
-                                        <a href="index.html" class="nav-item nav-link active">Trang Chủ</a>
-                                        <a href="shop.html" class="nav-item nav-link">Của Hàng</a>
+                                        <a href="" class="nav-item nav-link active">Trang Chủ</a>
+                                        <a href="/buy" class="nav-item nav-link">Của Hàng</a>
                                     </div>
                                     <div class="d-flex m-3 me-0">
                                         <c:if test="${not empty pageContext.request.userPrincipal}">
@@ -343,30 +343,7 @@
                                                     <span class="text-dark" style="width: 130px;">All Products</span>
                                                 </a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill"
-                                                    href="#tab-2">
-                                                    <span class="text-dark" style="width: 130px;">Vegetables</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill"
-                                                    href="#tab-3">
-                                                    <span class="text-dark" style="width: 130px;">Fruits</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill"
-                                                    href="#tab-4">
-                                                    <span class="text-dark" style="width: 130px;">Bread</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill"
-                                                    href="#tab-5">
-                                                    <span class="text-dark" style="width: 130px;">Meat</span>
-                                                </a>
-                                            </li>
+
                                         </ul>
                                     </div>
                                 </div>

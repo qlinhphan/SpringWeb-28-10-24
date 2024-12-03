@@ -3,18 +3,14 @@ package com.example.springWEB.controller.admin;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.security.Provider.Service;
+
 import java.util.List;
 
-import org.apache.tomcat.util.digester.SystemPropertySource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,13 +20,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.springWEB.domain.Oders;
 import com.example.springWEB.domain.Users;
 import com.example.springWEB.service.RolesService;
 import com.example.springWEB.service.UserService;
 
 import jakarta.servlet.ServletContext;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class UserControll {
@@ -63,9 +59,9 @@ public class UserControll {
             byte[] bytes;
             bytes = file.getBytes();
 
-            String rootPath = this.servletContext.getRealPath("/resources/css");
+            String rootPath = this.servletContext.getRealPath("/resources/images");
 
-            File dir = new File(rootPath + File.separator + "client");
+            File dir = new File(rootPath + File.separator + rootPath);
 
             if (!dir.exists()) {
                 dir.mkdirs();
@@ -74,7 +70,7 @@ public class UserControll {
             File server = new File(dir.getAbsolutePath() + File.separator + System.currentTimeMillis() + "-"
                     + file.getOriginalFilename());
 
-            linkImage = File.separator + System.currentTimeMillis() + "-"
+            linkImage = System.currentTimeMillis() + "-"
                     + file.getOriginalFilename();
 
             BufferedOutputStream stream = new BufferedOutputStream(
@@ -85,6 +81,7 @@ public class UserControll {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         us.setRoles(this.rolesService.findRolesByName(kq));
         us.setAvatar(linkImage);
         us.setPassword(passwordEncoder.encode(us.getPassword()));

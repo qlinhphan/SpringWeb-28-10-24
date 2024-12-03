@@ -76,6 +76,16 @@
                         .dropdown:hover .dropbtn {
                             background-color: #3e8e41;
                         }
+
+                        .acv {
+
+                            /* margin-left: 110%; */
+                            /* margin-top: -10%; */
+                            position: relative;
+                            left: 107%;
+                            top: -36px;
+
+                        }
                     </style>
                 </head>
 
@@ -118,7 +128,7 @@
                                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                                     <div class="navbar-nav mx-auto">
                                         <a href="/" class="nav-item nav-link">Trang Chủ</a>
-                                        <a href="" class="nav-item nav-link">Cửa Hàng</a>
+                                        <a href="/shop" class="nav-item nav-link">Cửa Hàng</a>
                                         <!-- <a href="shop-detail.html" class="nav-item nav-link active">Shop Detail</a> -->
                                         <!-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -268,9 +278,7 @@
                                                         type="button" role="tab" id="nav-about-tab" data-bs-toggle="tab"
                                                         data-bs-target="#nav-about" aria-controls="nav-about"
                                                         aria-selected="true">Description</button>
-                                                    <!-- <button class="nav-link border-white border-bottom-0" type="button" role="tab"
-                                        id="nav-mission-tab" data-bs-toggle="tab" data-bs-target="#nav-mission"
-                                        aria-controls="nav-mission" aria-selected="false">Reviews</button> -->
+
                                                 </div>
                                             </nav>
                                             <div class="tab-content mb-5">
@@ -278,58 +286,39 @@
                                                     aria-labelledby="nav-about-tab">
                                                     <p>${product.detailDes}</p>
 
-                                                    <!-- <div class="px-2">
-                                            <div class="row g-4">
-                                                <div class="col-6">
-                                                    <div
-                                                        class="row bg-light align-items-center text-center justify-content-center py-2">
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Weight</p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p class="mb-0">1 kg</p>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="row text-center align-items-center justify-content-center py-2">
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Country of Origin</p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Agro Farm</p>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="row bg-light text-center align-items-center justify-content-center py-2">
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Quality</p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Organic</p>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="row text-center align-items-center justify-content-center py-2">
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Сheck</p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Healthy</p>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="row bg-light text-center align-items-center justify-content-center py-2">
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Min Weight</p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p class="mb-0">250 Kg</p>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
-                                            </div>
-                                        </div> -->
-                                                </div>
+                                                <nav>
+                                                    <div class="nav nav-tabs mb-3">
+                                                        <button class="nav-link active border-white border-bottom-0"
+                                                            type="button" role="tab" id="nav-about-tab"
+                                                            data-bs-toggle="tab" data-bs-target="#nav-about"
+                                                            aria-controls="nav-about" aria-selected="true">Đánh giá của
+                                                            bạn về sản phẩm</button>
+
+                                                    </div>
+                                                </nav>
+                                                <form:form action="/cmt/finish" method="post" modelAttribute="newFeed">
+                                                    <div class="mb-3">
+                                                        <div>
+                                                            <input type="hidden" name="${_csrf.parameterName}"
+                                                                value="${_csrf.token}" />
+                                                        </div>
+
+                                                        <form:input type="text" class="form-control"
+                                                            id="exampleInputEmail1"
+                                                            placeholder="Nhập đánh giá của bạn..." path="content" />
+
+                                                        <div style="display: none;">
+                                                            <form:input type="text" value="${product.id}"
+                                                                path="product" />
+                                                        </div>
+
+                                                        <button type="submit"
+                                                            class="btn btn-success acv">Success</button>
+
+                                                    </div>
+                                                </form:form>
                                                 <div class="tab-pane" id="nav-mission" role="tabpanel"
                                                     aria-labelledby="nav-mission-tab">
                                                     <div class="d-flex">

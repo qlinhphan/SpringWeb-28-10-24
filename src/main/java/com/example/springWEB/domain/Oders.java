@@ -1,5 +1,6 @@
 package com.example.springWEB.domain;
 
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -33,6 +34,8 @@ public class Oders {
     // order 1 => n orderdetail
     @OneToMany(mappedBy = "orders")
     private List<OrderDetail> orderDetails;
+
+    private Date dateOrder;
 
     public long getId() {
         return id;
@@ -103,6 +106,14 @@ public class Oders {
         return "Oders [id=" + id + ", totalPrice=" + totalPrice + ", receiverName=" + receiverName
                 + ", receiverAddress=" + receiverAddress + ", receiverPhone=" + receiverPhone + ", status=" + status
                 + ", users=" + users + ", orderDetails=" + orderDetails + "]";
+    }
+
+    public Date getDateOrder() {
+        return dateOrder;
+    }
+
+    public void setDateOrder(Date dateOrder) {
+        this.dateOrder = dateOrder;
     }
 
 }

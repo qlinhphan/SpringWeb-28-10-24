@@ -1,5 +1,7 @@
 package com.example.springWEB.controller.admin;
 
+import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -7,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.springWEB.domain.Oders;
 import com.example.springWEB.domain.Products;
@@ -55,11 +56,49 @@ public class DashboardControll {
                 countOrders += 1;
             }
         }
+
+        // dem don hang cho xac nhan
+        int countOrdersPending = 0;
+        for (Oders oders : order) {
+            if (oders.getStatus().equals("Pending")) {
+                countOrdersPending += 1;
+            }
+        }
+
+        // dem don hang dang van chuyen
+        int countOrdersDelivering = 0;
+        for (Oders oders : order) {
+            if (oders.getStatus().equals("Delivering")) {
+                countOrdersDelivering += 1;
+            }
+        }
+
+        // dem don hang da hoan tat
+        int countOrdersFinish = 0;
+        for (Oders oders : order) {
+            if (oders.getStatus().equals("Finish")) {
+                countOrdersFinish += 1;
+            }
+        }
+
         Users us = this.userService.findUsersByEmail(userDetails.getUsername());
         session.setAttribute("currentUserLogin", us.getFullname());
         model.addAttribute("countUsers", countUsers);
         model.addAttribute("countProducts", countProducts);
         model.addAttribute("countOrders", countOrders);
+        model.addAttribute("pending", countOrdersPending);
+        model.addAttribute("finish", countOrdersFinish);
+        model.addAttribute("delivering", countOrdersDelivering);
+
+        List<Oders> dataTable = new ArrayList<>();
+        for (Oders oders : order) {
+            if (oders.getStatus().equals("Finish")) {
+                dataTable.add(oders);
+            }
+        }
+        model.addAttribute("orders", dataTable);
+
         return "admin/dasboard/show"; // có 1 sự thay đổi nhỏ trong file để upload lên
     }
+
 }

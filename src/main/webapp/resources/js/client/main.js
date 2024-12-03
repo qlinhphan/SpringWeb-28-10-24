@@ -26,20 +26,20 @@
             } else {
                 $('.fixed-top').removeClass('shadow').css('top', 0);
             }
-        } 
+        }
     });
-    
-    
-   // Back to top button
-   $(window).scroll(function () {
-    if ($(this).scrollTop() > 300) {
-        $('.back-to-top').fadeIn('slow');
-    } else {
-        $('.back-to-top').fadeOut('slow');
-    }
+
+
+    // Back to top button
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 300) {
+            $('.back-to-top').fadeIn('slow');
+        } else {
+            $('.back-to-top').fadeOut('slow');
+        }
     });
     $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+        $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
         return false;
     });
 
@@ -52,27 +52,27 @@
         dots: true,
         loop: true,
         margin: 25,
-        nav : true,
-        navText : [
+        nav: true,
+        navText: [
             '<i class="bi bi-arrow-left"></i>',
             '<i class="bi bi-arrow-right"></i>'
         ],
         responsiveClass: true,
         responsive: {
-            0:{
-                items:1
+            0: {
+                items: 1
             },
-            576:{
-                items:1
+            576: {
+                items: 1
             },
-            768:{
-                items:1
+            768: {
+                items: 1
             },
-            992:{
-                items:2
+            992: {
+                items: 2
             },
-            1200:{
-                items:2
+            1200: {
+                items: 2
             }
         }
     });
@@ -86,27 +86,27 @@
         dots: true,
         loop: true,
         margin: 25,
-        nav : true,
-        navText : [
+        nav: true,
+        navText: [
             '<i class="bi bi-arrow-left"></i>',
             '<i class="bi bi-arrow-right"></i>'
         ],
         responsiveClass: true,
         responsive: {
-            0:{
-                items:1
+            0: {
+                items: 1
             },
-            576:{
-                items:1
+            576: {
+                items: 1
             },
-            768:{
-                items:2
+            768: {
+                items: 2
             },
-            992:{
-                items:3
+            992: {
+                items: 3
             },
-            1200:{
-                items:4
+            1200: {
+                items: 4
             }
         }
     });
@@ -146,6 +146,68 @@
         }
         button.parent().parent().find('input').val(newVal);
     });
+
+
+
+    $("#btnFilter").click(function () {
+        let fact = [];
+        let target = [];
+        let money = [];
+
+        $("#factFilter .form-check-input:checked").each(function () {
+            fact.push($(this).val())
+        })
+
+        $("#targetFilter .form-check-input:checked").each(function () {
+            target.push($(this).val())
+        })
+
+        $("#moneyFilter .form-check-input:checked").each(function () {
+            money.push($(this).val())
+        })
+
+        console.log(fact)
+        console.log(target)
+        console.log(money)
+
+        let currentUrl = new URL(window.location.href)
+        let searchParams = currentUrl.searchParams
+
+        searchParams.set("name", fact.join(','))
+        searchParams.set('page', '1')
+
+        history.pushState('', {}, currentUrl.toString());
+        location.reload(true);
+    })
+
+
+    $(document).ready(function () {
+        let currentUrl = new URL(window.location.href);
+        let searchParams = currentUrl.searchParams;
+
+        let nameParam = searchParams.get("name");
+        let nameArray = nameParam ? nameParam.split(',') : [];
+
+        // Tích chọn các checkbox dựa trên các giá trị trong URL
+        $("#factFilter .form-check-input").each(function () {
+            if (nameArray.includes($(this).val())) {
+                $(this).prop("checked", true);
+            }
+        });
+
+        $("#targetFilter .form-check-input").each(function () {
+            if (nameArray.includes($(this).val())) {
+                $(this).prop("checked", true);
+            }
+        });
+
+        $("#moneyFilter .form-check-input").each(function () {
+            if (nameArray.includes($(this).val())) {
+                $(this).prop("checked", true);
+            }
+        });
+    });
+
 
 })(jQuery);
 

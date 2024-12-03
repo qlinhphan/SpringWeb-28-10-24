@@ -1,12 +1,15 @@
 package com.example.springWEB.service;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.example.springWEB.domain.Products;
+import com.example.springWEB.domain.Products_;
 import com.example.springWEB.domain.Users;
 import com.example.springWEB.domain.cart.Cart;
 import com.example.springWEB.domain.cart.CartDetail;
@@ -14,8 +17,7 @@ import com.example.springWEB.repository.CartDetailRepository;
 import com.example.springWEB.repository.CartRepository;
 import com.example.springWEB.repository.ProductsRepository;
 import com.example.springWEB.repository.UserRepository;
-
-import jakarta.servlet.http.HttpSession;
+import com.example.springWEB.service.specification.ProductSpecService;
 
 @Service
 public class ProductsService {
@@ -25,14 +27,17 @@ public class ProductsService {
     private UserRepository userRepository;
     private CartDetailRepository cartDetailRepository;
     private CartRepository cartRepository;
+    private ProductSpecService productSpecService;
 
     public ProductsService(ProductsRepository productsRepository, UserService userService,
-            UserRepository userRepository, CartDetailRepository cartDetailRepository, CartRepository cartRepository) {
+            UserRepository userRepository, CartDetailRepository cartDetailRepository, CartRepository cartRepository,
+            ProductSpecService productSpecService) {
         this.productsRepository = productsRepository;
         this.userService = userService;
         this.userRepository = userRepository;
         this.cartDetailRepository = cartDetailRepository;
         this.cartRepository = cartRepository;
+        this.productSpecService = productSpecService;
 
     }
 
@@ -103,4 +108,24 @@ public class ProductsService {
         return this.productsRepository.findAll(pageable);
     }
 
+    public Page<Products> paginationQueryByName(String name, Pageable pageable) {
+        return this.productsRepository.findAll(this.productSpecService.likeName(name), pageable);
+    }
+
+    public Page<Products> paginationQueryByPrice(String price, Pageable pageable) {
+        return this.productsRepository.findAll(this.productSpecService.lessThanInputPrice(price),
+                pageable);
+    }
+
+    public Page<Products> paginationQueryByFactory(String fact, Pageable pageable) {
+        return this.productsRepository.findAll(this.productSpecService.factoryIsApple(fact), pageable);
+    }
+
+    public Page<Products> paginationQueryByManyFactory(List<String> fact, Pageable pageable) {
+        return this.productsRepository.findAll(this.productSpecService.factoryIsAppleAndDell(fact), pageable);
+    }
+
+    public Page<Products> paginationQueryByRangeMoney(List<Double[]> data, Pageable pageable) {
+        return this.productsRepository.findAll(this.productSpecService.PriceIsInput(data), pageable);
+    }
 }

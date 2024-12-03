@@ -3,6 +3,7 @@ package com.example.springWEB.domain;
 import java.util.List;
 
 import com.example.springWEB.domain.cart.CartDetail;
+import com.example.springWEB.domain.cart.feedBack;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,6 +43,10 @@ public class Products {
     // ngược lại thì ko nhất thiết cần phải biết
 
     // product n => 1 factory
+
+    // pro 1 -> n feed
+    @OneToMany(mappedBy = "product")
+    private List<feedBack> feed;
 
     public long getId() {
         return id;

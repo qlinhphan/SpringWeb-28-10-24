@@ -1,8 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-        <!-- tag thu nhat dung de dung path, form
-        tag thu hai dung de render du lieu ra bang -->
         <html lang="en">
 
         <head>
@@ -16,7 +13,6 @@
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
                 integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
                 crossorigin="anonymous">
-
         </head>
         </head>
 
@@ -33,7 +29,6 @@
                     <p style="color: aliceblue;">Hi, ${currentUserLogin}</p>
                 </div>
                 <!-- Navbar-->
-
             </nav>
             <div id="layoutSidenav">
                 <div id="layoutSidenav_nav">
@@ -58,14 +53,12 @@
                                     <div class="sb-nav-link-icon"><i class="fa-regular fa-newspaper"></i></div>
                                     Order
                                 </a>
-
                             </div>
                             <div class="nav">
                                 <div class="sb-sidenav-menu-heading">Different</div>
                                 <a class="nav-link" href="/cmtCus">
                                     <div class="sb-nav-link-icon"><i class="fa-solid fa-house-user"></i></i></div>
                                     Customer's Cmt
-
                                 </a>
                             </div>
                         </div>
@@ -78,37 +71,63 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <section class="vh-100">
-                                <div class="container-fluid h-custom">
-                                    <div class="row d-flex justify-content-center align-items-center h-100">
-                                        <div class="col-md-9 col-lg-6 col-xl-5">
-                                            <img src="/images/product/not-allow.svg" class="img-fluid"
-                                                alt="Sample image">
-                                        </div>
-                                        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                                            <form:form method="get" action="/table/user" modelAttribute="current">
+                            <h1 class="mt-4">List Users</h1>
+                            <ol class="breadcrumb mb-4">
+                                <li class="breadcrumb-item active">List Users:</li>
+                            </ol>
+
+
+                            <!-- <th scope="col"><button type="submit" class="btn btn-primary"><a
+                                        style="text-decoration: none; color: wheat" href="/create/user">Create
+                                        User</a></button>
+                            </th> -->
+                            <table class="table">
+
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id Khach Hang</th>
+                                        <th scope="col">Ten Khach Hang</th>
+                                        <th scope="col">San Pham Da Mua</th>
+                                        <th scope="col">Binh Luan</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <c:forEach var="feed" items="${feeds}">
+                                        <tr>
+                                            <th scope="row">${feed.user.id}</th>
+                                            <td>${feed.user.fullname}</td>
+                                            <td style="font-size: 17px;">${feed.product.name}</td>
+                                            <td>${feed.content}</td>
+                                        </tr>
+                                    </c:forEach>
 
 
 
-                                                <div class="alert alert-success" role="alert">
-                                                    <h4 class="alert-heading">Warning!</h4>
-                                                    <p>This User is <span style="color: red">Admin</span>, So you can't
-                                                        delete it<span></span>
-                                                    </p>
-                                                    <form:input type="text" value="${current.id}" style="display: none;"
-                                                        path="id" />
-                                                    <p>You can return on next time</p>
-                                                    <hr>
-                                                    <div style="display: flex; gap: 17px">
-                                                        <button type="submit" class="btn btn-danger">Return
-                                                            Page</button>
-                                                    </div>
-                                                </div>
-                                            </form:form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
+                                </tbody>
+                            </table>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+
+
+                                    <li class="page-item"><a class="page-link" href="/cmtCus?page=1">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </main>
                     <footer class="py-4 bg-light mt-auto">
