@@ -153,8 +153,9 @@
         let fact = [];
         let target = [];
         let money = [];
+        let sort = [];
 
-        $("#factFilter .form-check-input:checked").each(function () {
+        $("#nameFilter .form-check-input:checked").each(function () {
             fact.push($(this).val())
         })
 
@@ -162,18 +163,26 @@
             target.push($(this).val())
         })
 
-        $("#moneyFilter .form-check-input:checked").each(function () {
-            money.push($(this).val())
-        })
+        // $("#moneyFilter .form-check-input:checked").each(function () {
+        //     money.push($(this).val())
+        // })
+        // $("#sortFilter .form-check-input:checked").each(function () {
+        //     sort.push($(this).val())
+        // })
 
         console.log(fact)
         console.log(target)
-        console.log(money)
+        // console.log(money)
 
         let currentUrl = new URL(window.location.href)
         let searchParams = currentUrl.searchParams
 
-        searchParams.set("name", fact.join(','))
+        searchParams.set("fact", fact.join(','))
+        if (target != null) {
+            searchParams.set("target", target.join(','))
+        }
+        // searchParams.set("money", money.join(','))
+        // searchParams.set("sort", sort.join(','))
         searchParams.set('page', '1')
 
         history.pushState('', {}, currentUrl.toString());
@@ -185,27 +194,30 @@
         let currentUrl = new URL(window.location.href);
         let searchParams = currentUrl.searchParams;
 
-        let nameParam = searchParams.get("name");
+        let nameParam = searchParams.get("fact");
         let nameArray = nameParam ? nameParam.split(',') : [];
 
+        let targetParam = searchParams.get("target");
+        let targetArray = targetParam ? targetParam.split(',') : [];
+
         // Tích chọn các checkbox dựa trên các giá trị trong URL
-        $("#factFilter .form-check-input").each(function () {
+        $("#nameFilter .form-check-input").each(function () {
             if (nameArray.includes($(this).val())) {
                 $(this).prop("checked", true);
             }
         });
 
         $("#targetFilter .form-check-input").each(function () {
-            if (nameArray.includes($(this).val())) {
+            if (targetArray.includes($(this).val())) {
                 $(this).prop("checked", true);
             }
         });
 
-        $("#moneyFilter .form-check-input").each(function () {
-            if (nameArray.includes($(this).val())) {
-                $(this).prop("checked", true);
-            }
-        });
+        // $("#moneyFilter .form-check-input").each(function () {
+        //     if (nameArray.includes($(this).val())) {
+        //         $(this).prop("checked", true);
+        //     }
+        // });
     });
 
 

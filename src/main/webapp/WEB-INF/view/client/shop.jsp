@@ -265,7 +265,7 @@
                                                     <div class="mb-3">
                                                         <h4>Hãng Sản Xuất</h4>
                                                         <ul class="list-unstyled fruite-categorie">
-                                                            <div id="factFilter">
+                                                            <div id="nameFilter">
                                                                 <div
                                                                     style="display: flex; justify-content: space-between;">
                                                                     <li>
@@ -287,7 +287,7 @@
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" value="Asus"
+                                                                                    type="checkbox" value="ASUS"
                                                                                     id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
@@ -368,7 +368,7 @@
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" value="Gaming"
+                                                                                    type="checkbox" value="GAMING"
                                                                                     id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
@@ -382,8 +382,8 @@
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" value="Sinh
-                                                                                    Viên-Văn Phòng"
+                                                                                    type="checkbox"
+                                                                                    value="Sinh-Viên-Văn-Phòng"
                                                                                     id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
@@ -402,8 +402,9 @@
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" value="Thiết
-                                                                                    Kế Đồ Họa" id="flexCheckDefault" />
+                                                                                    type="checkbox"
+                                                                                    value="Thiết-Kế-Đồ-Họa"
+                                                                                    id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
                                                                     </li>
@@ -416,8 +417,8 @@
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" value="Mỏng
-                                                                                    Nhẹ" id="flexCheckDefault" />
+                                                                                    type="checkbox" value="Mỏng-Nhẹ"
+                                                                                    id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
                                                                     </li>
@@ -434,8 +435,8 @@
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" value="Doanh
-                                                                                    Nhân" id="flexCheckDefault" />
+                                                                                    type="checkbox" value="Doanh-Nhân"
+                                                                                    id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
                                                                     </li>
@@ -459,14 +460,14 @@
                                                                             <div
                                                                                 class="d-flex align-items-center fruite-name">
                                                                                 <a href="#"
-                                                                                    style="white-space: nowrap;">Dưới 10
-                                                                                    triệu<a>
+                                                                                    style="white-space: nowrap;">Dưới
+                                                                                    10triệu<a>
                                                                                         <span
                                                                                             style="display: flex; margin-left: 1%;">
                                                                                             <input
                                                                                                 class="form-check-input"
-                                                                                                type="checkbox" value="Dưới 10
-                                                                                                triệu"
+                                                                                                type="checkbox"
+                                                                                                value="Dưới-10-triệu"
                                                                                                 id="flexCheckDefault" />
                                                                                         </span>
                                                                             </div>
@@ -480,8 +481,8 @@
                                                                                 <span
                                                                                     style="display: flex; margin-left: 1%;">
                                                                                     <input class="form-check-input"
-                                                                                        type="checkbox" value="Từ 10
-                                                                                        đến 15 triệu"
+                                                                                        type="checkbox"
+                                                                                        value="Từ-10-đến-15-triệu"
                                                                                         id="flexCheckDefault" />
                                                                                 </span>
                                                                             </div>
@@ -500,8 +501,8 @@
                                                                                 <span
                                                                                     style="display: flex; margin-left: 1%;">
                                                                                     <input class="form-check-input"
-                                                                                        type="checkbox" value="Từ 15
-                                                                                        Đến 20 Triệu"
+                                                                                        type="checkbox"
+                                                                                        value="Từ-15-Đến-20-Triệu"
                                                                                         id="flexCheckDefault" />
                                                                                 </span>
                                                                             </div>
@@ -515,8 +516,9 @@
                                                                                 <span
                                                                                     style="display: flex; margin-left: 1%;">
                                                                                     <input class="form-check-input"
-                                                                                        type="checkbox" value="Trên 20
-                                                                                        Triệu" id="flexCheckDefault" />
+                                                                                        type="checkbox"
+                                                                                        value="Trên-20-Triệu"
+                                                                                        id="flexCheckDefault" />
                                                                                 </span>
                                                                             </div>
                                                                         </li>
@@ -549,7 +551,8 @@
                                                                                     <span
                                                                                         style="display: flex; margin-left: 1%;">
                                                                                         <input class="form-check-input"
-                                                                                            type="checkbox" value=""
+                                                                                            type="checkbox"
+                                                                                            value="Giá-Giảm-Dần"
                                                                                             id="flexCheckDefault" />
                                                                                     </span>
                                                                         </div>
@@ -563,8 +566,22 @@
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" value=""
+                                                                                    type="checkbox"
+                                                                                    value="Không-Sắp-Xếp"
                                                                                     id="flexCheckDefault" checked />
+                                                                            </span>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div
+                                                                            class="d-flex align-items-center fruite-name">
+                                                                            <a href="#" style="white-space: nowrap;">Gia
+                                                                                Tang Dan</a>
+                                                                            <span
+                                                                                style="display: flex; margin-left: 1%;">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox" value="Giá-Tăng-Dần"
+                                                                                    id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
                                                                     </li>
@@ -640,7 +657,7 @@
                                                         </c:if>
                                                         <!-- name=${name} -->
 
-                                                        <c:forEach begin="0" end="${totalPage-1}" varStatus="loop">
+                                                        <c:forEach begin="0" end="${totalPage}" varStatus="loop">
                                                             <a href="/buy?page=${loop.index+1}"
                                                                 class="${(loop.index+1) eq currentPage ? 'active rounded' : 'rounded'}">${loop.index+1}</a>
                                                         </c:forEach>

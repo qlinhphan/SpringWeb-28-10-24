@@ -14,12 +14,6 @@ import jakarta.persistence.criteria.Predicate;
 @Service
 public class ProductSpecService {
 
-    public Specification<Products> likeName(String name) {
-        return (root, query, builder) -> {
-            return builder.like(root.get(Products_.NAME), "%" + name + "%");
-        };
-    }
-
     public Specification<Products> moreThanInputPrice(String price) {
         return (root, query, builder) -> {
             return builder.greaterThan(root.get(Products_.PRICE), price);
@@ -69,4 +63,21 @@ public class ProductSpecService {
         };
     }
 
+    public Specification<Products> likeNameFactOne(String name) {
+        return (root, query, builder) -> {
+            return builder.like(root.get(Products_.NAME), "%" + name + "%");
+        };
+    }
+
+    public Specification<Products> likeNameFact(List<String> factory) {
+        return (root, query, builder) -> {
+            return builder.in(root.get(Products_.FACTORY)).value(factory);
+        };
+    }
+
+    public Specification<Products> likeNameTarget(List<String> target) {
+        return (root, query, builder) -> {
+            return builder.in(root.get(Products_.TARGET)).value(target);
+        };
+    }
 }

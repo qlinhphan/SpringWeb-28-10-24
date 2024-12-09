@@ -1,8 +1,8 @@
-// // Thiết lập mặc định (phù hợp với phiên bản Chart.js mới)
+
 Chart.defaults.font.family = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.font.color = '#292b2c';
 
-// Area Chart Example
+
 var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
@@ -52,10 +52,3 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
-
-// Thay đổi labels và dữ liệu
-myLineChart.data.labels = ["Mar 14", "Mar 15", "Mar 16", "Mar 17", "Mar 18"];
-myLineChart.data.datasets[0].data = [12000, 15000, 18000, 22000, 25000];
-
-// Cập nhật biểu đồ
-myLineChart.update();

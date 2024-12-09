@@ -300,6 +300,10 @@
 
                     </script>
 
+
+
+
+
                     <script>
                         // Set new default font family and font color to mimic Bootstrap's default styling
                         Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -352,25 +356,25 @@
                                 }
                             }
                         }
-                        let k = 122;
-                        var b = [];
-                        for (var i = 0; i < 2; i++) {
-                            console.log(k);
-                            b.push("rgba(54," + k + ",91,1)");
-                            k += 12;
-                        }
-                        console.log(b);
+                        // let k = 122;
+                        // var b = [];
+                        // for (var i = 0; i < 2; i++) {
+                        //     console.log(k);
+                        //     b.push("rgba(54," + k + ",91,1)");
+                        //     k += 12;
+                        // }
+                        // console.log(b);
 
                         var ctx = document.getElementById("myBarCharts");
                         var myLineChart = new Chart(ctx, {
-                            type: 'pie',
+                            type: 'line',
                             data: {
                                 labels: months,
 
                                 datasets: [{
-                                    label: ["MeMe", "MoMO"],
-                                    backgroundColor: b,
-                                    borderColor: " rgba(2, 177, 216, 1)",
+                                    label: "Revenue",
+                                    backgroundColor: "rgba(2,117,216,1)",
+                                    borderColor: "rgba(2,117,216,1)",
                                     boderWidth: 5,
                                     data: moneys,
                                 }],
@@ -408,6 +412,12 @@
 
 
                     </script>
+
+
+
+
+
+
 
 
                     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"

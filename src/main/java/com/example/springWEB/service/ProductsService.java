@@ -1,5 +1,6 @@
 package com.example.springWEB.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -13,6 +14,7 @@ import com.example.springWEB.domain.Products_;
 import com.example.springWEB.domain.Users;
 import com.example.springWEB.domain.cart.Cart;
 import com.example.springWEB.domain.cart.CartDetail;
+import com.example.springWEB.domain.dto.ProductCriterialDTO;
 import com.example.springWEB.repository.CartDetailRepository;
 import com.example.springWEB.repository.CartRepository;
 import com.example.springWEB.repository.ProductsRepository;
@@ -109,7 +111,7 @@ public class ProductsService {
     }
 
     public Page<Products> paginationQueryByName(String name, Pageable pageable) {
-        return this.productsRepository.findAll(this.productSpecService.likeName(name), pageable);
+        return this.productsRepository.findAll(this.productSpecService.likeNameFactOne(name), pageable);
     }
 
     public Page<Products> paginationQueryByPrice(String price, Pageable pageable) {
@@ -128,4 +130,38 @@ public class ProductsService {
     public Page<Products> paginationQueryByRangeMoney(List<Double[]> data, Pageable pageable) {
         return this.productsRepository.findAll(this.productSpecService.PriceIsInput(data), pageable);
     }
+
+    public Page<Products> paginationByFactAndTarget(ProductCriterialDTO dto, Pageable pageable) {
+        Specification<Products> searchPro = Specification.where(null);
+
+        if (dto.getFact() == null
+                && dto.getTarget() == null
+                && dto.getMoney() == null) {
+            return this.productsRepository.findAll(pageable);
+        }
+
+        // lay du lieu factory
+        List<String> listFact = new ArrayList<>();
+        String[] dataFact = dto.getFact().split(",");
+        for (int i = 0; i < dataFact.length; i++) {
+            listFact.add(dataFact[i]);
+        }
+
+        // lay du lieu target
+        List<String> listTarget = new ArrayList<>();
+        String[] dataTarget = dto.getTarget().split(",");
+        for (int i = 0; i < dataTarget.length; i++) {
+            listTarget.add(dataTarget[i]);
+        }
+        if (dto.getFact() != null && dto.getTarget() != null) {
+            Specification<Products> speP = this.productSpecService.likeNameFact(listFact);
+            searchPro = searchPro.and(speP);
+            Specification<Products> spePs = this.productSpecService.likeNameTarget(listTarget);
+            searchPro = searchPro.and(spePs);
+        }
+
+        System.out.println(listFact + "    " + listTarget);
+        return this.productsRepository.findAll(searchPro, pageable);
+    }
+
 }

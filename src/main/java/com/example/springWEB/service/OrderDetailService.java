@@ -28,4 +28,8 @@ public class OrderDetailService {
     public void deleteOrderDetailById(long id) {
         this.orderDetailRepository.deleteById(id);
     }
+
+    public List<OrderDetail> findAllOrderDetail() {
+        return this.orderDetailRepository.findAll();
+    }
 }
