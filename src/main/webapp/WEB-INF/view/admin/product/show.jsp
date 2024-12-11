@@ -187,7 +187,7 @@
                                                 style="color: wheat; text-decoration: none;">Edit</a></button>
                                         <button type="button" class="btn btn-success"><a
                                                 style="color: wheat; text-decoration: none;"
-                                                href="/del/product/${product.id}">Delete</a></button>
+                                                href="/del/product/${product.id}">Del</a></button>
                                     </td>
                                 </tr>
                             </c:forEach>

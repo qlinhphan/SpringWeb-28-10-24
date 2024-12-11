@@ -131,37 +131,29 @@ public class ProductsService {
         return this.productsRepository.findAll(this.productSpecService.PriceIsInput(data), pageable);
     }
 
-    public Page<Products> paginationByFactAndTarget(ProductCriterialDTO dto, Pageable pageable) {
-        Specification<Products> searchPro = Specification.where(null);
+    public Page<Products> paginationQueryNameIs(String fact, Pageable pageable) {
+        return this.productsRepository.findAll(this.productSpecService.factoryIs(fact), pageable);
+    }
 
-        if (dto.getFact() == null
-                && dto.getTarget() == null
-                && dto.getMoney() == null) {
-            return this.productsRepository.findAll(pageable);
-        }
+    public Page<Products> paginationQuerySelectManyInAllFactory(List<String> factory, Pageable pag) {
+        return this.productsRepository.findAll(this.productSpecService.selectManyInAllFactory(factory), pag);
+    }
 
-        // lay du lieu factory
-        List<String> listFact = new ArrayList<>();
-        String[] dataFact = dto.getFact().split(",");
-        for (int i = 0; i < dataFact.length; i++) {
-            listFact.add(dataFact[i]);
-        }
+    public Page<Products> paginationQuerySelectManyInAllTarget(List<String> target, Pageable pag) {
+        return this.productsRepository.findAll(this.productSpecService.selectManyInAllTarget(target), pag);
+    }
 
-        // lay du lieu target
-        List<String> listTarget = new ArrayList<>();
-        String[] dataTarget = dto.getTarget().split(",");
-        for (int i = 0; i < dataTarget.length; i++) {
-            listTarget.add(dataTarget[i]);
+    public Page<Products> SearchManyCondition(List<String> fact, List<String> target, Pageable pag) {
+        Specification<Products> list = Specification.where(null);
+        if (fact != null) {
+            Specification<Products> fff = this.productSpecService.selectManyInAllFactory(fact);
+            list = list.and(fff);
         }
-        if (dto.getFact() != null && dto.getTarget() != null) {
-            Specification<Products> speP = this.productSpecService.likeNameFact(listFact);
-            searchPro = searchPro.and(speP);
-            Specification<Products> spePs = this.productSpecService.likeNameTarget(listTarget);
-            searchPro = searchPro.and(spePs);
+        if (target != null) {
+            Specification<Products> ttt = this.productSpecService.selectManyInAllTarget(target);
+            list = list.and(ttt);
         }
-
-        System.out.println(listFact + "    " + listTarget);
-        return this.productsRepository.findAll(searchPro, pageable);
+        return this.productsRepository.findAll(list, pag);
     }
 
 }

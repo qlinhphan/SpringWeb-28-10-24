@@ -275,7 +275,7 @@
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" value="Apples"
+                                                                                    type="checkbox" value="APPLE"
                                                                                     id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
@@ -300,7 +300,7 @@
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" value="Lenovo"
+                                                                                    type="checkbox" value="LENOVO"
                                                                                     id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
@@ -316,7 +316,7 @@
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input type="checkbox"
                                                                                     class="form-check-input"
-                                                                                    value="Dell"
+                                                                                    value="DELL"
                                                                                     id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
@@ -341,7 +341,7 @@
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" value="Acer"
+                                                                                    type="checkbox" value="ACER"
                                                                                     id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
@@ -383,7 +383,7 @@
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox"
-                                                                                    value="Sinh-Viên-Văn-Phòng"
+                                                                                    value="SINHVIEN-VANPHONG"
                                                                                     id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
@@ -403,7 +403,7 @@
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox"
-                                                                                    value="Thiết-Kế-Đồ-Họa"
+                                                                                    value="THIET-KE-DO-HOA"
                                                                                     id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
@@ -417,7 +417,7 @@
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" value="Mỏng-Nhẹ"
+                                                                                    type="checkbox" value="MONG-NHE"
                                                                                     id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
@@ -435,7 +435,7 @@
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" value="Doanh-Nhân"
+                                                                                    type="checkbox" value="DOANH-NHAN"
                                                                                     id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
@@ -552,7 +552,7 @@
                                                                                         style="display: flex; margin-left: 1%;">
                                                                                         <input class="form-check-input"
                                                                                             type="checkbox"
-                                                                                            value="Giá-Giảm-Dần"
+                                                                                            value="gia-giam-dan"
                                                                                             id="flexCheckDefault" />
                                                                                     </span>
                                                                         </div>
@@ -567,8 +567,8 @@
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
                                                                                     type="checkbox"
-                                                                                    value="Không-Sắp-Xếp"
-                                                                                    id="flexCheckDefault" checked />
+                                                                                    value="khong-sap-xep"
+                                                                                    id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
                                                                     </li>
@@ -580,7 +580,7 @@
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
-                                                                                    type="checkbox" value="Giá-Tăng-Dần"
+                                                                                    type="checkbox" value="gia-tang-dan"
                                                                                     id="flexCheckDefault" />
                                                                             </span>
                                                                         </div>
@@ -641,7 +641,7 @@
 
                                                 </c:forEach>
 
-                                                <div class="col-12">
+                                                <div class="col-12 page">
                                                     <div class="pagination d-flex justify-content-center mt-5">
 
 
@@ -659,7 +659,8 @@
 
                                                         <c:forEach begin="0" end="${totalPage}" varStatus="loop">
                                                             <a href="/buy?page=${loop.index+1}"
-                                                                class="${(loop.index+1) eq currentPage ? 'active rounded' : 'rounded'}">${loop.index+1}</a>
+                                                                class="${(loop.index+1) eq currentPage ? 'active rounded' : 'rounded'}"
+                                                                data-page="${loop.index+1}">${loop.index+1}</a>
                                                         </c:forEach>
 
 

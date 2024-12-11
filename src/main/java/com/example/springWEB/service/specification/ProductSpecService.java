@@ -80,4 +80,23 @@ public class ProductSpecService {
             return builder.in(root.get(Products_.TARGET)).value(target);
         };
     }
+
+    public Specification<Products> factoryIs(String fact) {
+        return (root, query, builder) -> {
+            return builder.equal(root.get(Products_.FACTORY), fact);
+        };
+    }
+
+    public Specification<Products> selectManyInAllFactory(List<String> fact) {
+        return (root, query, builder) -> {
+            return builder.in(root.get(Products_.FACTORY)).value(fact);
+        };
+    }
+
+    public Specification<Products> selectManyInAllTarget(List<String> target) {
+        return (root, query, builder) -> {
+            return builder.in(root.get(Products_.TARGET)).value(target);
+        };
+    }
+
 }

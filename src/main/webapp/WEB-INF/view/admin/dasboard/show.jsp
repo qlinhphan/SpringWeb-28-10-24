@@ -167,16 +167,16 @@
                                                         height="40"></canvas></div>
                                             </div>
                                         </div>
-                                        <!-- <div class="col-xl-6">
+                                        <div class="col-xl-12">
                                             <div class="card mb-4">
                                                 <div class="card-header">
                                                     <i class="fas fa-chart-bar me-1"></i>
-                                                    Bar Chart Example
+                                                    Thống kê lợi nhuận trong các tháng
                                                 </div>
-                                                <div class="card-body"><canvas id="myBarChart" width="100%"
+                                                <div class="card-body"><canvas id="myBarCharts3" width="100%"
                                                         height="40"></canvas></div>
                                             </div>
-                                        </div> -->
+                                        </div>
                                     </div>
 
                                 </div>
@@ -219,6 +219,9 @@
                         for (let i = 0; i < dataDate.length; i++) {
                             dataDateFinal.push(dataDate[i].split(" ")[0])    //cut cai gio di
                         }
+
+                        //viet o day
+
 
                         let dataMoney = [
                             <c:forEach var="order" items="${orders}" varStatus="status">
@@ -300,10 +303,6 @@
 
                     </script>
 
-
-
-
-
                     <script>
                         // Set new default font family and font color to mimic Bootstrap's default styling
                         Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -323,6 +322,16 @@
                             months.push(dataDate[i].split("-")[1])
                         }
 
+                        for (let i = 0; i < months.length; i++) {
+                            for (let j = i + 1; j < months.length; j++) {
+                                if (months[i] > months[j]) {
+                                    let tg = months[i];
+                                    months[i] = months[j];
+                                    months[j] = tg;
+                                }
+                            }
+                        }
+
 
                         let dataMoneys = [
                             <c:forEach var="order" items="${orders}" varStatus="status">
@@ -336,8 +345,6 @@
                             dataMoneys[i] = parseFloat(dataMoneys[i])
                             moneys.push(dataMoneys[i])
                         }
-
-
 
                         for (let i = 0; i < months.length; i++) {
                             for (let j = i + 1; j < months.length; j++) {
@@ -377,6 +384,124 @@
                                     borderColor: "rgba(2,117,216,1)",
                                     boderWidth: 5,
                                     data: moneys,
+                                }],
+                            },
+                            options: {
+                                scales: {
+                                    xAxes: [{
+                                        time: {
+                                            unit: 'day'
+                                        },
+                                        gridLines: {
+                                            display: false
+                                        },
+                                        ticks: {
+                                            maxTicksLimit: 6
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        ticks: {
+                                            min: 0,
+                                            max: 400000000,
+                                            maxTicksLimit: 5
+                                        },
+                                        gridLines: {
+                                            display: true
+                                        }
+                                    }],
+                                },
+                                legend: {
+                                    display: false
+                                }
+                            }
+                        });
+
+
+
+                    </script>
+
+                    <script>
+                        // Set new default font family and font color to mimic Bootstrap's default styling
+                        Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+                        Chart.defaults.global.defaultFontColor = '#292b2c';
+
+                        // Bar Chart Example
+                        let dataDatess = [
+                            <c:forEach var="order" items="${orders}" varStatus="status">
+                                <c:if test="${status.index > 0}">,</c:if>
+                                "<c:out value="${order.dateOrder}" />"
+                            </c:forEach>
+                        ]
+
+                        //
+                        let month = []
+                        for (let i = 0; i < dataDatess.length; i++) {
+                            month.push(dataDate[i].split("-")[1])
+                        }
+
+                        for (let i = 0; i < month.length; i++) {
+                            for (let j = i + 1; j < month.length; j++) {
+                                if (month[i] > month[j]) {
+                                    let tg = month[i];
+                                    month[i] = month[j];
+                                    month[j] = tg;
+                                }
+                            }
+                        }
+
+
+                        let dataMoneyy = [
+                            <c:forEach var="order" items="${orders}" varStatus="status">
+                                <c:if test="${status.index > 0}">,</c:if>
+                                "<c:out value="${order.totalPrice}" />"
+                            </c:forEach>
+                        ]
+
+                        let moneyy = []
+                        for (let i = 0; i < dataMoneyy.length; i++) {
+                            dataMoneyy[i] = parseFloat(dataMoneyy[i])
+                            dataMoneyy[i] = dataMoneyy[i] * 0.15;
+                            moneyy.push(dataMoneyy[i])
+                        }
+
+                        for (let i = 0; i < month.length; i++) {
+                            for (let j = i + 1; j < month.length; j++) {
+                                if (month[i] === month[j]) {
+                                    moneyy[i] = moneyy[i] + moneyy[j]
+                                }
+                            }
+                        }
+
+                        for (let i = 0; i < month.length; i++) {
+                            for (let j = i + 1; j < month.length; j++) {
+                                if (month[i] === month[j]) {
+                                    month.splice(j, 1)
+                                    moneyy.splice(j, 1)
+                                    j--
+                                }
+                            }
+                        }
+                        // let k = 122;
+                        // var b = [];
+                        // for (var i = 0; i < 2; i++) {
+                        //     console.log(k);
+                        //     b.push("rgba(54," + k + ",91,1)");
+                        //     k += 12;
+                        // }
+                        // console.log(b);
+
+                        var ctx = document.getElementById("myBarCharts3");
+                        var myLineChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: months,
+
+                                datasets: [{
+                                    label: "Revenue",
+                                    backgroundColor: "rgba(2,117,216,1)",
+                                    borderColor: "rgba(2,117,216,1)",
+                                    boderWidth: 5,
+                                    data: moneyy,
                                 }],
                             },
                             options: {

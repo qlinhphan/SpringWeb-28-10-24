@@ -178,7 +178,7 @@
                                                     <div data-mdb-input-init class="form-outline mb-3">
                                                         <form:input type="text" id="form3Example4"
                                                             class="form-control form-control-lg"
-                                                            placeholder="Enter password" style="width: 180px;"
+                                                            placeholder="Enter password" style="width: 93%;"
                                                             path="price" />
                                                         <label class="form-label" for="form3Example4">Price</label>
                                                     </div>
@@ -188,9 +188,9 @@
                                                         <form:input type="text" id="form3Example4"
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter password"
-                                                            style="width: 180px; margin-left: 31px;" path="detailDes" />
+                                                            style="width: 93%; margin-left: 7%;" path="detailDes" />
                                                         <label class="form-label" for="form3Example4"
-                                                            style="margin-left: 31px;">Detail Description</label>
+                                                            style="margin-left: 7%;">Detail Description</label>
                                                     </div>
                                                 </div>
 
@@ -199,7 +199,7 @@
                                                     <div data-mdb-input-init class="form-outline mb-3">
                                                         <form:input type="text" id="form3Example4"
                                                             class="form-control form-control-lg"
-                                                            placeholder="Enter password" style="width: 180px;"
+                                                            placeholder="Enter password" style="width: 93%;"
                                                             path="shortDes" />
                                                         <label class="form-label" for="form3Example4">Short
                                                             Description</label>
@@ -210,9 +210,9 @@
                                                         <form:input type="text" id="form3Example4"
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter password"
-                                                            style="width: 180px; margin-left: 31px;" path="quantity" />
+                                                            style="width: 93%; margin-left: 7%;" path="quantity" />
                                                         <label class="form-label" for="form3Example4"
-                                                            style="margin-left: 31px;">Quantity</label>
+                                                            style="margin-left: 7%;">Quantity</label>
                                                     </div>
                                                 </div>
 

@@ -17,8 +17,47 @@
                 integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
                 crossorigin="anonymous">
 
+            <style>
+                .ok {
+                    white-space: nowrap;
+                    /* Không xuống dòng */
+                    overflow: hidden;
+                    /* Ẩn phần văn bản vượt quá */
+                }
+
+                /* Khi màn hình nhỏ (ví dụ dưới 768px), giới hạn văn bản và thêm dấu ba chấm */
+                @media (max-width: 768px) {
+                    .ok {
+                        width: 5ch;
+                        /* Giới hạn chiều rộng là 10 ký tự (có thể điều chỉnh theo nhu cầu) */
+                        /* text-overflow: ellipsis; */
+                        /* Hiển thị dấu "..." cho phần vượt quá */
+
+
+
+                        /* Giới hạn chiều rộng bằng 4 ký tự */
+                        white-space: nowrap;
+                        /* Không xuống dòng */
+                        overflow: hidden;
+                        /* Ẩn phần văn bản vượt quá */
+                        text-overflow: ellipsis;
+                        /* Hiển thị dấu "..." cho phần vượt quá */
+                    }
+                }
+
+                /* Khi màn hình lớn hơn 768px, hiển thị đầy đủ văn bản */
+                @media (min-width: 769px) {
+                    .ok {
+                        width: auto;
+                        /* Hiển thị đầy đủ */
+                        text-overflow: clip;
+                        /* Không có dấu "..." */
+                    }
+                }
+            </style>
+
         </head>
-        </head>
+
 
         <body>
             <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -86,7 +125,7 @@
                                         style="text-decoration: none; color: wheat" href="/create/user">Create
                                         User</a></button>
                             </th>
-                            <table class="table">
+                            <!-- <table class="table">
 
                                 <thead>
                                     <tr>
@@ -117,7 +156,49 @@
 
 
                                 </tbody>
+                            </table> -->
+
+
+
+
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Password</th>
+                                        <th scope="col">Roles</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    <c:forEach var="user" items="${users}">
+                                        <tr>
+                                            <th scope="row">${user.id}</th>
+                                            <td>
+                                                <p class="ok">${user.email}</p>
+                                            </td>
+                                            <td>
+                                                <p class="ok" style="display: inline-block;">${user.password}</p>
+                                            </td>
+                                            <td>${user.roles.name}</td>
+                                            <td>
+                                                <a href="/exactly/table/${user.id}" class="btn btn-success">View</a>
+                                                <a href="/edit/user/${user.id}" class="btn btn-warning">Edit</a>
+                                                <a href="/del/user/${user.id}" class="btn btn-danger">Del</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
                             </table>
+
+
+
+
+
                             <nav aria-label="Page navigation example" style="margin-top: 17px;">
                                 <ul class="pagination justify-content-center">
 

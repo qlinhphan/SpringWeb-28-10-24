@@ -126,7 +126,7 @@
                                                         <form:input type="text" id="form3Example4"
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter password" value="${user.address}"
-                                                            path="address" style="width: 172px;" />
+                                                            path="address" style="width: 93%;" />
                                                         <label class="form-label" for="form3Example4">Address</label>
                                                     </div>
 
@@ -135,8 +135,9 @@
                                                         <form:input type="text" id="form3Example4"
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter password" value="${user.phone}"
-                                                            path="phone" style="width: 172px;" />
-                                                        <label class="form-label" for="form3Example4">Phone</label>
+                                                            path="phone" style="width: 95%; margin-left: 6%;" />
+                                                        <label class="form-label" for="form3Example4"
+                                                            style="margin-left: 5%;">Phone</label>
                                                     </div>
 
                                                 </div>

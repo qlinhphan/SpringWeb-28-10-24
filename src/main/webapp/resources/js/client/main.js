@@ -163,6 +163,10 @@
             target.push($(this).val())
         })
 
+        $("#sortFilter .form-check-input:checked").each(function () {
+            sort.push($(this).val())
+        })
+
         // $("#moneyFilter .form-check-input:checked").each(function () {
         //     money.push($(this).val())
         // })
@@ -177,12 +181,24 @@
         let currentUrl = new URL(window.location.href)
         let searchParams = currentUrl.searchParams
 
-        searchParams.set("fact", fact.join(','))
-        if (target != null) {
+        if (target.length > 0) {
             searchParams.set("target", target.join(','))
+        } else {
+            searchParams.delete('target')
         }
-        // searchParams.set("money", money.join(','))
-        // searchParams.set("sort", sort.join(','))
+
+        if (fact.length > 0) {
+            searchParams.set("fact", fact.join(','))
+        } else {
+            searchParams.delete('fact')
+        }
+
+        if (sort.length > 0) {
+            searchParams.set("sort", sort.join(','))
+        } else {
+            searchParams.delete('sort')
+        }
+
         searchParams.set('page', '1')
 
         history.pushState('', {}, currentUrl.toString());
@@ -200,6 +216,9 @@
         let targetParam = searchParams.get("target");
         let targetArray = targetParam ? targetParam.split(',') : [];
 
+        let sortParam = searchParams.get('sort')
+        let sortArray = sortParam ? sortParam.split(',') : []
+
         // Tích chọn các checkbox dựa trên các giá trị trong URL
         $("#nameFilter .form-check-input").each(function () {
             if (nameArray.includes($(this).val())) {
@@ -212,12 +231,40 @@
                 $(this).prop("checked", true);
             }
         });
+        $("#sortFilter .form-check-input").each(function () {
+            if (sortArray.includes($(this).val())) {
+                $(this).prop("checked", true);
+            }
+        });
 
         // $("#moneyFilter .form-check-input").each(function () {
         //     if (nameArray.includes($(this).val())) {
         //         $(this).prop("checked", true);
         //     }
         // });
+    });
+
+    // sang trang se ko mat di phan tim kiem
+    $(".pagination a").click(function (event) {
+        event.preventDefault(); // Ngừng tải lại trang
+        let page = $(this).data("page"); // Lấy số trang từ data attribute
+
+        if (page === undefined || page === null || page === "") {
+            console.error("Số trang không hợp lệ.");
+            return;
+        }
+
+        let currentUrl = new URL(window.location.href);
+        let searchParams = currentUrl.searchParams;
+
+        // Chỉ thay đổi tham số page mà không thay đổi các tham số khác
+        searchParams.set('page', page);
+
+        // Cập nhật URL mới
+        history.pushState('', {}, currentUrl.toString());
+
+        // Tải lại trang với tham số mới
+        location.reload(true);
     });
 
 

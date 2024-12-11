@@ -166,7 +166,7 @@
                                                         <form:input type="password" id="form3Example4"
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter password" path="password"
-                                                            style="width: 180px;" />
+                                                            style="width: 93%;" />
                                                         <label class="form-label" for="form3Example4">Password</label>
                                                     </div>
 
@@ -175,9 +175,9 @@
                                                         <form:input type="text" id="form3Example4"
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter password" path="fullname"
-                                                            style="width: 180px; margin-left: 31px;" />
+                                                            style="width: 93%; margin-left: 7%;" />
                                                         <label class="form-label" for="form3Example4"
-                                                            style="margin-left: 31px;">Full Name</label>
+                                                            style="margin-left: 7%;">Full Name</label>
                                                     </div>
                                                 </div>
 
@@ -187,7 +187,7 @@
                                                         <form:input type="text" id="form3Example4"
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter password" path="address"
-                                                            style="width: 180px;" />
+                                                            style="width: 93%;" />
                                                         <label class="form-label" for="form3Example4">Address</label>
                                                     </div>
 
@@ -196,9 +196,9 @@
                                                         <form:input type="text" id="form3Example4"
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter password" path="phone"
-                                                            style="width: 180px; margin-left: 31px;" />
+                                                            style="width: 93%; margin-left: 7%;" />
                                                         <label class="form-label" for="form3Example4"
-                                                            style="margin-left: 31px;">Phone</label>
+                                                            style="margin-left: 7%;">Phone</label>
                                                     </div>
                                                 </div>
 
@@ -219,7 +219,8 @@
                                                 <div class="text-center text-lg-start mt-4 pt-2">
                                                     <button type="submit" data-mdb-button-init data-mdb-ripple-init
                                                         class="btn btn-primary btn-lg"
-                                                        style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                                                        style="padding-left: 2.5rem; padding-right: 2.5rem;">Create
+                                                        User</button>
                                                 </div>
 
 

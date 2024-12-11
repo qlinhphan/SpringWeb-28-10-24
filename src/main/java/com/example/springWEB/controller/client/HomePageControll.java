@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.springWEB.domain.Products;
+import com.example.springWEB.domain.Products_;
 import com.example.springWEB.domain.Users;
 import com.example.springWEB.domain.cart.Cart;
 import com.example.springWEB.domain.dto.ProductCriterialDTO;
@@ -96,19 +98,111 @@ public class HomePageControll {
     // return "/client/shop";
     // }
 
-    @GetMapping("/pro")
+    // @GetMapping("/buy") ----------------------------------------------------->
+    // //theo factory
+    // public String fetch(Model model, ProductCriterialDTO proCri) {
+    // String page = proCri.getPage();
+    // if (page == null) {
+    // page = "1";
+    // }
+    // int pages = Integer.parseInt(page);
+
+    // Pageable pab = PageRequest.of(pages - 1, 10);
+
+    // List<String> nameFact = new ArrayList<>();
+
+    // if (proCri.getFact() == null) {
+    // Page<Products> pagePro = this.productsService.PaginationProduct(pab);
+    // List<Products> listPro = pagePro.getContent();
+    // model.addAttribute("totalPage", pagePro.getTotalPages());
+    // model.addAttribute("currentPage", pages);
+    // model.addAttribute("dsProducts", listPro);
+    // return "/client/shop";
+    // }
+
+    // String[] ListFact = proCri.getFact().split(",");
+
+    // for (String string : ListFact) {
+    // nameFact.add(string);
+    // }
+
+    // Page<Products> pagePro =
+    // this.productsService.paginationQuerySelectManyInAllFactory(nameFact, pab);
+    // List<Products> listPro = pagePro.getContent();
+
+    // model.addAttribute("totalPage", pagePro.getTotalPages());
+    // model.addAttribute("currentPage", pages);
+    // model.addAttribute("dsProducts", listPro);
+
+    // return "/client/shop";
+    // }
+
+    @GetMapping("/buy")
     public String fetch(Model model, ProductCriterialDTO proCri) {
         String page = proCri.getPage();
         if (page == null) {
             page = "1";
         }
         int pages = Integer.parseInt(page);
+        Pageable pab = null;
 
-        Pageable pab = PageRequest.of(pages - 1, 10);
+        if (proCri.getSort().equals("khong-sap-xep") || proCri.getSort() == null) {
+            pab = PageRequest.of(pages - 1, 10);
+        }
+        if (proCri.getSort().equals("gia-tang-dan")) {
+            pab = PageRequest.of(pages - 1, 10, Sort.by(Products_.PRICE).ascending());
+        }
+        if (proCri.getSort().equals("gia-giam-dan")) {
+            pab = PageRequest.of(pages - 1, 10, Sort.by(Products_.PRICE).descending());
+        }
 
-        // Page<Products> pagePro =
-        // this.productsService.paginationByFactAndTarget(proCri, pab);
-        Page<Products> pagePro = this.productsService.paginationQueryByFactory(proCri.getFact(), pab);
+        List<String> nameTarget = new ArrayList<>();
+        List<String> nameFact = new ArrayList<>();
+
+        if (proCri.getTarget() == null && proCri.getFact() == null) {
+            Page<Products> pagePro = this.productsService.PaginationProduct(pab);
+            List<Products> listPro = pagePro.getContent();
+            model.addAttribute("totalPage", pagePro.getTotalPages());
+            model.addAttribute("currentPage", pages);
+            model.addAttribute("dsProducts", listPro);
+            return "/client/shop";
+        }
+        if (proCri.getTarget() == null & proCri.getFact() != null) {
+            String[] datafact = proCri.getFact().split(",");
+            for (String string : datafact) {
+                nameFact.add(string);
+            }
+            Page<Products> pagePro = this.productsService.paginationQuerySelectManyInAllFactory(nameFact, pab);
+            List<Products> listPro = pagePro.getContent();
+            model.addAttribute("totalPage", pagePro.getTotalPages());
+            model.addAttribute("currentPage", pages);
+            model.addAttribute("dsProducts", listPro);
+            return "/client/shop";
+        }
+        if (proCri.getTarget() != null & proCri.getFact() == null) {
+            String[] dataTarget = proCri.getTarget().split(",");
+            for (String string : dataTarget) {
+                nameTarget.add(string);
+            }
+            Page<Products> pagePro = this.productsService.paginationQuerySelectManyInAllTarget(nameTarget, pab);
+            List<Products> listPro = pagePro.getContent();
+            model.addAttribute("totalPage", pagePro.getTotalPages());
+            model.addAttribute("currentPage", pages);
+            model.addAttribute("dsProducts", listPro);
+            return "/client/shop";
+        }
+
+        String[] ListTarget = proCri.getTarget().split(",");
+        String[] ListFact = proCri.getFact().split(",");
+
+        for (String string : ListTarget) {
+            nameTarget.add(string);
+        }
+        for (String string1 : ListFact) {
+            nameFact.add(string1);
+        }
+
+        Page<Products> pagePro = this.productsService.SearchManyCondition(nameFact, nameTarget, pab);
         List<Products> listPro = pagePro.getContent();
 
         model.addAttribute("totalPage", pagePro.getTotalPages());

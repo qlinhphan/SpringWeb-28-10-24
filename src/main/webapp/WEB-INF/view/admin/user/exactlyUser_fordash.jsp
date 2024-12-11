@@ -23,8 +23,47 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
                 integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
                 crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+            <style>
+                .ok {
+                    white-space: nowrap;
+                    /* Không xuống dòng */
+                    overflow: hidden;
+                    /* Ẩn phần văn bản vượt quá */
+                }
+
+                /* Khi màn hình nhỏ (ví dụ dưới 768px), giới hạn văn bản và thêm dấu ba chấm */
+                @media (max-width: 768px) {
+                    .ok {
+                        width: 5ch;
+                        /* Giới hạn chiều rộng là 10 ký tự (có thể điều chỉnh theo nhu cầu) */
+                        /* text-overflow: ellipsis; */
+                        /* Hiển thị dấu "..." cho phần vượt quá */
+
+
+
+                        /* Giới hạn chiều rộng bằng 4 ký tự */
+                        white-space: nowrap;
+                        /* Không xuống dòng */
+                        overflow: hidden;
+                        /* Ẩn phần văn bản vượt quá */
+                        text-overflow: ellipsis;
+                        /* Hiển thị dấu "..." cho phần vượt quá */
+                    }
+                }
+
+                /* Khi màn hình lớn hơn 768px, hiển thị đầy đủ văn bản */
+                @media (min-width: 769px) {
+                    .ok {
+                        width: auto;
+                        /* Hiển thị đầy đủ */
+                        text-overflow: clip;
+                        /* Không có dấu "..." */
+                    }
+                }
+            </style>
         </head>
-        </head>
+
 
         <body>
             <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -167,11 +206,15 @@
                                     </tr>
                                     <tr class="table-danger">
                                         <th scope="row">Email:</th>
-                                        <td>${current.email}</td>
+                                        <td>
+                                            <p class="ok">${current.email}</p>
+                                        </td>
                                     </tr>
                                     <tr class="table-warning">
                                         <th scope="row">Password:</th>
-                                        <td>${current.password}</td>
+                                        <td>
+                                            <p class="ok" style="display: inline-block;">${current.password}</p>
+                                        </td>
                                     </tr>
                                     <tr class="table-info">
                                         <th scope="row">Fullname: </th>
