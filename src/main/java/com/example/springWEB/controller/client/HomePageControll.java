@@ -138,62 +138,169 @@ public class HomePageControll {
     // }
 
     @GetMapping("/buy")
-    public String fetch(Model model, ProductCriterialDTO proCri) {
-        String page = proCri.getPage();
-        if (page == null) {
-            page = "1";
-        }
-        int pages = Integer.parseInt(page);
+    public String fetch(Model model, ProductCriterialDTO proCri,
+            @RequestParam(value = "sort", defaultValue = "khong-sap-xep") String sort,
+            @RequestParam(value = "page", defaultValue = "1") String pages) {
+        int page = Integer.parseInt(pages);
         Pageable pab = null;
-
-        if (proCri.getSort().equals("khong-sap-xep") || proCri.getSort() == null) {
-            pab = PageRequest.of(pages - 1, 10);
+        if (proCri.getSort() == null) {
+            proCri.setSort(sort);
+        }
+        if (proCri.getSort().equals("khong-sap-xep")) {
+            pab = PageRequest.of(page - 1, 3);
         }
         if (proCri.getSort().equals("gia-tang-dan")) {
-            pab = PageRequest.of(pages - 1, 10, Sort.by(Products_.PRICE).ascending());
+            pab = PageRequest.of(page - 1, 10, Sort.by(Products_.PRICE).ascending());
         }
         if (proCri.getSort().equals("gia-giam-dan")) {
-            pab = PageRequest.of(pages - 1, 10, Sort.by(Products_.PRICE).descending());
+            pab = PageRequest.of(page - 1, 10, Sort.by(Products_.PRICE).descending());
         }
 
         List<String> nameTarget = new ArrayList<>();
         List<String> nameFact = new ArrayList<>();
+        List<double[]> nameMoney = new ArrayList<>();
 
         if (proCri.getTarget() == null && proCri.getFact() == null) {
-            Page<Products> pagePro = this.productsService.PaginationProduct(pab);
+            if (proCri.getMoney() == null) {
+                Page<Products> pagePro = this.productsService.PaginationProduct(pab);
+                List<Products> listPro = pagePro.getContent();
+                model.addAttribute("totalPage", pagePro.getTotalPages() - 1);
+                System.out.println(pagePro.getTotalPages());
+                model.addAttribute("currentPage", page);
+                model.addAttribute("dsProducts", listPro);
+                return "/client/shop";
+            }
+            String[] ListMoney = proCri.getMoney().split(",");
+            for (String str : ListMoney) {
+                if (str.equals("duoi-10tr")) {
+                    double min = 0;
+                    double max = 10000000;
+                    nameMoney.add(new double[] { min, max });
+                }
+                if (str.equals("tu-10tr-den-15tr")) {
+                    double min = 10000000;
+                    double max = 15000000;
+                    nameMoney.add(new double[] { min, max });
+                }
+                if (str.equals("tu-15tr-den-20tr")) {
+                    double min = 15000000;
+                    double max = 20000000;
+                    nameMoney.add(new double[] { min, max });
+                }
+                if (str.equals("tren-20tr")) {
+                    double min = 20000000;
+                    double max = 100000000;
+                    nameMoney.add(new double[] { min, max });
+                }
+            }
+            Page<Products> pagePro = this.productsService.paginationQueryArrMoney(nameMoney, pab);
             List<Products> listPro = pagePro.getContent();
             model.addAttribute("totalPage", pagePro.getTotalPages());
-            model.addAttribute("currentPage", pages);
+            model.addAttribute("currentPage", page);
             model.addAttribute("dsProducts", listPro);
             return "/client/shop";
         }
-        if (proCri.getTarget() == null & proCri.getFact() != null) {
+        if (proCri.getTarget() == null && proCri.getFact() != null) {
+            if (proCri.getMoney() == null) {
+                String[] datafact = proCri.getFact().split(",");
+                for (String string : datafact) {
+                    nameFact.add(string);
+                }
+                Page<Products> pagePro = this.productsService.paginationQuerySelectManyInAllFactory(nameFact, pab);
+                List<Products> listPro = pagePro.getContent();
+                model.addAttribute("totalPage", pagePro.getTotalPages());
+                model.addAttribute("currentPage", page);
+                model.addAttribute("dsProducts", listPro);
+                return "/client/shop";
+            }
             String[] datafact = proCri.getFact().split(",");
             for (String string : datafact) {
                 nameFact.add(string);
             }
-            Page<Products> pagePro = this.productsService.paginationQuerySelectManyInAllFactory(nameFact, pab);
+            String[] ListMoney = proCri.getMoney().split(",");
+            for (String str : ListMoney) {
+                if (str.equals("duoi-10tr")) {
+                    double min = 0;
+                    double max = 10000000;
+                    nameMoney.add(new double[] { min, max });
+                }
+                if (str.equals("tu-10tr-den-15tr")) {
+                    double min = 10000000;
+                    double max = 15000000;
+                    nameMoney.add(new double[] { min, max });
+                }
+                if (str.equals("tu-15tr-den-20tr")) {
+                    double min = 15000000;
+                    double max = 20000000;
+                    nameMoney.add(new double[] { min, max });
+                }
+                if (str.equals("tren-20tr")) {
+                    double min = 20000000;
+                    double max = 100000000;
+                    nameMoney.add(new double[] { min, max });
+                }
+            }
+
+            Page<Products> pagePro = this.productsService.searchFactoryAndMoney(nameFact, nameMoney, pab);
             List<Products> listPro = pagePro.getContent();
             model.addAttribute("totalPage", pagePro.getTotalPages());
-            model.addAttribute("currentPage", pages);
+            model.addAttribute("currentPage", page);
             model.addAttribute("dsProducts", listPro);
             return "/client/shop";
+
         }
         if (proCri.getTarget() != null & proCri.getFact() == null) {
+            if (proCri.getMoney() == null) {
+
+                String[] dataTarget = proCri.getTarget().split(",");
+                for (String string : dataTarget) {
+                    nameTarget.add(string);
+                }
+                Page<Products> pagePro = this.productsService.paginationQuerySelectManyInAllTarget(nameTarget, pab);
+                List<Products> listPro = pagePro.getContent();
+                model.addAttribute("totalPage", pagePro.getTotalPages());
+                model.addAttribute("currentPage", page);
+                model.addAttribute("dsProducts", listPro);
+                return "/client/shop";
+            }
             String[] dataTarget = proCri.getTarget().split(",");
             for (String string : dataTarget) {
                 nameTarget.add(string);
             }
-            Page<Products> pagePro = this.productsService.paginationQuerySelectManyInAllTarget(nameTarget, pab);
+            String[] ListMoney = proCri.getMoney().split(",");
+            for (String str : ListMoney) {
+                if (str.equals("duoi-10tr")) {
+                    double min = 0;
+                    double max = 10000000;
+                    nameMoney.add(new double[] { min, max });
+                }
+                if (str.equals("tu-10tr-den-15tr")) {
+                    double min = 10000000;
+                    double max = 15000000;
+                    nameMoney.add(new double[] { min, max });
+                }
+                if (str.equals("tu-15tr-den-20tr")) {
+                    double min = 15000000;
+                    double max = 20000000;
+                    nameMoney.add(new double[] { min, max });
+                }
+                if (str.equals("tren-20tr")) {
+                    double min = 20000000;
+                    double max = 100000000;
+                    nameMoney.add(new double[] { min, max });
+                }
+            }
+            Page<Products> pagePro = this.productsService.searchTargetAndMoney(nameTarget, nameMoney, pab);
             List<Products> listPro = pagePro.getContent();
             model.addAttribute("totalPage", pagePro.getTotalPages());
-            model.addAttribute("currentPage", pages);
+            model.addAttribute("currentPage", page);
             model.addAttribute("dsProducts", listPro);
             return "/client/shop";
         }
 
         String[] ListTarget = proCri.getTarget().split(",");
         String[] ListFact = proCri.getFact().split(",");
+        String[] ListMoney = proCri.getMoney().split(",");
 
         for (String string : ListTarget) {
             nameTarget.add(string);
@@ -201,12 +308,34 @@ public class HomePageControll {
         for (String string1 : ListFact) {
             nameFact.add(string1);
         }
+        for (String str : ListMoney) {
+            if (str.equals("duoi-10tr")) {
+                double min = 0;
+                double max = 10000000;
+                nameMoney.add(new double[] { min, max });
+            }
+            if (str.equals("tu-10tr-den-15tr")) {
+                double min = 10000000;
+                double max = 15000000;
+                nameMoney.add(new double[] { min, max });
+            }
+            if (str.equals("tu-15tr-den-20tr")) {
+                double min = 15000000;
+                double max = 20000000;
+                nameMoney.add(new double[] { min, max });
+            }
+            if (str.equals("tren-20tr")) {
+                double min = 20000000;
+                double max = 100000000;
+                nameMoney.add(new double[] { min, max });
+            }
+        }
 
-        Page<Products> pagePro = this.productsService.SearchManyCondition(nameFact, nameTarget, pab);
+        Page<Products> pagePro = this.productsService.SearchManyCondition(nameFact, nameTarget, nameMoney, pab);
         List<Products> listPro = pagePro.getContent();
 
         model.addAttribute("totalPage", pagePro.getTotalPages());
-        model.addAttribute("currentPage", pages);
+        model.addAttribute("currentPage", page);
         model.addAttribute("dsProducts", listPro);
 
         return "/client/shop";

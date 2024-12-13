@@ -167,6 +167,10 @@
             sort.push($(this).val())
         })
 
+        $("#moneyFilter .form-check-input:checked").each(function () {
+            money.push($(this).val())
+        })
+
         // $("#moneyFilter .form-check-input:checked").each(function () {
         //     money.push($(this).val())
         // })
@@ -193,13 +197,19 @@
             searchParams.delete('fact')
         }
 
+        if (money.length > 0) {
+            searchParams.set("money", money.join(','))
+        } else {
+            searchParams.delete('money')
+        }
+
         if (sort.length > 0) {
             searchParams.set("sort", sort.join(','))
         } else {
             searchParams.delete('sort')
         }
 
-        searchParams.set('page', '1')
+        // searchParams.set('page', '1')
 
         history.pushState('', {}, currentUrl.toString());
         location.reload(true);
@@ -216,6 +226,9 @@
         let targetParam = searchParams.get("target");
         let targetArray = targetParam ? targetParam.split(',') : [];
 
+        let moneyParam = searchParams.get("money");
+        let moneyArray = moneyParam ? moneyParam.split(',') : [];
+
         let sortParam = searchParams.get('sort')
         let sortArray = sortParam ? sortParam.split(',') : []
 
@@ -231,6 +244,13 @@
                 $(this).prop("checked", true);
             }
         });
+
+        $("#moneyFilter .form-check-input").each(function () {
+            if (moneyArray.includes($(this).val())) {
+                $(this).prop("checked", true);
+            }
+        });
+
         $("#sortFilter .form-check-input").each(function () {
             if (sortArray.includes($(this).val())) {
                 $(this).prop("checked", true);
@@ -259,6 +279,7 @@
 
         // Chỉ thay đổi tham số page mà không thay đổi các tham số khác
         searchParams.set('page', page);
+        alert(typeof page);
 
         // Cập nhật URL mới
         history.pushState('', {}, currentUrl.toString());

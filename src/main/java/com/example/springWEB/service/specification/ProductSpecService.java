@@ -99,4 +99,16 @@ public class ProductSpecService {
         };
     }
 
+    public Specification<Products> queryByManyMoney(List<double[]> price) {
+        return (root, query, builder) -> {
+            List<Predicate> listPre = new ArrayList<>();
+            for (double[] ds : price) {
+                Predicate predi = builder.and(builder.gt(root.get(Products_.PRICE), ds[0]),
+                        builder.le(root.get(Products_.PRICE), ds[1]));
+                listPre.add(predi);
+            }
+            return builder.or(listPre.toArray(new Predicate[0]));
+        };
+    }
+
 }

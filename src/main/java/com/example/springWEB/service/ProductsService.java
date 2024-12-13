@@ -127,8 +127,8 @@ public class ProductsService {
         return this.productsRepository.findAll(this.productSpecService.factoryIsAppleAndDell(fact), pageable);
     }
 
-    public Page<Products> paginationQueryByRangeMoney(List<Double[]> data, Pageable pageable) {
-        return this.productsRepository.findAll(this.productSpecService.PriceIsInput(data), pageable);
+    public Page<Products> paginationQueryArrMoney(List<double[]> data, Pageable pageable) {
+        return this.productsRepository.findAll(this.productSpecService.queryByManyMoney(data), pageable);
     }
 
     public Page<Products> paginationQueryNameIs(String fact, Pageable pageable) {
@@ -143,7 +143,8 @@ public class ProductsService {
         return this.productsRepository.findAll(this.productSpecService.selectManyInAllTarget(target), pag);
     }
 
-    public Page<Products> SearchManyCondition(List<String> fact, List<String> target, Pageable pag) {
+    public Page<Products> SearchManyCondition(List<String> fact, List<String> target, List<double[]> money,
+            Pageable pag) {
         Specification<Products> list = Specification.where(null);
         if (fact != null) {
             Specification<Products> fff = this.productSpecService.selectManyInAllFactory(fact);
@@ -153,7 +154,36 @@ public class ProductsService {
             Specification<Products> ttt = this.productSpecService.selectManyInAllTarget(target);
             list = list.and(ttt);
         }
+        if (money != null) {
+            Specification<Products> aaa = this.productSpecService.queryByManyMoney(money);
+            list = list.and(aaa);
+        }
         return this.productsRepository.findAll(list, pag);
     }
 
+    public Page<Products> searchFactoryAndMoney(List<String> fact, List<double[]> money, Pageable pageable) {
+        Specification<Products> dk = Specification.where(null);
+        if (fact != null) {
+            Specification<Products> aaa = this.productSpecService.selectManyInAllFactory(fact);
+            dk = dk.and(aaa);
+        }
+        if (money != null) {
+            Specification<Products> bbb = this.productSpecService.queryByManyMoney(money);
+            dk = dk.and(bbb);
+        }
+        return this.productsRepository.findAll(dk, pageable);
+    }
+
+    public Page<Products> searchTargetAndMoney(List<String> target, List<double[]> money, Pageable pageable) {
+        Specification<Products> dk = Specification.where(null);
+        if (target != null) {
+            Specification<Products> aaa = this.productSpecService.selectManyInAllTarget(target);
+            dk = dk.and(aaa);
+        }
+        if (money != null) {
+            Specification<Products> bbb = this.productSpecService.queryByManyMoney(money);
+            dk = dk.and(bbb);
+        }
+        return this.productsRepository.findAll(dk, pageable);
+    }
 }

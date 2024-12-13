@@ -467,7 +467,7 @@
                                                                                             <input
                                                                                                 class="form-check-input"
                                                                                                 type="checkbox"
-                                                                                                value="Dưới-10-triệu"
+                                                                                                value="duoi-10tr"
                                                                                                 id="flexCheckDefault" />
                                                                                         </span>
                                                                             </div>
@@ -482,7 +482,7 @@
                                                                                     style="display: flex; margin-left: 1%;">
                                                                                     <input class="form-check-input"
                                                                                         type="checkbox"
-                                                                                        value="Từ-10-đến-15-triệu"
+                                                                                        value="tu-10tr-den-15tr"
                                                                                         id="flexCheckDefault" />
                                                                                 </span>
                                                                             </div>
@@ -502,7 +502,7 @@
                                                                                     style="display: flex; margin-left: 1%;">
                                                                                     <input class="form-check-input"
                                                                                         type="checkbox"
-                                                                                        value="Từ-15-Đến-20-Triệu"
+                                                                                        value="tu-15tr-den-20tr"
                                                                                         id="flexCheckDefault" />
                                                                                 </span>
                                                                             </div>
@@ -517,7 +517,7 @@
                                                                                     style="display: flex; margin-left: 1%;">
                                                                                     <input class="form-check-input"
                                                                                         type="checkbox"
-                                                                                        value="Trên-20-Triệu"
+                                                                                        value="tren-20tr"
                                                                                         id="flexCheckDefault" />
                                                                                 </span>
                                                                             </div>
@@ -573,8 +573,8 @@
                                                                         </div>
                                                                     </li>
                                                                     <li>
-                                                                        <div
-                                                                            class="d-flex align-items-center fruite-name">
+                                                                        <div class="d-flex align-items-center fruite-name"
+                                                                            style="margin-left: -211%; margin-top: 29%;">
                                                                             <a href="#" style="white-space: nowrap;">Gia
                                                                                 Tang Dan</a>
                                                                             <span
@@ -648,10 +648,10 @@
 
 
                                                         <c:if test="${currentPage > 1}">
-                                                            <a href="/buy?page=${currentPage-1}"
-                                                                class="rounded">&laquo;</a>
+                                                            <a href="/buy?page=${currentPage-1}" class="rounded"
+                                                                data-page="${currentPage-1}">&laquo;</a>
                                                         </c:if>
-                                                        <c:if test="${currentPage <= 1}">
+                                                        <c:if test="${currentPage == 1}">
                                                             <a href="" class="rounded"
                                                                 style="display: none;">&laquo;</a>
                                                         </c:if>
@@ -667,18 +667,15 @@
 
                                                         <c:if test="${currentPage < totalPage}">
 
-                                                            <a href="/buy?page=${currentPage+1}"
-                                                                class="rounded">&raquo;</a>
+                                                            <a href="/buy?page=${currentPage+1}" class="rounded"
+                                                                data-page="${loop.index-11}">&raquo;</a>
 
                                                         </c:if>
                                                         <c:if test="${currentPage == totalPage}">
 
                                                             <a href="" class="rounded"
                                                                 style="display: none;">&raquo;</a>
-
                                                         </c:if>
-
-
                                                     </div>
                                                 </div>
                                             </div>

@@ -160,7 +160,7 @@
                                                                 style="margin-left: 16px; font-size: 12px; box-shadow: 1px 1px 12px black; color: grey;">${pageContext.request.userPrincipal.name}</span>
                                                         </div>
                                                     </div>
-                                                    <a href="#" style="font-size: 12px;">Quản Lý Tài Khoản</a>
+                                                    <a href="/overView" style="font-size: 12px;">Quản Lý Tài Khoản</a>
                                                     <a href="/purcharseHist" style="font-size: 12px;">Lịch Sử Mua
                                                         Hàng</a>
                                                     <hr>
