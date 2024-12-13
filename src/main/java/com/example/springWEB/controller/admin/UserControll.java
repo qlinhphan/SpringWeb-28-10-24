@@ -61,7 +61,7 @@ public class UserControll {
 
             String rootPath = this.servletContext.getRealPath("/resources/images");
 
-            File dir = new File(rootPath + File.separator + rootPath);
+            File dir = new File(rootPath + File.separator + "/avatar");
 
             if (!dir.exists()) {
                 dir.mkdirs();

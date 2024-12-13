@@ -57,7 +57,7 @@ public class ProductControll {
 
             String rootPath = this.servletContext.getRealPath("/resources/images");
 
-            File dir = new File(rootPath + File.separator + "product");
+            File dir = new File(rootPath + File.separator + "/product");
 
             if (!dir.exists()) {
                 dir.mkdirs();
