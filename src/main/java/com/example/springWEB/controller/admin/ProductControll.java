@@ -84,11 +84,11 @@ public class ProductControll {
 
     @GetMapping("/adminProduct")
     public String getProducts(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
-        Pageable pageable = PageRequest.of(page - 1, 2);
+        Pageable pageable = PageRequest.of(page - 1, 7);
         Page<Products> pagei = this.productsService.PaginationProduct(pageable);
         List<Products> products = pagei.getContent();
         model.addAttribute("products", products);
-        model.addAttribute("currentPage", page);
+        model.addAttribute("currentPages", page);
         model.addAttribute("totalPages", pagei.getTotalPages());
         // System.out.println(model.getAttribute("totalPages"));
         // System.out.println("TOTAL: " + pagei.getTotalPages());

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.springWEB.domain.Users;
 import com.example.springWEB.domain.cart.feedBack;
+import com.example.springWEB.domain.dto.ChangePassDTO;
 import com.example.springWEB.domain.dto.RegisterDTO;
 import com.example.springWEB.repository.UserRepository;
 
@@ -49,6 +50,12 @@ public class UserService {
         kq.setEmail(re.getEmail());
         kq.setPassword(passwordEncoder.encode(re.getPassword()));
         return kq;
+    }
+
+    public Users changePassToUser(ChangePassDTO changePassDTO) {
+        Users us = new Users();
+        us.setPassword(this.passwordEncoder.encode(changePassDTO.getNewPass()));
+        return us;
     }
 
     public boolean existsByEmailUser(String email) {

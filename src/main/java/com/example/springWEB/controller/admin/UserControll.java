@@ -91,13 +91,13 @@ public class UserControll {
 
     @GetMapping("/table/user")
     public String tableUser(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
-        Pageable pageable = PageRequest.of(page - 1, 2);
+        Pageable pageable = PageRequest.of(page - 1, 3);
         System.out.println(page);
         Page<Users> usP = this.userService.findAllPage(pageable);
         List<Users> us = usP.getContent();
         model.addAttribute("users", us);
         model.addAttribute("currentPage", page);
-        model.addAttribute("totalPage", pageable.getPageSize());
+        model.addAttribute("totalPage", usP.getTotalPages());
         // System.out.println("totalPage: " + pageable.getPageSize());
         return "/admin/user/table_fordash";
     }

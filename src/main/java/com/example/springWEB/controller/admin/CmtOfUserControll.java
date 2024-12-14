@@ -29,9 +29,11 @@ public class CmtOfUserControll {
     @GetMapping("/cmtCus")
     public String Cmt(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
         // System.out.println(page);
-        Pageable pageable = PageRequest.of(page - 1, 2);
+        Pageable pageable = PageRequest.of(page - 1, 7);
         Page<feedBack> pageFeed = this.feedbackService.paginationFeed(pageable);
         List<feedBack> feedBacks = pageFeed.getContent();
+        model.addAttribute("totalPage", pageFeed.getTotalPages());
+        model.addAttribute("currentPage", page);
         model.addAttribute("feeds", feedBacks);
         return "/admin/cmtOfCus/cmt";
     }

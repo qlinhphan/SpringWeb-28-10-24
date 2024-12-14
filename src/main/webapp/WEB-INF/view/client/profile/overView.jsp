@@ -148,15 +148,17 @@
                                 </button>
                                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                                     <div class="navbar-nav mx-auto">
-                                        <a href="index.html" class="nav-item nav-link active">Trang Chủ</a>
-                                        <a href="shop.html" class="nav-item nav-link">Của Hàng</a>
+                                        <a href="/" class="nav-item nav-link active">Trang Chủ</a>
+                                        <a href="/buy" class="nav-item nav-link">Của Hàng</a>
                                     </div>
                                     <div class="d-flex m-3 me-0">
                                         <c:if test="${not empty pageContext.request.userPrincipal}">
 
 
-                                            <a href="#" class="position-relative me-4 my-auto">
+                                            <a href="/cart" class="position-relative me-4 my-auto">
+
                                                 <i class="fa fa-shopping-bag fa-2x"></i>
+
                                                 <span
                                                     class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
                                                     style="top: -5px; left: 15px; height: 20px; min-width: 20px;">${SumCarts}</span>
@@ -180,7 +182,9 @@
                                                         </div>
                                                     </div>
                                                     <a href="#" style="font-size: 12px;">Quản Lý Tài Khoản</a>
-                                                    <a href="#" style="font-size: 12px;">Lịch Sử Mua Hàng</a>
+                                                    <a href="/purcharseHist" style="font-size: 12px;">Lịch Sử Mua
+                                                        Hàng</a>
+                                                    <hr>
                                                     <hr>
                                                     <form action="/logout" method="post">
                                                         <div>
@@ -322,7 +326,8 @@
                                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                                                     <!-- Profile Edit Form -->
-                                                    <form>
+                                                    <form:form action="/edit/inf" method="post" modelAttribute="editInf"
+                                                        enctype="multipart/form-data">
                                                         <div class="row mb-3">
                                                             <label for="profileImage"
                                                                 class="col-md-4 col-lg-3 col-form-label">Ảnh
@@ -330,9 +335,9 @@
                                                             <div class="col-md-8 col-lg-9">
                                                                 <img src="/images/avatar/${user.avatar}" alt="Profile">
                                                                 <div class="pt-2">
-                                                                    <a href="#" class="btn btn-primary btn-sm"
-                                                                        title="Upload new profile image"><i
-                                                                            class="bi bi-upload"></i></a>
+                                                                    <input href="#" class="btn btn-primary btn-sm"
+                                                                        title="Upload new profile image" type="file"
+                                                                        name="fileName" />
                                                                     <a href="#" class="btn btn-danger btn-sm"
                                                                         title="Remove my profile image"><i
                                                                             class="bi bi-trash"></i></a>
@@ -344,8 +349,9 @@
                                                             <label for="fullName"
                                                                 class="col-md-4 col-lg-3 col-form-label">Địa Chỉ</label>
                                                             <div class="col-md-8 col-lg-9">
-                                                                <input name="fullName" type="text" class="form-control"
-                                                                    id="fullName" value="${user.address}">
+                                                                <form:input name="fullName" type="text"
+                                                                    class="form-control" id="fullName"
+                                                                    value="${user.address}" path="address" />
                                                             </div>
                                                         </div>
 
@@ -353,8 +359,9 @@
                                                             <label for="company"
                                                                 class="col-md-4 col-lg-3 col-form-label">Họ Tên</label>
                                                             <div class="col-md-8 col-lg-9">
-                                                                <input name="company" type="text" class="form-control"
-                                                                    id="company" value="${user.fullname}">
+                                                                <form:input name="company" type="text"
+                                                                    class="form-control" id="company"
+                                                                    value="${user.fullname}" path="fullname" />
                                                             </div>
                                                         </div>
 
@@ -362,8 +369,9 @@
                                                             <label for="company"
                                                                 class="col-md-4 col-lg-3 col-form-label">Email</label>
                                                             <div class="col-md-8 col-lg-9">
-                                                                <input name="company" type="text" class="form-control"
-                                                                    id="company" value="${user.email}">
+                                                                <form:input name="company" type="text"
+                                                                    class="form-control" id="company"
+                                                                    value="${user.email}" path="email" />
                                                             </div>
                                                         </div>
 
@@ -373,8 +381,9 @@
                                                                 class="col-md-4 col-lg-3 col-form-label">Số Điện
                                                                 Thoại</label>
                                                             <div class="col-md-8 col-lg-9">
-                                                                <input name="country" type="text" class="form-control"
-                                                                    id="Country" value="${user.phone}">
+                                                                <form:input name="country" type="text"
+                                                                    class="form-control" id="Country"
+                                                                    value="${user.phone}" path="phone" />
                                                             </div>
                                                         </div>
 
@@ -384,7 +393,7 @@
                                                             <button type="submit" class="btn btn-primary">Lưu Thay
                                                                 Đổi</button>
                                                         </div>
-                                                    </form><!-- End Profile Edit Form -->
+                                                    </form:form>
 
                                                 </div>
 
@@ -440,35 +449,44 @@
 
                                                 <div class="tab-pane fade pt-3" id="profile-change-password">
                                                     <!-- Change Password Form -->
-                                                    <form>
-
+                                                    <form:form action="change" method="post"
+                                                        modelAttribute="changePass">
                                                         <div class="row mb-3">
                                                             <label for="currentPassword"
-                                                                class="col-md-4 col-lg-3 col-form-label">Current
-                                                                Password</label>
+                                                                class="col-md-4 col-lg-3 col-form-label">Mật khẩu hiện
+                                                                tại</label>
                                                             <div class="col-md-8 col-lg-9">
-                                                                <input name="password" type="password"
-                                                                    class="form-control" id="currentPassword">
+                                                                <form:input name="password" type="texttext"
+                                                                    class="form-control" id="currentPassword"
+                                                                    path="currentPass" />
+                                                            </div>
+                                                            <div>
+                                                                <p style="color: red">${er}</p>
                                                             </div>
                                                         </div>
 
                                                         <div class="row mb-3">
                                                             <label for="newPassword"
-                                                                class="col-md-4 col-lg-3 col-form-label">New
-                                                                Password</label>
+                                                                class="col-md-4 col-lg-3 col-form-label">Mật khẩu
+                                                                mới</label>
                                                             <div class="col-md-8 col-lg-9">
-                                                                <input name="newpassword" type="password"
-                                                                    class="form-control" id="newPassword">
+                                                                <form:input name="newpassword" type="texttext"
+                                                                    class="form-control" id="newPassword"
+                                                                    path="newPass" />
+                                                            </div>
+                                                            <div>
+                                                                <p style="color: red">${ers}</p>
                                                             </div>
                                                         </div>
 
                                                         <div class="row mb-3">
                                                             <label for="renewPassword"
-                                                                class="col-md-4 col-lg-3 col-form-label">Re-enter
-                                                                New Password</label>
+                                                                class="col-md-4 col-lg-3 col-form-label">Nhập
+                                                                lại</label>
                                                             <div class="col-md-8 col-lg-9">
-                                                                <input name="renewpassword" type="password"
-                                                                    class="form-control" id="renewPassword">
+                                                                <form:input name="renewpassword" type="text"
+                                                                    class="form-control" id="renewPassword"
+                                                                    path="rePass" />
                                                             </div>
                                                         </div>
 
@@ -476,7 +494,7 @@
                                                             <button type="submit" class="btn btn-primary">Change
                                                                 Password</button>
                                                         </div>
-                                                    </form><!-- End Change Password Form -->
+                                                    </form:form>
 
                                                 </div>
 

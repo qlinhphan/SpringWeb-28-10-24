@@ -50,12 +50,12 @@ public class OrderControll {
     @GetMapping("/adminOrder")
     public String getOrder(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
         System.out.println(page);
-        Pageable pageable = PageRequest.of(page - 1, 2);
+        Pageable pageable = PageRequest.of(page - 1, 7);
         Page<Oders> pa = this.orderService.findAllByPage(pageable);
         List<Oders> oders = pa.getContent();
         model.addAttribute("oders", oders);
         model.addAttribute("currentPage", page);
-        model.addAttribute("totalPage", pa.getTotalPages() - 1);
+        model.addAttribute("totalPage", pa.getTotalPages());
         System.out.println("totalPage: " + pa.getTotalPages());
         return "/admin/order/show";
     }
