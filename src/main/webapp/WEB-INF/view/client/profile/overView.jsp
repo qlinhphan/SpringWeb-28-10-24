@@ -42,6 +42,21 @@
                     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
                         rel="stylesheet">
 
+
+                    <!-- Bootstrap 5 CSS -->
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+                        rel="stylesheet"
+                        integrity="sha384-EO8W1LKRC2H31P5NcAQ8W4f6UVloJ+L7D9+i7ov7Q6LzIh1o7Y9O3pN4S9Z9K4v1"
+                        crossorigin="anonymous">
+
+                    <!-- Bootstrap 5 JS Bundle (bao gồm Popper.js) -->
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+                        integrity="sha384-2J7G6wMZG37m4K0UyG+Jz7B9k3t4YPnlmZlF2M9JfB0UoX1VN+aOfzVqI/n0+7Z9"
+                        crossorigin="anonymous"></script>
+
+
+
+
                     <!-- Libraries Stylesheet -->
                     <link href="/css/client/lightbox.min.css" rel="stylesheet">
                     <link href="/css/client/owl.carousel.min.css" rel="stylesheet">
@@ -274,18 +289,20 @@
                                             <ul class="nav nav-tabs nav-tabs-bordered">
 
                                                 <li class="nav-item">
-                                                    <button class="nav-link active" data-bs-toggle="tab"
-                                                        data-bs-target="#profile-overview">Giới thiệu</button>
+                                                    <a class="nav-link active" data-bs-toggle="tab"
+                                                        data-bs-target="#profile-overview" href="#gioi-thieu">Giới
+                                                        thiệu</a>
                                                 </li>
 
                                                 <li class="nav-item">
-                                                    <button class="nav-link" data-bs-toggle="tab"
-                                                        data-bs-target="#profile-edit">Chỉnh Sửa</button>
+                                                    <a class="nav-link" data-bs-toggle="tab"
+                                                        data-bs-target="#profile-edit" href="#chinh-sua">Chỉnh Sửa</a>
                                                 </li>
 
                                                 <li class="nav-item">
-                                                    <button class="nav-link" data-bs-toggle="tab"
-                                                        data-bs-target="#profile-change-password">Đổi Mật Khẩu</button>
+                                                    <a class="nav-link" data-bs-toggle="tab"
+                                                        data-bs-target="#profile-change-password"
+                                                        href="#doi-mat-khau">Đổi Mật Khẩu</a>
                                                 </li>
 
                                             </ul>
@@ -293,7 +310,9 @@
 
                                                 <div class="tab-pane fade show active profile-overview"
                                                     id="profile-overview">
-                                                    <h5 class="card-title">Giới Thiệu Chung</h5>
+                                                    <h5 class="card-title">
+                                                        Giới Thiệu Chung
+                                                    </h5>
                                                     <p class="small fst-italic">Đây là một người sử dụng với vai trò
                                                         <span style="color: red">${user.roles.name}</span> và có email
                                                         là <span style="color: red;">${user.email}</span>
@@ -394,56 +413,6 @@
                                                                 Đổi</button>
                                                         </div>
                                                     </form:form>
-
-                                                </div>
-
-                                                <div class="tab-pane fade pt-3" id="profile-settings">
-
-                                                    <!-- Settings Form -->
-                                                    <form>
-
-                                                        <div class="row mb-3">
-                                                            <label for="fullName"
-                                                                class="col-md-4 col-lg-3 col-form-label">Email
-                                                                Notifications</label>
-                                                            <div class="col-md-8 col-lg-9">
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        id="changesMade" checked>
-                                                                    <label class="form-check-label" for="changesMade">
-                                                                        Changes made to your account
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        id="newProducts" checked>
-                                                                    <label class="form-check-label" for="newProducts">
-                                                                        Information on new products and services
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        id="proOffers">
-                                                                    <label class="form-check-label" for="proOffers">
-                                                                        Marketing and promo offers
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        id="securityNotify" checked disabled>
-                                                                    <label class="form-check-label"
-                                                                        for="securityNotify">
-                                                                        Security alerts
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-center">
-                                                            <button type="submit" class="btn btn-primary">Save
-                                                                Changes</button>
-                                                        </div>
-                                                    </form><!-- End settings Form -->
 
                                                 </div>
 
@@ -618,6 +587,9 @@
                     <!-- Back to Top -->
                     <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
                             class="fa fa-arrow-up"></i></a>
+
+
+
 
                     <!-- Vendor JS Files -->
                     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>

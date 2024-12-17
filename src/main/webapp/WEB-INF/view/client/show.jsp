@@ -148,11 +148,10 @@
                                                     style="display: flex; border-radius: 17px;">
                                                     <i class="fas fa-user fa-2x"></i>
                                                 </a>
-                                                <div class="dropdown-content">
+                                                <div class="dropdown-content" style="margin-left: -165%;">
                                                     <div>
                                                         <div style="margin-left: 16px;"><img
-                                                                src="/images/avatar/1730739674234-but-xoa-Artline-600x600.jpg"
-                                                                alt=""
+                                                                src="/images/avatar/${user.avatar}" alt=""
                                                                 style="width: 50xp; height: 50px; border-radius: 50%;">
                                                         </div>
                                                         <div>
@@ -934,27 +933,26 @@
                             <div class="row g-4 align-items-center">
                                 <div class="col-lg-6">
                                     <div class="py-4">
-                                        <h1 class="display-3 text-white">Fresh Exotic Fruits</h1>
-                                        <p class="fw-normal display-3 text-dark mb-4">in Our Store</p>
-                                        <p class="mb-4 text-dark">The generated Lorem Ipsum is therefore always free
-                                            from
-                                            repetition
-                                            injected humour, or non-characteristic words etc.</p>
+                                        <h1 class="display-3 text-white">Sản phẩm được quan tâm nhất</h1>
+                                        <p class="fw-normal display-3 text-dark mb-4">Trong cửa hàng của chúng tôi</p>
+                                        <p class="mb-4 text-dark">Đây là sản phẩm mà gần như trong mọi khách hàng đến
+                                            với chúng tôi đều xuất hiện</p>
                                         <a href="#"
                                             class="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">BUY</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="position-relative">
-                                        <img src="/images/product/baner-1.png" class="img-fluid w-100 rounded" alt="">
-                                        <div class="d-flex align-items-center justify-content-center bg-white rounded-circle position-absolute"
+                                        <img src="/images/product/${productCare.image}" class="img-fluid w-100 rounded"
+                                            alt="">
+                                        <!-- <div class="d-flex align-items-center justify-content-center bg-white rounded-circle position-absolute"
                                             style="width: 140px; height: 140px; top: 0; left: 0;">
                                             <h1 style="font-size: 100px;">1</h1>
                                             <div class="d-flex flex-column">
                                                 <span class="h2 mb-0">50$</span>
                                                 <span class="h4 text-muted mb-0">kg</span>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -973,34 +971,34 @@
                         <div class="container">
                             <div class="bg-light p-5 rounded">
                                 <div class="row g-4 justify-content-center">
-                                    <div class="col-md-6 col-lg-6 col-xl-3">
+                                    <!-- <div class="col-md-6 col-lg-6 col-xl-3">
                                         <div class="counter bg-white rounded p-5">
                                             <i class="fa fa-users text-secondary"></i>
                                             <h4>satisfied customers</h4>
                                             <h1>1963</h1>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-md-6 col-lg-6 col-xl-3">
                                         <div class="counter bg-white rounded p-5">
                                             <i class="fa fa-users text-secondary"></i>
-                                            <h4>quality of service</h4>
-                                            <h1>99%</h1>
+                                            <h4>Số lượng người dùng hiện có</h4>
+                                            <h1>${countUser}</h1>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-xl-3">
                                         <div class="counter bg-white rounded p-5">
-                                            <i class="fa fa-users text-secondary"></i>
-                                            <h4>quality certificates</h4>
-                                            <h1>33</h1>
+                                            <i class="fa fa-user-circle text-secondary"></i>
+                                            <h4>Đơn hàng đã bán ra </h4>
+                                            <h1>${countOrder}</h1>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-lg-6 col-xl-3">
+                                    <!-- <div class="col-md-6 col-lg-6 col-xl-3">
                                         <div class="counter bg-white rounded p-5">
                                             <i class="fa fa-users text-secondary"></i>
                                             <h4>Available Products</h4>
                                             <h1>789</h1>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

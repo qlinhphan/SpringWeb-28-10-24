@@ -1,8 +1,10 @@
 package com.example.springWEB.controller.client;
 
 import java.util.ArrayList;
-
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.springWEB.domain.Oders;
+import com.example.springWEB.domain.OrderDetail;
 import com.example.springWEB.domain.Products;
 import com.example.springWEB.domain.Products_;
 import com.example.springWEB.domain.Users;
@@ -54,12 +58,68 @@ public class HomePageControll {
         model.addAttribute("products", ds);
         String email = userDetails.getUsername();
         Users users = this.userService.findUsersByEmail(email);
+        model.addAttribute("user", users);
         Cart cart = this.cartService.findCartByUser(users);
         int sumCart = 0;
         if (cart == null) {
             System.out.println(userDetails.getPassword());
             return "/client/show";
         }
+
+        List<OrderDetail> orderDetail = this.orderDetailService.findAllOrderDetail();
+        List<Long> idProducts = new ArrayList<>();
+        for (OrderDetail orderDetail2 : orderDetail) {
+            System.out.println(orderDetail2.getProducts().getName());
+            System.out.println(orderDetail2.getProducts().getId());
+            idProducts.add(orderDetail2.getProducts().getId());
+        }
+        System.out.println(idProducts);
+
+        // bien dem so lan xuat hien moi san pham
+        double dem;
+
+        // san pham nao xuat hien nhieu nhat -> san pham nguoi ta quan tam nhat
+        double maxCount = 0;
+
+        // id tuong ung cua san pham xuat hien trong nhieu nhat trong cac don cua khach
+        // hang
+        long idProductCare = 1;
+        for (Long long1 : idProducts) {
+            dem = 0;
+            for (Long long2 : idProducts) {
+                if (long1 == long2) {
+                    dem++;
+                }
+            }
+            System.out.println("SO " + long1 + " XUAT HIEN: " + dem);
+            if (maxCount < dem) {
+                maxCount = dem;
+                idProductCare = long1;
+            }
+        }
+        System.out.println("SAN PHAM XUAT HIEN NHIEU NHAT: " + maxCount);
+        System.out.println("ID TUONG UNG CUA SAN PHAM DO: " + idProductCare);
+        Products productCare = this.productsService.findProductById(idProductCare);
+        model.addAttribute("productCare", productCare);
+
+        List<Users> user = this.userService.findAllUser();
+        int countUser = 0;
+        for (Users users2 : user) {
+            if (users2 != null) {
+                countUser++;
+            }
+        }
+        model.addAttribute("countUser", countUser);
+
+        List<Oders> od = this.orderService.findAllOders();
+        int countOrder = 0;
+        for (Oders oders : od) {
+            if (oders != null) {
+                countOrder++;
+            }
+        }
+        model.addAttribute("countOrder", countOrder);
+
         sumCart = cart.getSum();
         session.setAttribute("SumCarts", sumCart);
 
@@ -164,7 +224,7 @@ public class HomePageControll {
             if (proCri.getMoney() == null) {
                 Page<Products> pagePro = this.productsService.PaginationProduct(pab);
                 List<Products> listPro = pagePro.getContent();
-                model.addAttribute("totalPage", pagePro.getTotalPages() - 1);
+                model.addAttribute("totalPage", pagePro.getTotalPages());
                 System.out.println(pagePro.getTotalPages());
                 model.addAttribute("currentPage", page);
                 model.addAttribute("dsProducts", listPro);
@@ -296,6 +356,25 @@ public class HomePageControll {
             model.addAttribute("currentPage", page);
             model.addAttribute("dsProducts", listPro);
             return "/client/shop";
+        }
+
+        if (proCri.getTarget() != null & proCri.getFact() != null) {
+            if (proCri.getMoney() == null) {
+                String[] dataTarget = proCri.getTarget().split(",");
+                for (String string : dataTarget) {
+                    nameTarget.add(string);
+                }
+                String[] datafact = proCri.getFact().split(",");
+                for (String string : datafact) {
+                    nameFact.add(string);
+                }
+                Page<Products> pagePro = this.productsService.searchTargetAndFact(nameTarget, nameFact, pab);
+                List<Products> listPro = pagePro.getContent();
+                model.addAttribute("totalPage", pagePro.getTotalPages());
+                model.addAttribute("currentPage", page);
+                model.addAttribute("dsProducts", listPro);
+                return "/client/shop";
+            }
         }
 
         String[] ListTarget = proCri.getTarget().split(",");

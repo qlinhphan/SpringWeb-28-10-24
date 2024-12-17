@@ -657,7 +657,7 @@
                                                         </c:if>
                                                         <!-- name=${name} -->
 
-                                                        <c:forEach begin="0" end="${totalPage}" varStatus="loop">
+                                                        <c:forEach begin="0" end="${totalPage-1}" varStatus="loop">
                                                             <a href="/buy?page=${loop.index+1}"
                                                                 class="${(loop.index+1) eq currentPage ? 'active rounded' : 'rounded'}"
                                                                 data-page="${loop.index+1}">${loop.index+1}</a>
@@ -668,7 +668,7 @@
                                                         <c:if test="${currentPage < totalPage}">
 
                                                             <a href="/buy?page=${currentPage+1}" class="rounded"
-                                                                data-page="${loop.index-11}">&raquo;</a>
+                                                                data-page="${currentPage+1}">&raquo;</a>
 
                                                         </c:if>
                                                         <c:if test="${currentPage == totalPage}">
