@@ -69,7 +69,7 @@
                                         <div class="sb-nav-link-icon"><i class="fa-brands fa-product-hunt"></i></div>
                                         Quản lý sản phẩm
                                     </a>
-                                    <a class="nav-link" href="/adminOrder">
+                                    <a class="nav-link" href="/adminOrder" style="background-color: brown;">
                                         <div class="sb-nav-link-icon"><i class="fa-regular fa-newspaper"></i></div>
                                         Quản lý đơn hàng
                                     </a>

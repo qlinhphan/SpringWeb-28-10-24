@@ -256,12 +256,6 @@
                 $(this).prop("checked", true);
             }
         });
-
-        // $("#moneyFilter .form-check-input").each(function () {
-        //     if (nameArray.includes($(this).val())) {
-        //         $(this).prop("checked", true);
-        //     }
-        // });
     });
 
     // sang trang se ko mat di phan tim kiem
@@ -279,7 +273,7 @@
 
         // Chỉ thay đổi tham số page mà không thay đổi các tham số khác
         searchParams.set('page', page);
-        alert(typeof page);
+
 
         // Cập nhật URL mới
         history.pushState('', {}, currentUrl.toString());
@@ -287,6 +281,9 @@
         // Tải lại trang với tham số mới
         location.reload(true);
     });
+
+
+
 
 
 })(jQuery);

@@ -7,12 +7,30 @@
 
                 <head>
                     <meta charset="utf-8">
-                    <title>Fruitables - Vegetable Website Template</title>
                     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-                    <meta content="" name="keywords">
-                    <meta content="" name="description">
 
-                    <!-- Google Web Fonts -->
+                    <title>Users / Profile - NiceAdmin Bootstrap Template</title>
+                    <meta content="" name="description">
+                    <meta content="" name="keywords">
+
+                    <!-- Favicons -->
+                    <link href="assets/img/favicon.png" rel="icon">
+                    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+                    <!-- Google Fonts -->
+                    <link href="https://fonts.gstatic.com" rel="preconnect">
+                    <link
+                        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+                        rel="stylesheet">
+
+                    <!-- Vendor CSS Files -->
+                    <link href="/css/client/big.min.css" rel="stylesheet">
+                    <link href="/css/client/bootstrap-icons.css" rel="stylesheet">
+                    <link href="/css/client/boxicons.min.css" rel="stylesheet">
+                    <link href="/css/client/quill.snow.css" rel="stylesheet">
+                    <link href="/css/client/quill.bubble.css" rel="stylesheet">
+                    <link href="/css/client/remixicon.css" rel="stylesheet">
+                    <link href="/css/client/sty.css" rel="stylesheet">
                     <link rel="preconnect" href="https://fonts.googleapis.com">
                     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                     <link
@@ -24,6 +42,21 @@
                     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
                         rel="stylesheet">
 
+
+                    <!-- Bootstrap 5 CSS -->
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+                        rel="stylesheet"
+                        integrity="sha384-EO8W1LKRC2H31P5NcAQ8W4f6UVloJ+L7D9+i7ov7Q6LzIh1o7Y9O3pN4S9Z9K4v1"
+                        crossorigin="anonymous">
+
+                    <!-- Bootstrap 5 JS Bundle (bao gồm Popper.js) -->
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+                        integrity="sha384-2J7G6wMZG37m4K0UyG+Jz7B9k3t4YPnlmZlF2M9JfB0UoX1VN+aOfzVqI/n0+7Z9"
+                        crossorigin="anonymous"></script>
+
+
+
+
                     <!-- Libraries Stylesheet -->
                     <link href="/css/client/lightbox.min.css" rel="stylesheet">
                     <link href="/css/client/owl.carousel.min.css" rel="stylesheet">
@@ -33,14 +66,19 @@
                     <link href="/css/client/bootstrap.min.css" rel="stylesheet">
 
                     <!-- Template Stylesheet -->
-                    <link href="css/client/style.css" rel="stylesheet">
-
-                    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-                        rel="stylesheet"
-                        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-                        crossorigin="anonymous"> -->
+                    <link href="/css/client/style.css" rel="stylesheet">
 
 
+                    <!-- Template Main CSS File -->
+                    <link href="/css/client/styfes.css" rel="stylesheet">
+
+                    <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Updated: Apr 20 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
                     <style>
                         .dropbtn {
                             background-color: #4CAF50;
@@ -83,12 +121,31 @@
                         .dropdown:hover .dropbtn {
                             background-color: #3e8e41;
                         }
+
+                        .gradient-custom-3 {
+                            /* fallback for old browsers */
+                            background: #84fab0;
+
+                            /* Chrome 10-25, Safari 5.1-6 */
+                            background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+
+                            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                            background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+                        }
+
+                        .gradient-custom-4 {
+                            /* fallback for old browsers */
+                            background: #84fab0;
+
+                            /* Chrome 10-25, Safari 5.1-6 */
+                            background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+
+                            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                            background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+                        }
                     </style>
 
-                    <script>
-                        let kq = document.getElementById("tongtien")
-                        kq.innerHTML = "thisss"
-                    </script>
+
                 </head>
 
                 <body>
@@ -132,8 +189,10 @@
                                         <c:if test="${not empty pageContext.request.userPrincipal}">
 
 
-                                            <a href="#" class="position-relative me-4 my-auto">
+                                            <a href="/cart" class="position-relative me-4 my-auto">
+
                                                 <i class="fa fa-shopping-bag fa-2x"></i>
+
                                                 <span
                                                     class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
                                                     style="top: -5px; left: 15px; height: 20px; min-width: 20px;">${SumCarts}</span>
@@ -156,9 +215,10 @@
                                                                 style="margin-left: 16px; font-size: 12px; box-shadow: 1px 1px 12px black; color: grey;">${pageContext.request.userPrincipal.name}</span>
                                                         </div>
                                                     </div>
-                                                    <a href="overView" style="font-size: 12px;">Quản Lý Tài Khoản</a>
+                                                    <a href="#" style="font-size: 12px;">Quản Lý Tài Khoản</a>
                                                     <a href="/purcharseHist" style="font-size: 12px;">Lịch Sử Mua
                                                         Hàng</a>
+                                                    <hr>
                                                     <hr>
                                                     <form action="/logout" method="post">
                                                         <div>
@@ -183,8 +243,8 @@
                                                     style="color: black; text-decoration: none; box-shadow: 3px 3px 3px red; background-color: wheat;">Đăng
                                                     nhập</a>
                                                 <!-- <span
-                                                    class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                                                    style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span> -->
+                                               class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+                                               style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span> -->
                                             </a>
                                         </c:if>
                                     </div>
@@ -219,153 +279,74 @@
                     <!-- Modal Search End -->
 
 
-                    <!-- Single Page Header start -->
-                    <div class="container-fluid page-header py-5">
-                        <h1 class="text-center text-white display-6">Giỏ Hàng Của Bạn</h1>
-
-                    </div>
-                    <!-- Single Page Header End -->
 
 
-                    <!-- Cart Page Start -->
-                    <div class="container-fluid py-5">
-                        <div class="container py-5">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <!-- <th scope="col">Id</th> -->
-                                            <th scope="col">Sản Phẩm</th>
-                                            <th scope="col">Tên Sản Phẩm</th>
-                                            <th scope="col">Giá</th>
-                                            <th scope="col">Số Lượng</th>
-                                            <th scope="col">Tổng tiền</th>
-                                            <th scope="col">Tùy chọn</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="cartDetail" items="${cartDetails}">
-                                            <tr>
-                                                <form:form action="/delete-product-from-cart" method="post"
-                                                    modelAttribute="deleteDetail">
-                                                    <div>
-                                                        <input type="hidden" name="${_csrf.parameterName}"
-                                                            value="${_csrf.token}" />
-                                                    </div>
-                                                    <td style="display: none;">
-                                                        <p class="mb-0 mt-4">
-                                                            <form:input type="text" value="${cartDetail.id}"
-                                                                path="id" />
-                                                        </p>
-                                                    </td>
-                                                    <th scope="row">
-                                                        <div class="d-flex align-items-center">
-                                                            <img src="/images/product/${cartDetail.products.image}"
-                                                                class="img-fluid me-5 rounded-circle"
-                                                                style="width: 80px; height: 80px;" alt="">
-                                                        </div>
-                                                    </th>
 
-                                                    <td>
-                                                        <p class="mb-0 mt-4">${cartDetail.products.name}</p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="mb-0 mt-4">
+                    <main id="main" class="main" style="margin-top: 12%; margin-left: 1%;">
 
-                                                            <fmt:formatNumber type="number"
-                                                                value="${cartDetail.products.price}" />Vnd
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <div class="input-group quantity mt-4" style="width: 100px;">
-                                                            <!-- <div class="input-group-btn">
-                                                                <button
-                                                                    class="btn btn-sm btn-minus rounded-circle bg-light border">
-                                                                    <i class="fa fa-minus"></i>
-                                                                </button>
-                                                            </div> -->
-                                                            <form:input type="text"
-                                                                class="form-control form-control-sm text-center border-0"
-                                                                value="${cartDetail.quantity}" path="quantity" />
-                                                            <!-- <div class="input-group-btn">
-                                                                <button
-                                                                    class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                                    <i class="fa fa-plus"></i>
-                                                                </button>
-                                                            </div> -->
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <p class="mb-0 mt-4" id="tongtien">
+                        <section class="section profile">
+                            <div class="row">
 
-                                                            <fmt:formatNumber type="number"
-                                                                value="${cartDetail.price*cartDetail.quantity}" />
-                                                            Vnd
-                                                        </p>
-                                                    </td>
-                                                    <td>
 
-                                                        <button class="btn btn-md rounded-circle bg-light border mt-4"
-                                                            type="submit">
-                                                            <i class="fa fa-times text-danger"></i>
-                                                            <button>
-                                                </form:form>
+                                <div class="col-xl-12"
+                                    style="display: flex; flex-direction: column; align-items: center;">
 
-                                                </td>
 
-                                            </tr>
-                                        </c:forEach>
 
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- <div class="mt-5">
-                                <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4"
-                                    placeholder="Coupon Code">
-                                <button class="btn border-secondary rounded-pill px-4 py-3 text-primary"
-                                    type="button">Apply
-                                    Coupon</button>
-                            </div> -->
-                            <div class="row g-4 justify-content-start">
-                                <div class="col-8"></div>
-                                <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
-                                    <div class="bg-light rounded">
-                                        <div class="p-4">
-                                            <h1 class="display-6 mb-4">Thông Tin <span class="fw-normal">Đơn Hàng</span>
-                                            </h1>
-                                            <div class="d-flex justify-content-between mb-4">
-                                                <h5 class="mb-0 me-4">Giá Tiền</h5>
-                                                <p class="mb-0">
-                                                    <fmt:formatNumber type="number" value="${SumM}" />
-                                                    Vnd
-                                                </p>
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <h5 class="mb-0 me-4">Giảm Giá</h5>
-                                                <div class="">
-                                                    <p class="mb-0">Chiết Khấu: 0Vnd</p>
-                                                </div>
-                                            </div>
-                                            <p class="mb-0 text-end">Phí Vận Chuyển: 0Vnd</p>
+
+
+
+                                    <form:form action="/updateAccF" method="post" modelAttribute="updateAcc"
+                                        enctype="multipart/form-data">
+                                        <!-- Email input -->
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <form:input type="text" id="form2Example1" class="form-control"
+                                                style="width: 101%;" value="${user.fullname}" path="fullname" />
+                                            <label class="form-label" for="form2Example1">Họ Tên</label>
                                         </div>
-                                        <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                                            <h5 class="mb-0 ps-4 me-4">Tạm Tính</h5>
-                                            <p class="mb-0 pe-4">
-                                                <fmt:formatNumber type="number" value="${SumM}" />
-                                                Vnd
-                                            </p>
+
+                                        <!-- Password input -->
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <form:input type="text" id="form2Example2" class="form-control"
+                                                style="width: 101%;" value="${user.address}" path="address" />
+                                            <label class="form-label" for="form2Example2">Địa chỉ</label>
                                         </div>
-                                        <form:form action="/checkout" method="get">
-                                            <button
-                                                class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
-                                                type="submit">Xác Nhận Đơn Hàng</button>
-                                        </form:form>
-                                    </div>
+
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <form:input type="text" id="form2Example2" class="form-control"
+                                                style="width: 101%;" value="${user.phone}" path="phone" />
+                                            <label class="form-label" for="form2Example2">Số điện thoại</label>
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="file" id="fileToUpload" name="fileup">
+                                            <label class="form-label" for="form2Example2">Cập nhật ảnh đại diện</label>
+                                        </div>
+
+                                        <!-- 2 column grid layout for inline styling -->
+
+
+                                        <!-- Submit button -->
+                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                                            class="btn btn-primary btn-block mb-4">Cập nhật</button>
+
+                                        <!-- Register buttons -->
+                                        <div class="text-center">
+
+                                            <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                                                class="btn btn-link btn-floating mx-1">
+                                                <i class="fab fa-github"></i>
+                                            </button>
+                                        </div>
+                                    </form:form>
+
+
+
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Cart Page End -->
+                        </section>
+                    </main>
 
 
                     <!-- Footer Start -->
@@ -478,7 +459,21 @@
                             class="fa fa-arrow-up"></i></a>
 
 
-                    <!-- JavaScript Libraries -->
+
+
+                    <!-- Vendor JS Files -->
+                    <script src="/js/client/apexcharts.min.js"></script>
+                    <script src="/js/client/bootstrap.bundle.min.js"></script>
+                    <script src="/js/client/chart.umd.js"></script>
+                    <script src="/js/client/echarts.min.js"></script>
+                    <script src="/js/client/quill.js"></script>
+                    <script src="/js/client/simple-datatables.js"></script>
+                    <script src="/js/client/tinymce.min.js"></script>
+                    <script src="/js/client/validate.js"></script>
+
+                    <!-- Template Main JS File -->
+                    <script src="assets/js/mainsss.js"></script>
+
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
                     <script src="/js/client/easing.min.js"></script>
@@ -492,6 +487,7 @@
 
                     <!-- Template Javascript -->
                     <script src="/js/client/main.js"></script>
+
                 </body>
 
                 </html>

@@ -51,16 +51,41 @@
                 </nav>
                 <div id="layoutSidenav">
                     <div id="layoutSidenav_nav">
+
                         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                             <div class="sb-sidenav-menu">
                                 <div class="nav">
                                     <div class="sb-sidenav-menu-heading">Cơ bản</div>
-                                    z
+                                    <a class="nav-link" href="/adminDash">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                        Dashboard
+                                    </a>
+                                    <a class="nav-link" href="/table/user">
+                                        <div class=" sb-nav-link-icon"><i class="fa-solid fa-users"></i>
+                                        </div>
+                                        Quản lý người dùng
+                                    </a>
+                                    <a class="nav-link" href="/adminProduct" style="background-color: brown;">
+                                        <div class="sb-nav-link-icon"><i class="fa-brands fa-product-hunt"></i></div>
+                                        Quản lý sản phẩm
+                                    </a>
+                                    <a class="nav-link" href="/adminOrder">
+                                        <div class="sb-nav-link-icon"><i class="fa-regular fa-newspaper"></i></div>
+                                        Quản lý đơn hàng
+                                    </a>
                                 </div>
-                                <div class="sb-sidenav-footer">
-                                    <div class="small">Logged in as:</div>
-                                    Start Bootstrap
+                                <div class="nav">
+                                    <div class="sb-sidenav-menu-heading">Khác</div>
+                                    <a class="nav-link" href="/cmtCus">
+                                        <div class="sb-nav-link-icon"><i class="fa-solid fa-house-user"></i></i></div>
+                                        Phản hồi khách hàng
+                                    </a>
                                 </div>
+                            </div>
+                            <div class="sb-sidenav-footer">
+                                <div class="small">Logged in as:</div>
+                                Start Bootstrap
+                            </div>
                         </nav>
                     </div>
                     <div id="layoutSidenav_content">

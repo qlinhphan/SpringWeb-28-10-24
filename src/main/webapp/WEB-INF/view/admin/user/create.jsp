@@ -53,7 +53,7 @@
                                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                         Dashboard
                                     </a>
-                                    <a class="nav-link" href="/table/user" id="as">
+                                    <a class="nav-link" href="/table/user" id="as" style="background-color: brown;">
                                         <div class=" sb-nav-link-icon"><i class="fa-solid fa-users"></i>
                                         </div>
                                         Quản lý người dùng

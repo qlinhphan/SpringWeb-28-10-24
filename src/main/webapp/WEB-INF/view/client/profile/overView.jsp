@@ -66,7 +66,7 @@
                     <link href="/css/client/bootstrap.min.css" rel="stylesheet">
 
                     <!-- Template Stylesheet -->
-                    <link href="css/client/style.css" rel="stylesheet">
+                    <link href="/css/client/style.css" rel="stylesheet">
 
 
                     <!-- Template Main CSS File -->
@@ -123,10 +123,7 @@
                         }
                     </style>
 
-                    <script>
-                        let kq = document.getElementById("tongtien")
-                        kq.innerHTML = "thisss"
-                    </script>
+
                 </head>
 
                 <body>
@@ -187,8 +184,7 @@
                                                 <div class="dropdown-content">
                                                     <div>
                                                         <div style="margin-left: 16px;"><img
-                                                                src="/images/avatar/1730739674234-but-xoa-Artline-600x600.jpg"
-                                                                alt=""
+                                                                src="/images/avatar/${ud.avatar}" alt=""
                                                                 style="width: 50xp; height: 50px; border-radius: 50%;">
                                                         </div>
                                                         <div>
@@ -267,215 +263,62 @@
 
                         <section class="section profile">
                             <div class="row">
-                                <div class="col-xl-4">
 
-                                    <div class="card">
-                                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                                            <img src="/images/avatar/${user.avatar}" alt="Profile"
-                                                class="rounded-circle">
-                                            <h2>${user.fullname}</h2>
+                                <div class="col-xl-12">
 
-                                        </div>
-                                    </div>
 
-                                </div>
 
-                                <div class="col-xl-8">
 
-                                    <div class="card">
-                                        <div class="card-body pt-3">
-                                            <!-- Bordered Tabs -->
-                                            <ul class="nav nav-tabs nav-tabs-bordered">
-
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" data-bs-toggle="tab"
-                                                        data-bs-target="#profile-overview" href="#gioi-thieu">Giới
-                                                        thiệu</a>
-                                                </li>
-
-                                                <li class="nav-item">
-                                                    <a class="nav-link" data-bs-toggle="tab"
-                                                        data-bs-target="#profile-edit" href="#chinh-sua">Chỉnh Sửa</a>
-                                                </li>
-
-                                                <li class="nav-item">
-                                                    <a class="nav-link" data-bs-toggle="tab"
-                                                        data-bs-target="#profile-change-password"
-                                                        href="#doi-mat-khau">Đổi Mật Khẩu</a>
-                                                </li>
-
-                                            </ul>
-                                            <div class="tab-content pt-2">
-
-                                                <div class="tab-pane fade show active profile-overview"
-                                                    id="profile-overview">
-                                                    <h5 class="card-title">
-                                                        Giới Thiệu Chung
-                                                    </h5>
-                                                    <p class="small fst-italic">Đây là một người sử dụng với vai trò
-                                                        <span style="color: red">${user.roles.name}</span> và có email
-                                                        là <span style="color: red;">${user.email}</span>
+                                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                                        <div class="col">
+                                            <div class="card">
+                                                <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp"
+                                                    class="card-img-top" alt="Hollywood Sign on The Hill" />
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Xem thông tin tài khoản</h5>
+                                                    <p class="card-text">
+                                                        Nhấn vào đây để xem chi tiết thông tin tài khoản của bạn.
                                                     </p>
-
-                                                    <h5 class="card-title">Thông Tin Chi Tiết</h5>
-
-                                                    <div class="row">
-                                                        <div class="col-lg-3 col-md-4 label ">Địa Chỉ</div>
-                                                        <div class="col-lg-9 col-md-8">${user.address}</div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-lg-3 col-md-4 label">Họ Tên</div>
-                                                        <div class="col-lg-9 col-md-8">${user.fullname}
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-lg-3 col-md-4 label">Số Điện Thoại</div>
-                                                        <div class="col-lg-9 col-md-8">${user.phone}</div>
-                                                    </div>
-
-
-
-
-
+                                                    <button>
+                                                        <a href="/viewAcc">click</a>
+                                                    </button>
                                                 </div>
-
-                                                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
-                                                    <!-- Profile Edit Form -->
-                                                    <form:form action="/edit/inf" method="post" modelAttribute="editInf"
-                                                        enctype="multipart/form-data">
-                                                        <div class="row mb-3">
-                                                            <label for="profileImage"
-                                                                class="col-md-4 col-lg-3 col-form-label">Ảnh
-                                                                Khác</label>
-                                                            <div class="col-md-8 col-lg-9">
-                                                                <img src="/images/avatar/${user.avatar}" alt="Profile">
-                                                                <div class="pt-2">
-                                                                    <input href="#" class="btn btn-primary btn-sm"
-                                                                        title="Upload new profile image" type="file"
-                                                                        name="fileName" />
-                                                                    <a href="#" class="btn btn-danger btn-sm"
-                                                                        title="Remove my profile image"><i
-                                                                            class="bi bi-trash"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row mb-3">
-                                                            <label for="fullName"
-                                                                class="col-md-4 col-lg-3 col-form-label">Địa Chỉ</label>
-                                                            <div class="col-md-8 col-lg-9">
-                                                                <form:input name="fullName" type="text"
-                                                                    class="form-control" id="fullName"
-                                                                    value="${user.address}" path="address" />
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row mb-3">
-                                                            <label for="company"
-                                                                class="col-md-4 col-lg-3 col-form-label">Họ Tên</label>
-                                                            <div class="col-md-8 col-lg-9">
-                                                                <form:input name="company" type="text"
-                                                                    class="form-control" id="company"
-                                                                    value="${user.fullname}" path="fullname" />
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row mb-3">
-                                                            <label for="company"
-                                                                class="col-md-4 col-lg-3 col-form-label">Email</label>
-                                                            <div class="col-md-8 col-lg-9">
-                                                                <form:input name="company" type="text"
-                                                                    class="form-control" id="company"
-                                                                    value="${user.email}" path="email" />
-                                                            </div>
-                                                        </div>
-
-
-                                                        <div class="row mb-3">
-                                                            <label for="Country"
-                                                                class="col-md-4 col-lg-3 col-form-label">Số Điện
-                                                                Thoại</label>
-                                                            <div class="col-md-8 col-lg-9">
-                                                                <form:input name="country" type="text"
-                                                                    class="form-control" id="Country"
-                                                                    value="${user.phone}" path="phone" />
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <div class="text-center">
-                                                            <button type="submit" class="btn btn-primary">Lưu Thay
-                                                                Đổi</button>
-                                                        </div>
-                                                    </form:form>
-
-                                                </div>
-
-                                                <div class="tab-pane fade pt-3" id="profile-change-password">
-                                                    <!-- Change Password Form -->
-                                                    <form:form action="change" method="post"
-                                                        modelAttribute="changePass">
-                                                        <div class="row mb-3">
-                                                            <label for="currentPassword"
-                                                                class="col-md-4 col-lg-3 col-form-label">Mật khẩu hiện
-                                                                tại</label>
-                                                            <div class="col-md-8 col-lg-9">
-                                                                <form:input name="password" type="texttext"
-                                                                    class="form-control" id="currentPassword"
-                                                                    path="currentPass" />
-                                                            </div>
-                                                            <div>
-                                                                <p style="color: red">${er}</p>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row mb-3">
-                                                            <label for="newPassword"
-                                                                class="col-md-4 col-lg-3 col-form-label">Mật khẩu
-                                                                mới</label>
-                                                            <div class="col-md-8 col-lg-9">
-                                                                <form:input name="newpassword" type="texttext"
-                                                                    class="form-control" id="newPassword"
-                                                                    path="newPass" />
-                                                            </div>
-                                                            <div>
-                                                                <p style="color: red">${ers}</p>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row mb-3">
-                                                            <label for="renewPassword"
-                                                                class="col-md-4 col-lg-3 col-form-label">Nhập
-                                                                lại</label>
-                                                            <div class="col-md-8 col-lg-9">
-                                                                <form:input name="renewpassword" type="text"
-                                                                    class="form-control" id="renewPassword"
-                                                                    path="rePass" />
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-center">
-                                                            <button type="submit" class="btn btn-primary">Change
-                                                                Password</button>
-                                                        </div>
-                                                    </form:form>
-
-                                                </div>
-
-                                            </div><!-- End Bordered Tabs -->
-
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="col">
+                                            <div class="card">
+                                                <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp"
+                                                    class="card-img-top" alt="Palm Springs Road" />
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Thay đổi thông tin</h5>
+                                                    <p class="card-text">
+                                                        Nhấn vào đây để thay đổi thông tin tài khoản của bạn.
+                                                    </p>
+                                                    <button>
+                                                        <a href="/updateAcc">click</a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="card">
+                                                <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp"
+                                                    class="card-img-top" alt="Los Angeles Skyscrapers" />
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Thay đổi mật khẩu</h5>
+                                                    <p class="card-text">Nhấn vào đây để thay đổi mật khẩu của bạn.</p>
+                                                    <button>
+                                                        <a href="/updatePass">click</a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
                         </section>
-
                     </main>
 
 
@@ -592,14 +435,14 @@
 
 
                     <!-- Vendor JS Files -->
-                    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-                    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-                    <script src="assets/vendor/chart.js/chart.umd.js"></script>
-                    <script src="assets/vendor/echarts/echarts.min.js"></script>
-                    <script src="assets/vendor/quill/quill.js"></script>
-                    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-                    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-                    <script src="assets/vendor/php-email-form/validate.js"></script>
+                    <script src="/js/client/apexcharts.min.js"></script>
+                    <script src="/js/client/bootstrap.bundle.min.js"></script>
+                    <script src="/js/client/chart.umd.js"></script>
+                    <script src="/js/client/echarts.min.js"></script>
+                    <script src="/js/client/quill.js"></script>
+                    <script src="/js/client/simple-datatables.js"></script>
+                    <script src="/js/client/tinymce.min.js"></script>
+                    <script src="/js/client/validate.js"></script>
 
                     <!-- Template Main JS File -->
                     <script src="assets/js/mainsss.js"></script>

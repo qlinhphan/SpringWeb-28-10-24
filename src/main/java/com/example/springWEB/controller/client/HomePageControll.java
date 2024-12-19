@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.data.domain.Page;
@@ -60,9 +61,107 @@ public class HomePageControll {
         Users users = this.userService.findUsersByEmail(email);
         model.addAttribute("user", users);
         Cart cart = this.cartService.findCartByUser(users);
-        int sumCart = 0;
+        int sumCart;
         if (cart == null) {
-            System.out.println(userDetails.getPassword());
+            sumCart = 0;
+
+            List<OrderDetail> orderDetail = this.orderDetailService.findAllOrderDetail();
+            List<Long> idProducts = new ArrayList<>();
+            for (OrderDetail orderDetail2 : orderDetail) {
+                System.out.println(orderDetail2.getProducts().getName());
+                System.out.println(orderDetail2.getProducts().getId());
+                idProducts.add(orderDetail2.getProducts().getId());
+            }
+            System.out.println(idProducts);
+
+            // bien dem so lan xuat hien moi san pham
+            double dem;
+
+            // san pham nao xuat hien nhieu nhat -> san pham nguoi ta quan tam nhat
+            double maxCount = 0;
+
+            // id tuong ung cua san pham xuat hien trong nhieu nhat trong cac don cua khach
+            // hang
+            long idProductCare = 1;
+            for (Long long1 : idProducts) {
+                dem = 0;
+                for (Long long2 : idProducts) {
+                    if (long1 == long2) {
+                        dem++;
+                    }
+                }
+                System.out.println("SO " + long1 + " XUAT HIEN: " + dem);
+                if (maxCount < dem) {
+                    maxCount = dem;
+                    idProductCare = long1;
+                }
+            }
+            System.out.println("SAN PHAM XUAT HIEN NHIEU NHAT: " + maxCount);
+            System.out.println("ID TUONG UNG CUA SAN PHAM DO: " + idProductCare);
+            Products productCare = this.productsService.findProductById(idProductCare);
+            model.addAttribute("productCare", productCare);
+
+            List<Users> user = this.userService.findAllUser();
+            int countUser = 0;
+            for (Users users2 : user) {
+                if (users2 != null) {
+                    countUser++;
+                }
+            }
+            model.addAttribute("countUser", countUser);
+
+            List<Oders> od = this.orderService.findAllOders();
+            int countOrder = 0;
+            for (Oders oders : od) {
+                if (oders != null && oders.getStatus().equals("Finish")) {
+                    countOrder++;
+                }
+            }
+            model.addAttribute("countOrder", countOrder);
+
+            // tim ra nguoi dung tich cuc nhat
+            List<Oders> ods = this.orderService.findAllOders();
+            for (Oders oders : ods) {
+                System.out.println("Id User: " + oders.getUsers().getId());
+            }
+            int demIdUser;
+            int max = 0; // dem cac oder xem nguoi nao xuat hien nhieu nhat
+            long isId = 0;
+            for (Oders oders : ods) {
+                demIdUser = 0;
+                for (Oders oders2 : ods) {
+                    if (oders.getUsers().getId() == oders2.getUsers().getId()) {
+                        demIdUser++;
+                    }
+                    if (max < demIdUser) {
+                        max = demIdUser;
+                        isId = oders.getUsers().getId();
+                    }
+
+                }
+                System.out.println("Id User " + oders.getUsers().getId() + ": " + demIdUser);
+                System.out.println("So Lan XUat Hien Nhieu Nhat: " + max);
+                System.out.println("DO LA ID CUA NGUOI DUNG: " + isId);
+                Users isUser = this.userService.findUserById(isId);
+                model.addAttribute("isUser", isUser);
+            }
+
+            // tim ra khach hang dac biet nhat
+            List<Oders> ode = this.orderService.findAllOders();
+            double maxMoney = 0;
+            long isOrderId = 0;
+            for (Oders oders : ode) {
+                System.out.println(oders.getTotalPrice());
+            }
+            for (Oders oders : ode) {
+                if (maxMoney < oders.getTotalPrice()) {
+                    maxMoney = oders.getTotalPrice();
+                    isOrderId = oders.getId();
+                }
+            }
+            Oders isOrder = this.orderService.findOrderById(isOrderId);
+            model.addAttribute("isOrder", isOrder);
+            System.out.println("So tien nhieu nhat duoc su dung: " + maxMoney);
             return "/client/show";
         }
 
@@ -114,7 +213,7 @@ public class HomePageControll {
         List<Oders> od = this.orderService.findAllOders();
         int countOrder = 0;
         for (Oders oders : od) {
-            if (oders != null) {
+            if (oders != null && oders.getStatus().equals("Finish")) {
                 countOrder++;
             }
         }
@@ -123,85 +222,63 @@ public class HomePageControll {
         sumCart = cart.getSum();
         session.setAttribute("SumCarts", sumCart);
 
+        // tim ra nguoi dung tich cuc nhat
+        List<Oders> ods = this.orderService.findAllOders();
+        for (Oders oders : ods) {
+            System.out.println("Id User: " + oders.getUsers().getId());
+        }
+        int demIdUser;
+        int max = 0; // dem cac oder xem nguoi nao xuat hien nhieu nhat
+        long isId = 0;
+        for (Oders oders : ods) {
+            demIdUser = 0;
+            for (Oders oders2 : ods) {
+                if (oders.getUsers().getId() == oders2.getUsers().getId()) {
+                    demIdUser++;
+                }
+                if (max < demIdUser) {
+                    max = demIdUser;
+                    isId = oders.getUsers().getId();
+                }
+
+            }
+            System.out.println("Id User " + oders.getUsers().getId() + ": " + demIdUser);
+            System.out.println("So Lan XUat Hien Nhieu Nhat: " + max);
+            System.out.println("DO LA ID CUA NGUOI DUNG: " + isId);
+            Users isUser = this.userService.findUserById(isId);
+            model.addAttribute("isUser", isUser);
+        }
+
+        // tim ra khach hang dac biet nhat
+        List<Oders> ode = this.orderService.findAllOders();
+        double maxMoney = 0;
+        long isOrderId = 0;
+        for (Oders oders : ode) {
+            System.out.println(oders.getTotalPrice());
+        }
+        for (Oders oders : ode) {
+            if (maxMoney < oders.getTotalPrice()) {
+                maxMoney = oders.getTotalPrice();
+                isOrderId = oders.getId();
+            }
+        }
+        Oders isOrder = this.orderService.findOrderById(isOrderId);
+        model.addAttribute("isOrder", isOrder);
+        System.out.println("So tien nhieu nhat duoc su dung: " + maxMoney);
+
         return "/client/show";
     }
 
-    // @GetMapping("/buy")
-    // public String Shop(Model model, @RequestParam(value = "page", defaultValue =
-    // "1") int page,
-    // @RequestParam(value = "name", defaultValue = "") String name) {
-    // org.springframework.data.domain.Pageable pagea = PageRequest.of(page - 1, 6);
-    // System.out.println(name);
-    // if (name.isEmpty()) {
-    // Page<Products> pagePro = this.productsService.PaginationProduct(pagea);
-    // List<Products> ListPro = pagePro.getContent();
-    // model.addAttribute("totalPage", pagePro.getTotalPages());
-    // model.addAttribute("currentPage", page);
-    // model.addAttribute("dsProducts", ListPro);
-    // return "/client/shop";
-    // }
-    // String[] dataName;
-    // dataName = name.split(",");
-    // List<String> dataNames = new ArrayList<>();
-    // for (String string : dataName) {
-    // dataNames.add(string);
-    // }
-    // Page<Products> dsProductPage;
-    // dsProductPage = this.productsService.paginationQueryByManyFactory(dataNames,
-    // pagea);
-    // List<Products> dsProducts = dsProductPage.getContent();
-
-    // model.addAttribute("totalPage", dsProductPage.getTotalPages());
-    // System.out.println("dsPage: " + dsProductPage.getTotalPages());
-    // model.addAttribute("currentPage", page);
-    // model.addAttribute("dsProducts", dsProducts);
-    // return "/client/shop";
-    // }
-
-    // @GetMapping("/buy") ----------------------------------------------------->
-    // //theo factory
-    // public String fetch(Model model, ProductCriterialDTO proCri) {
-    // String page = proCri.getPage();
-    // if (page == null) {
-    // page = "1";
-    // }
-    // int pages = Integer.parseInt(page);
-
-    // Pageable pab = PageRequest.of(pages - 1, 10);
-
-    // List<String> nameFact = new ArrayList<>();
-
-    // if (proCri.getFact() == null) {
-    // Page<Products> pagePro = this.productsService.PaginationProduct(pab);
-    // List<Products> listPro = pagePro.getContent();
-    // model.addAttribute("totalPage", pagePro.getTotalPages());
-    // model.addAttribute("currentPage", pages);
-    // model.addAttribute("dsProducts", listPro);
-    // return "/client/shop";
-    // }
-
-    // String[] ListFact = proCri.getFact().split(",");
-
-    // for (String string : ListFact) {
-    // nameFact.add(string);
-    // }
-
-    // Page<Products> pagePro =
-    // this.productsService.paginationQuerySelectManyInAllFactory(nameFact, pab);
-    // List<Products> listPro = pagePro.getContent();
-
-    // model.addAttribute("totalPage", pagePro.getTotalPages());
-    // model.addAttribute("currentPage", pages);
-    // model.addAttribute("dsProducts", listPro);
-
-    // return "/client/shop";
-    // }
-
+    // @RequestParam(value = "page", defaultValue = "1") String pages,
     @GetMapping("/buy")
-    public String fetch(Model model, ProductCriterialDTO proCri,
+    public String fetch(Model model, ProductCriterialDTO proCri, @RequestParam Map<String, String> params,
             @RequestParam(value = "sort", defaultValue = "khong-sap-xep") String sort,
-            @RequestParam(value = "page", defaultValue = "1") String pages) {
-        int page = Integer.parseInt(pages);
+            HttpSession session, @AuthenticationPrincipal UserDetails ud) {
+        model.addAttribute("ud", this.userService.findUsersByEmail(ud.getUsername()));
+        int page = Integer.parseInt(proCri.getPage());
+
+        System.out.println("PAGE: " + page);
+
         Pageable pab = null;
         if (proCri.getSort() == null) {
             proCri.setSort(sort);
@@ -225,7 +302,8 @@ public class HomePageControll {
                 Page<Products> pagePro = this.productsService.PaginationProduct(pab);
                 List<Products> listPro = pagePro.getContent();
                 model.addAttribute("totalPage", pagePro.getTotalPages());
-                System.out.println(pagePro.getTotalPages());
+                // System.out.println();
+                System.out.println("TOTAL PAGE: " + pagePro.getTotalPages());
                 model.addAttribute("currentPage", page);
                 model.addAttribute("dsProducts", listPro);
                 return "/client/shop";
@@ -255,6 +333,8 @@ public class HomePageControll {
             }
             Page<Products> pagePro = this.productsService.paginationQueryArrMoney(nameMoney, pab);
             List<Products> listPro = pagePro.getContent();
+
+            System.out.println("TOTAL PAGE: " + pagePro.getTotalPages());
             model.addAttribute("totalPage", pagePro.getTotalPages());
             model.addAttribute("currentPage", page);
             model.addAttribute("dsProducts", listPro);

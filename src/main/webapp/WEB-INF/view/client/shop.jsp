@@ -122,7 +122,7 @@
                                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                                     <div class="navbar-nav mx-auto">
                                         <a href="/" class="nav-item nav-link active">Trang Chủ</a>
-                                        <a href="/shop" class="nav-item nav-link">Của Hàng</a>
+                                        <a href="/buy" class="nav-item nav-link">Của Hàng</a>
                                     </div>
                                     <div class="d-flex m-3 me-0">
                                         <c:if test="${not empty pageContext.request.userPrincipal}">
@@ -145,8 +145,7 @@
                                                 <div class="dropdown-content">
                                                     <div>
                                                         <div style="margin-left: 16px;"><img
-                                                                src="/images/avatar/1730739674234-but-xoa-Artline-600x600.jpg"
-                                                                alt=""
+                                                                src="/images/avatar/${ud.avatar}" alt=""
                                                                 style="width: 50xp; height: 50px; border-radius: 50%;">
                                                         </div>
                                                         <div>
@@ -154,7 +153,7 @@
                                                                 style="margin-left: 16px; font-size: 12px; box-shadow: 1px 1px 12px black; color: grey;">${pageContext.request.userPrincipal.name}</span>
                                                         </div>
                                                     </div>
-                                                    <a href="#" style="font-size: 12px;">Quản Lý Tài Khoản</a>
+                                                    <a href="/overView" style="font-size: 12px;">Quản Lý Tài Khoản</a>
                                                     <a href="/purcharseHist" style="font-size: 12px;">Lịch Sử Mua
                                                         Hàng</a>
                                                     <hr>
@@ -657,11 +656,25 @@
                                                         </c:if>
                                                         <!-- name=${name} -->
 
-                                                        <c:forEach begin="0" end="${totalPage-1}" varStatus="loop">
-                                                            <a href="/buy?page=${loop.index+1}"
-                                                                class="${(loop.index+1) eq currentPage ? 'active rounded' : 'rounded'}"
-                                                                data-page="${loop.index+1}">${loop.index+1}</a>
-                                                        </c:forEach>
+
+
+
+                                                        <c:if test="${totalPage==0}">
+                                                            <p>Không tìm thấy sản phẩm nào</p>
+                                                        </c:if>
+
+                                                        <c:if test="${totalPage>0}">
+                                                            <c:forEach begin="0" end="${totalPage-1}" varStatus="loop">
+
+                                                                <a href="/buy?page=${loop.index+1}"
+                                                                    class="${(loop.index+1) eq currentPage ? 'active rounded' : 'rounded'}"
+                                                                    data-page="${loop.index+1}">${loop.index+1}</a>
+
+                                                            </c:forEach>
+                                                        </c:if>
+
+
+
 
 
 
