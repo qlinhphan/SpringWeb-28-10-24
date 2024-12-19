@@ -2,6 +2,7 @@
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
                 <!DOCTYPE html>
                 <html lang="en">
 
@@ -22,6 +23,12 @@
                         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
                         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
                         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+                    <style>
+                        .bold {
+                            background-color: brown;
+                        }
+                    </style>
                 </head>
 
                 <body class="sb-nav-fixed">
@@ -45,33 +52,35 @@
                             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                                 <div class="sb-sidenav-menu">
                                     <div class="nav">
-                                        <div class="sb-sidenav-menu-heading">Core</div>
-                                        <a class="nav-link" href="/adminDash">
+                                        <div class="sb-sidenav-menu-heading">Cơ bản</div>
+                                        <a class="nav-link" href="/adminDash" id="a">
                                             <div class="sb-nav-link-icon"><i class="fa-solid fa-house-user"></i></i>
                                             </div>
                                             Dashboard
                                         </a>
-                                        <a class="nav-link" href="/table/user">
+                                        <a class="nav-link" href="/table/user" id="b">
                                             <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
-                                            User
+                                            Quản lý người dùng
                                         </a>
-                                        <a class="nav-link" href="/adminProduct">
+                                        <a class="nav-link" href="/adminProduct" id="c">
                                             <div class="sb-nav-link-icon"><i class="fa-brands fa-product-hunt"></i>
                                             </div>
-                                            Product
+                                            Quản lý sản phẩm
+
                                         </a>
-                                        <a class="nav-link" href="adminOrder">
+                                        <a class="nav-link" href="adminOrder" id="d">
                                             <div class="sb-nav-link-icon"><i class="fa-regular fa-newspaper"></i></div>
-                                            Order
+                                            Quản lý đơn hàng
+
                                         </a>
                                     </div>
 
                                     <div class="nav">
-                                        <div class="sb-sidenav-menu-heading">Different</div>
+                                        <div class="sb-sidenav-menu-heading">Khác</div>
                                         <a class="nav-link" href="/cmtCus">
                                             <div class="sb-nav-link-icon"><i class="fa-solid fa-house-user"></i></i>
                                             </div>
-                                            Customer's Cmt
+                                            Phản hồi khách hàng
                                         </a>
                                     </div>
                                 </div>
@@ -219,6 +228,11 @@
                         for (let i = 0; i < dataDate.length; i++) {
                             dataDateFinal.push(dataDate[i].split(" ")[0])    //cut cai gio di
                         }
+                        dataDateFinal.sort((a, b) => {
+                            let dateA = new Date(a);
+                            let dateB = new Date(b);
+                            return dateA - dateB; // Sắp xếp tăng dần
+                        });
 
                         //viet o day
 
@@ -359,7 +373,7 @@
                                 if (months[i] === months[j]) {
                                     months.splice(j, 1)
                                     moneys.splice(j, 1)
-                                    j--
+                                    j--;
                                 }
                             }
                         }
@@ -498,9 +512,9 @@
 
                                 datasets: [{
                                     label: "Revenue",
-                                    backgroundColor: "rgba(2,117,216,1)",
+                                    backgroundColor: "",
                                     borderColor: "rgba(2,117,216,1)",
-                                    boderWidth: 5,
+                                    boderWidth: 10,
                                     data: moneyy,
                                 }],
                             },
@@ -520,8 +534,8 @@
                                     yAxes: [{
                                         ticks: {
                                             min: 0,
-                                            max: 400000000,
-                                            maxTicksLimit: 5
+                                            max: 100000000,
+                                            maxTicksLimit: 20
                                         },
                                         gridLines: {
                                             display: true
@@ -536,6 +550,17 @@
 
 
 
+                    </script>
+
+                    <script>
+                        const currentPath = window.location.pathname;
+                        if (currentPath.includes("adminDash")) {
+                            const adminLink = document.getElementById('a');
+                            // alert("yes")
+                            if (adminLink) {
+                                adminLink.classList.add("bold");
+                            }
+                        }
                     </script>
 
 

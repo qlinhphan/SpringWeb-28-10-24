@@ -37,7 +37,7 @@
                     <link href="/css/client/style.css" rel="stylesheet">
                     <style>
                         .dropbtn {
-                            background-color: #4CAF50;
+                            background-color: #4c84af;
                             color: white;
                             padding: 16px;
                             font-size: 16px;
@@ -122,7 +122,7 @@
                                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                                     <div class="navbar-nav mx-auto">
                                         <a href="/" class="nav-item nav-link active">Trang Chủ</a>
-                                        <a href="/shop" class="nav-item nav-link">Của Hàng</a>
+                                        <a href="/buy" class="nav-item nav-link">Của Hàng</a>
                                     </div>
                                     <div class="d-flex m-3 me-0">
                                         <c:if test="${not empty pageContext.request.userPrincipal}">
@@ -145,8 +145,7 @@
                                                 <div class="dropdown-content">
                                                     <div>
                                                         <div style="margin-left: 16px;"><img
-                                                                src="/images/avatar/1730739674234-but-xoa-Artline-600x600.jpg"
-                                                                alt=""
+                                                                src="/images/avatar/${ud.avatar}" alt=""
                                                                 style="width: 50xp; height: 50px; border-radius: 50%;">
                                                         </div>
                                                         <div>
@@ -154,7 +153,7 @@
                                                                 style="margin-left: 16px; font-size: 12px; box-shadow: 1px 1px 12px black; color: grey;">${pageContext.request.userPrincipal.name}</span>
                                                         </div>
                                                     </div>
-                                                    <a href="#" style="font-size: 12px;">Quản Lý Tài Khoản</a>
+                                                    <a href="/overView" style="font-size: 12px;">Quản Lý Tài Khoản</a>
                                                     <a href="/purcharseHist" style="font-size: 12px;">Lịch Sử Mua
                                                         Hàng</a>
                                                     <hr>
@@ -271,7 +270,7 @@
                                                                     <li>
                                                                         <div
                                                                             class="d-flex align-items-center fruite-name">
-                                                                            <a href="#">apples</a>
+                                                                            <a href="#">Apple</a>
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
@@ -449,7 +448,7 @@
 
                                                 <div class="col-lg-12">
                                                     <div class="mb-3">
-                                                        <h4>Muc Gia</h4>
+                                                        <h4>Mức giá</h4>
                                                         <ul class="list-unstyled fruite-categorie">
                                                             <div style="display: flex; justify-content: space-between;"
                                                                 id="moneyFilter">
@@ -536,7 +535,7 @@
 
                                                 <div class="col-lg-12">
                                                     <div class="mb-3">
-                                                        <h4>Sap xep</h4>
+                                                        <h4>Sắp xếp</h4>
                                                         <ul class="list-unstyled fruite-categorie">
                                                             <div style="display: flex; justify-content: space-between;"
                                                                 id="sortFilter">
@@ -546,8 +545,7 @@
                                                                     <li>
                                                                         <div
                                                                             class="d-flex align-items-center fruite-name">
-                                                                            <a href="#" style="white-space: nowrap;">Gia
-                                                                                Giam Dan<a>
+                                                                            <a href="#" style="white-space: nowrap;">Giá giảm dần<a>
                                                                                     <span
                                                                                         style="display: flex; margin-left: 1%;">
                                                                                         <input class="form-check-input"
@@ -561,8 +559,7 @@
                                                                         <div
                                                                             class="d-flex align-items-center fruite-name">
                                                                             <a href="#"
-                                                                                style="white-space: nowrap;">Khong sap
-                                                                                xep</a>
+                                                                                style="white-space: nowrap;">Không sắp xếp</a>
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
@@ -575,8 +572,7 @@
                                                                     <li>
                                                                         <div class="d-flex align-items-center fruite-name"
                                                                             style="margin-left: -211%; margin-top: 29%;">
-                                                                            <a href="#" style="white-space: nowrap;">Gia
-                                                                                Tang Dan</a>
+                                                                            <a href="#" style="white-space: nowrap;">Giá tăng dần</a>
                                                                             <span
                                                                                 style="display: flex; margin-left: 1%;">
                                                                                 <input class="form-check-input"
@@ -657,18 +653,32 @@
                                                         </c:if>
                                                         <!-- name=${name} -->
 
-                                                        <c:forEach begin="0" end="${totalPage}" varStatus="loop">
-                                                            <a href="/buy?page=${loop.index+1}"
-                                                                class="${(loop.index+1) eq currentPage ? 'active rounded' : 'rounded'}"
-                                                                data-page="${loop.index+1}">${loop.index+1}</a>
-                                                        </c:forEach>
+
+
+
+                                                        <c:if test="${totalPage==0}">
+                                                            <p>Không tìm thấy sản phẩm nào</p>
+                                                        </c:if>
+
+                                                        <c:if test="${totalPage>0}">
+                                                            <c:forEach begin="0" end="${totalPage-1}" varStatus="loop">
+
+                                                                <a href="/buy?page=${loop.index+1}"
+                                                                    class="${(loop.index+1) eq currentPage ? 'active rounded' : 'rounded'}"
+                                                                    data-page="${loop.index+1}">${loop.index+1}</a>
+
+                                                            </c:forEach>
+                                                        </c:if>
+
+
+
 
 
 
                                                         <c:if test="${currentPage < totalPage}">
 
                                                             <a href="/buy?page=${currentPage+1}" class="rounded"
-                                                                data-page="${loop.index-11}">&raquo;</a>
+                                                                data-page="${currentPage+1}">&raquo;</a>
 
                                                         </c:if>
                                                         <c:if test="${currentPage == totalPage}">
@@ -695,8 +705,8 @@
                                 <div class="row g-4">
                                     <div class="col-lg-3">
                                         <a href="#">
-                                            <h1 class="text-primary mb-0">Fruitables</h1>
-                                            <p class="text-secondary mb-0">Fresh products</p>
+											<h1 class=" mb-0" style = "color : white">LaptopShop</h1>
+											<p class=" mb-0" style = "color:white">Laptop chính hãng</p>
                                         </a>
                                     </div>
                                     <div class="col-lg-6">
@@ -729,7 +739,7 @@
                                         <p class="mb-4">typesetting, remaining essentially unchanged. It was
                                             popularised in the 1960s with the like Aldus PageMaker including of Lorem
                                             Ipsum.</p>
-                                        <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read
+                                        <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary" style = "color:white">Read
                                             More</a>
                                     </div>
                                 </div>
@@ -774,17 +784,18 @@
                     <div class="container-fluid copyright bg-dark py-4">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                                    <span class="text-light"><a href="#"><i
-                                                class="fas fa-copyright text-light me-2"></i>Your Site Name</a>, All
-                                        right reserved.</span>
-                                </div>
+								<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+								    <span class="text-light"><a href="#" style = "color:white"><i
+								                class="fas fa-copyright me-2" style = "color : white"></i>Your Site
+								            Name</a>, All right reserved.</span>
+								</div>
                                 <div class="col-md-6 my-auto text-center text-md-end text-white">
                                     <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
                                     <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
                                     <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                                    Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
+									Designed By <a class="border-bottom" href="https://htmlcodex.com" style = "color:white" >HTML Codex</a>
+									Distributed By
+									<a class="border-bottom" href="https://themewagon.com" style = "color:white">ThemeWagon</a>
                                 </div>
                             </div>
                         </div>

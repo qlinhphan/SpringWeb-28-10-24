@@ -2,6 +2,7 @@
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
                 <!DOCTYPE html>
                 <html lang="en">
 
@@ -57,23 +58,23 @@
                             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                                 <div class="sb-sidenav-menu">
                                     <div class="nav">
-                                        <div class="sb-sidenav-menu-heading">Core</div>
+                                        <div class="sb-sidenav-menu-heading">Cơ bản</div>
                                         <a class="nav-link" href="/adminDash">
                                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                             Dashboard
                                         </a>
                                         <a class="nav-link" href="/table/user">
                                             <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
-                                            User
+                                            Quản lý người dùng
                                         </a>
                                         <a class="nav-link" href="/adminProduct">
                                             <div class="sb-nav-link-icon"><i class="fa-brands fa-product-hunt"></i>
                                             </div>
-                                            Product
+                                            Quản lý sản phẩm
                                         </a>
-                                        <a class="nav-link" href="/adminOrder">
+                                        <a class="nav-link" href="/adminOrder" style="background-color: brown;">
                                             <div class="sb-nav-link-icon"><i class="fa-regular fa-newspaper"></i></div>
-                                            Order
+                                            Quản lý đơn hàng
                                         </a>
                                         <!-- <div class="sb-sidenav-menu-heading">Interface</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -139,11 +140,11 @@
                         </a> -->
                                     </div>
                                     <div class="nav">
-                                        <div class="sb-sidenav-menu-heading">Different</div>
+                                        <div class="sb-sidenav-menu-heading">Khác</div>
                                         <a class="nav-link" href="/cmtCus">
                                             <div class="sb-nav-link-icon"><i class="fa-solid fa-house-user"></i></i>
                                             </div>
-                                            Customer's Cmt
+                                            Phản hồi khách hàng
                                         </a>
                                     </div>
                                 </div>
@@ -156,19 +157,19 @@
                         <div id="layoutSidenav_content">
                             <main>
                                 <div class="container-fluid px-4">
-                                    <h1 class="mt-4">List Orders</h1>
+                                    <h1 class="mt-4">Danh sách đơn hàng</h1>
                                     <ol class="breadcrumb mb-4">
-                                        <li class="breadcrumb-item active">List Orders</li>
+                                        <li class="breadcrumb-item active"></li>
                                     </ol>
                                 </div>
 
                                 <table>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Total_Price</th>
-                                        <th>Custom_Name</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Tổng giá trị</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thao tác</th>
 
                                     </tr>
                                     <c:forEach items="${oders}" var="oder">
@@ -184,13 +185,13 @@
                                             <td>
                                                 <button type="button" class="btn btn-primary"><a
                                                         href="/admin/order/detail/${oder.id}"
-                                                        style="color: wheat; text-decoration: none;">View</a></button>
+                                                        style="color: wheat; text-decoration: none;">Xem</a></button>
                                                 <button type="button" class="btn btn-secondary"><a
                                                         href="/admin/order/update/${oder.id}"
-                                                        style="color: wheat; text-decoration: none;">Edit</a></button>
+                                                        style="color: wheat; text-decoration: none;">Sửa</a></button>
                                                 <button type="button" class="btn btn-success"><a
                                                         style="color: wheat; text-decoration: none;"
-                                                        href="/admin/order/del/${oder.id}">Delete</a></button>
+                                                        href="/admin/order/del/${oder.id}">Xóa</a></button>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -200,16 +201,16 @@
                                     <ul class="pagination justify-content-center">
 
                                         <c:if test="${currentPage < 2 }">
-                                            <li class="page-item disabled"><a class="page-link" href="">Previous</a>
+                                            <li class="page-item disabled"><a class="page-link" href="">Trước</a>
                                             </li>
                                         </c:if>
                                         <c:if test="${currentPage > 1 }">
                                             <li class="page-item"><a class="page-link"
-                                                    href="/adminOrder?page=${currentPage-1}">Previous</a>
+                                                    href="/adminOrder?page=${currentPage-1}">Trước</a>
                                             </li>
                                         </c:if>
 
-                                        <c:forEach begin="0" end="${totalPage}" varStatus="loop">
+                                        <c:forEach begin="0" end="${totalPage-1}" varStatus="loop">
                                             <li
                                                 class="${(loop.index+1) eq currentPage ? 'page-item active' : 'page-item'}">
                                                 <a class="page-link"
@@ -218,11 +219,11 @@
                                         </c:forEach>
 
                                         <c:if test="${currentPage > (totalPage-1) }">
-                                            <li class="page-item disabled"><a class="page-link" href="">Next</a></li>
+                                            <li class="page-item disabled"><a class="page-link" href="">Sau</a></li>
                                         </c:if>
                                         <c:if test="${currentPage < totalPage }">
                                             <li class="page-item"><a class="page-link"
-                                                    href="/adminOrder?page=${currentPage+1}">Next</a></li>
+                                                    href="/adminOrder?page=${currentPage+1}">Sau</a></li>
                                         </c:if>
 
                                     </ul>

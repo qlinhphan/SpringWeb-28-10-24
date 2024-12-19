@@ -132,7 +132,7 @@
 .navbar .navbar-nav .nav-link.active,
 .fixed-top.bg-white .navbar .navbar-nav .nav-link:hover,
 .fixed-top.bg-white .navbar .navbar-nav .nav-link.active {
-    color: var(--bs-primary);
+    color: #3f7dac;
 }
 
 .navbar .dropdown-toggle::after {
@@ -178,7 +178,7 @@
 
 /*** Hero Header ***/
 .hero-header {
-    background: linear-gradient(rgba(248, 223, 173, 0.1), rgba(248, 223, 173, 0.1)), url(../img/hero-img.jpg);
+    background: linear-gradient(rgba(28, 163, 204, 0.13), rgba(53, 185, 224, 0.37)), url('../img/hero-img.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -482,7 +482,7 @@
 /*** Footer Start ***/
 .footer .footer-item .btn-link {
     line-height: 35px;
-    color: rgba(255, 255, 255, .5);
+    color: rgba(255, 255, 255, 1);
     transition: 0.5s;
 }
 

@@ -186,4 +186,17 @@ public class ProductsService {
         }
         return this.productsRepository.findAll(dk, pageable);
     }
+
+    public Page<Products> searchTargetAndFact(List<String> target, List<String> fact, Pageable pageable) {
+        Specification<Products> dk = Specification.where(null);
+        if (target != null) {
+            Specification<Products> aaa = this.productSpecService.selectManyInAllTarget(target);
+            dk = dk.and(aaa);
+        }
+        if (fact != null) {
+            Specification<Products> ddd = this.productSpecService.selectManyInAllFactory(fact);
+            dk = dk.and(ddd);
+        }
+        return this.productsRepository.findAll(dk, pageable);
+    }
 }

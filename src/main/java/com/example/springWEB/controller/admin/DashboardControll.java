@@ -18,6 +18,7 @@ import com.example.springWEB.service.ProductsService;
 import com.example.springWEB.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DashboardControll {
@@ -60,7 +61,7 @@ public class DashboardControll {
         // dem don hang cho xac nhan
         int countOrdersPending = 0;
         for (Oders oders : order) {
-            if (oders.getStatus().equals("Pending")) {
+            if (oders.getStatus().equals("Đang chờ")) {
                 countOrdersPending += 1;
             }
         }
@@ -68,7 +69,7 @@ public class DashboardControll {
         // dem don hang dang van chuyen
         int countOrdersDelivering = 0;
         for (Oders oders : order) {
-            if (oders.getStatus().equals("Delivering")) {
+            if (oders.getStatus().equals("Đang vận chuyển")) {
                 countOrdersDelivering += 1;
             }
         }
@@ -76,7 +77,7 @@ public class DashboardControll {
         // dem don hang da hoan tat
         int countOrdersFinish = 0;
         for (Oders oders : order) {
-            if (oders.getStatus().equals("Finish")) {
+            if (oders.getStatus().equals("Hoàn thành")) {
                 countOrdersFinish += 1;
             }
         }
@@ -92,7 +93,7 @@ public class DashboardControll {
 
         List<Oders> dataTable = new ArrayList<>();
         for (Oders oders : order) {
-            if (oders.getStatus().equals("Finish")) {
+            if (oders.getStatus().equals("Hoàn thành")) {
                 dataTable.add(oders);
             }
         }

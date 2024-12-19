@@ -47,7 +47,7 @@ public class SecurityConfig {
                                                                 "/css/**", "/js/**", "/images/**", "/register")
                                                 .permitAll()
 
-                                                .requestMatchers("/adminDash/**").hasRole("Admin")
+//                                                .requestMatchers("/adminDash/**").hasRole("Admin")
 
                                                 .anyRequest().authenticated())
 

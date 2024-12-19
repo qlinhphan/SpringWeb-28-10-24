@@ -3,6 +3,7 @@
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
                 <!-- tag thu nhat dung de dung path, form
         tag thu hai dung de render du lieu ra bang -->
                 <html lang="en">
@@ -83,7 +84,7 @@
                             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                                 <div class="sb-sidenav-menu">
                                     <div class="nav">
-                                        <div class="sb-sidenav-menu-heading">Core</div>
+                                        <div class="sb-sidenav-menu-heading">Cơ bản</div>
                                         <a class="nav-link" href="/adminDash">
                                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                             Dashboard
@@ -91,15 +92,15 @@
                                         <a class="nav-link" href="/table/user">
                                             <div class=" sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
                                             </div>
-                                            User
+                                            Quản lý người dùng
                                         </a>
                                         <a class="nav-link" href="/adminProduct">
                                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                            Product
+                                            Quản lý sản phẩm
                                         </a>
-                                        <a class="nav-link" href="adminOrder">
+                                        <a class="nav-link" href="adminOrder" style="background-color: brown;">
                                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                            Order
+                                            Quản lý đơn hàng
                                         </a>
                                         <!-- <div class="sb-sidenav-menu-heading">Interface</div>
                                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -168,11 +169,11 @@
                                 </a> -->
                                     </div>
                                     <div class="nav">
-                                        <div class="sb-sidenav-menu-heading">Different</div>
+                                        <div class="sb-sidenav-menu-heading">Khác</div>
                                         <a class="nav-link" href="/cmtCus">
                                             <div class="sb-nav-link-icon"><i class="fa-solid fa-house-user"></i></i>
                                             </div>
-                                            Customer's Cmt
+                                            Phản hồi khách hàng
                                         </a>
                                     </div>
                                 </div>
@@ -185,9 +186,9 @@
                         <div id="layoutSidenav_content">
                             <main>
                                 <div class="container-fluid px-4">
-                                    <h1 class="mt-4">View Order:</h1>
+                                    <h1 class="mt-4">Xem đơn hàng:</h1>
                                     <ol class="breadcrumb mb-4">
-                                        <li class="breadcrumb-item active">exactly View Order:</li>
+                                        <li class="breadcrumb-item active">Chi tiết đơn hàng:</li>
                                     </ol>
 
 
@@ -195,8 +196,8 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Class</th>
-                                                <th scope="col">Value</th>
+                                                <th scope="col">Thông tin</th>
+                                                <th scope="col">Giá trị</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -205,24 +206,24 @@
                                                 <td>${order.id}</td>
                                             </tr>
                                             <tr class="table-success">
-                                                <th scope="row">Total_Price</th>
+                                                <th scope="row">Tổng giá trị</th>
                                                 <td>${order.totalPrice}</td>
                                             </tr>
                                             <tr class="table-danger">
-                                                <th scope="row">User_Name</th>
+                                                <th scope="row">Tên khách hàng</th>
                                                 <td>${order.receiverName}</td>
                                             </tr>
                                             <tr class="table-warning">
-                                                <th scope="row">Receiver_Address</th>
+                                                <th scope="row">Địa chỉ giao</th>
                                                 <td>${order.receiverAddress}</td>
                                             </tr>
                                             <tr class="table-info">
-                                                <th scope="row">Receiver_Phone </th>
+                                                <th scope="row">Số điện thoại </th>
                                                 <td>${order.receiverPhone}</td>
                                             </tr>
 
                                             <tr class="table-info">
-                                                <th scope="row">Status </th>
+                                                <th scope="row">Trạng thái </th>
                                                 <td>${order.status}</td>
                                             </tr>
                                             <!-- <tr class="table-info">
@@ -242,9 +243,9 @@
                                     </table>
                                     <table style="margin-top: 17px;">
                                         <tr>
-                                            <th>Product</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Số lượng</th>
+                                            <th>Giá</th>
                                         </tr>
 
                                         <c:forEach items="${orderDetails}" var="orderDetail">
