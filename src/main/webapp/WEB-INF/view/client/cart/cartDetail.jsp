@@ -125,8 +125,8 @@
                                 </button>
                                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                                     <div class="navbar-nav mx-auto">
-                                        <a href="index.html" class="nav-item nav-link active">Trang Chủ</a>
-                                        <a href="shop.html" class="nav-item nav-link">Của Hàng</a>
+                                        <a href="/" class="nav-item nav-link active">Trang Chủ</a>
+                                        <a href="/buy" class="nav-item nav-link">Của Hàng</a>
                                     </div>
                                     <div class="d-flex m-3 me-0">
                                         <c:if test="${not empty pageContext.request.userPrincipal}">
@@ -156,7 +156,7 @@
                                                                 style="margin-left: 16px; font-size: 12px; box-shadow: 1px 1px 12px black; color: grey;">${pageContext.request.userPrincipal.name}</span>
                                                         </div>
                                                     </div>
-                                                    <a href="" style="font-size: 12px;">Quản Lý Tài Khoản</a>
+                                                    <a href="overView" style="font-size: 12px;">Quản Lý Tài Khoản</a>
                                                     <a href="/purcharseHist" style="font-size: 12px;">Lịch Sử Mua
                                                         Hàng</a>
                                                     <hr>

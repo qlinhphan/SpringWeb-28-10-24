@@ -85,7 +85,7 @@
                                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                         Dashboard
                                     </a>
-                                    <a class="nav-link" href="/table/user">
+                                    <a class="nav-link" href="/table/user" style="background-color: brown;">
                                         <div class=" sb-nav-link-icon"><i class="fa-solid fa-users"></i>
                                         </div>
                                         Quản lý người dùng
@@ -203,33 +203,41 @@
 
                                 <nav aria-label="Page navigation example" style="margin-top: 17px;">
                                     <ul class="pagination justify-content-center">
-
-                                        <c:if test="${currentPage < 2 }">
-                                            <li class="page-item disabled"><a class="page-link"
-                                                    href="/table/user?page=${currentPage-1}">Trước</a></li>
-                                        </c:if>
-                                        <c:if test="${currentPage > 1 }">
-                                            <li class="page-item"><a class="page-link"
-                                                    href="/table/user?page=${currentPage-1}">Trước</a></li>
-                                        </c:if>
-
-                                        <c:forEach begin="0" end="${totalPage-1}" varStatus="loop">
-                                            <li
-                                                class="${(loop.index+1) eq currentPage ? 'page-item active' : 'page-item'}">
-                                                <a class="page-link"
-                                                    href="/table/user?page=${loop.index+1}">${loop.index+1}</a>
-                                            </li>
-                                        </c:forEach>
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
 
 
-                                        <c:if test="${currentPage == totalPage}">
-                                            <li class="page-item disabled"><a class="page-link"
-                                                    href="/table/user?page=${currentPage+1}">Sau</a></li>
-                                        </c:if>
-                                        <c:if test="${currentPage < totalPage}">
-                                            <li class="page-item"><a class="page-link"
-                                                    href="/table/user?page=${currentPage+1}">Sau</a></li>
-                                        </c:if>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#" aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                </li>
+
+
+
+
+                                                <c:forEach begin="0" end="${totalPage-1}" varStatus="loop">
+                                                    <li
+                                                        class="${(loop.index+1) eq currentPage ? 'page-item active' : 'page-item'}">
+                                                        <a class="page-link"
+                                                            href="/table/user?page=${loop.index+1}">${loop.index+1}</a>
+                                                    </li>
+                                                </c:forEach>
+
+
+
+
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                </li>
+
+
+                                            </ul>
+                                        </nav>
                                     </ul>
                                 </nav>
                             </div>

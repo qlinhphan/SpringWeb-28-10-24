@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="nav">
                                     <div class="sb-sidenav-menu-heading">Khác</div>
-                                    <a class="nav-link" href="/cmtCus">
+                                    <a class="nav-link" href="/cmtCus" style="background-color: brown;">
                                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house-user"></i></i></div>
                                         Phản hồi khách hàng
                                     </a>

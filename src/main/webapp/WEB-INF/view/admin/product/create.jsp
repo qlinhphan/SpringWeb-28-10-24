@@ -64,7 +64,7 @@
                                         </div>
                                         Quản lý người dùng
                                     </a>
-                                    <a class="nav-link" href="/adminProduct">
+                                    <a class="nav-link" href="/adminProduct" style="background-color: brown;">
                                         <div class="sb-nav-link-icon"><i class="fa-brands fa-product-hunt"></i></div>
                                         Quản lý sản phẩm
                                     </a>

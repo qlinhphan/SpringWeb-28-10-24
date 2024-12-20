@@ -148,11 +148,10 @@
                                                     style="display: flex; border-radius: 17px;">
                                                     <i class="fas fa-user fa-2x"></i>
                                                 </a>
-                                                <div class="dropdown-content">
+                                                <div class="dropdown-content" style="margin-left: -165%;">
                                                     <div>
                                                         <div style="margin-left: 16px;"><img
-                                                                src="/images/avatar/1730739674234-but-xoa-Artline-600x600.jpg"
-                                                                alt=""
+                                                                src="/images/avatar/${user.avatar}" alt=""
                                                                 style="width: 50xp; height: 50px; border-radius: 50%;">
                                                         </div>
                                                         <div>
@@ -244,18 +243,14 @@
                                         data-bs-ride="carousel">
                                         <div class="carousel-inner" role="listbox">
                                             <div class="carousel-item active rounded">
-                                                <img src="/images/product/hero-img-1.png"
+                                                <img src="/images/product/bfs.jpg"
                                                     class="img-fluid w-100 h-100 bg-secondary rounded"
                                                     alt="First slide">
-                                                <a href="#" class="btn px-4 py-2 text-white rounded">Fruites</a>
+                                                <a href="#" class="btn px-4 py-2 text-white rounded">Laptop</a>
                                             </div>
-                                            <div class="carousel-item rounded">
-                                                <img src="/images/product/hero-img-2.jpg"
-                                                    class="img-fluid w-100 h-100 rounded" alt="Second slide">
-                                                <a href="#" class="btn px-4 py-2 text-white rounded">Vesitables</a>
-                                            </div>
+
                                         </div>
-                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
+                                        <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
                                             data-bs-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                             <span class="visually-hidden">Previous</span>
@@ -264,7 +259,7 @@
                                             data-bs-slide="next">
                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                             <span class="visually-hidden">Next</span>
-                                        </button>
+                                        </button> -->
                                     </div>
                                 </div>
                             </div>
@@ -934,27 +929,27 @@
                             <div class="row g-4 align-items-center">
                                 <div class="col-lg-6">
                                     <div class="py-4">
-                                        <h1 class="display-3 text-white">Fresh Exotic Fruits</h1>
-                                        <p class="fw-normal display-3 text-dark mb-4">in Our Store</p>
-                                        <p class="mb-4 text-dark">The generated Lorem Ipsum is therefore always free
-                                            from
-                                            repetition
-                                            injected humour, or non-characteristic words etc.</p>
-                                        <a href="#"
-                                            class="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">BUY</a>
+                                        <h1 class="display-3 text-white">Sản phẩm được quan tâm nhất</h1>
+                                        <p class="fw-normal display-3 text-dark mb-4">Trong cửa hàng của chúng tôi</p>
+                                        <p class="mb-4 text-dark">Đây là sản phẩm mà gần như trong mọi khách hàng đến
+                                            với chúng tôi đều xuất hiện</p>
+                                        <a href="/detail/product/client/${productCare.id}"
+                                            class="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">Xem
+                                            chi tiết</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="position-relative">
-                                        <img src="/images/product/baner-1.png" class="img-fluid w-100 rounded" alt="">
-                                        <div class="d-flex align-items-center justify-content-center bg-white rounded-circle position-absolute"
+                                        <img src="/images/product/${productCare.image}" class="img-fluid w-100 rounded"
+                                            alt="">
+                                        <!-- <div class="d-flex align-items-center justify-content-center bg-white rounded-circle position-absolute"
                                             style="width: 140px; height: 140px; top: 0; left: 0;">
                                             <h1 style="font-size: 100px;">1</h1>
                                             <div class="d-flex flex-column">
                                                 <span class="h2 mb-0">50$</span>
                                                 <span class="h4 text-muted mb-0">kg</span>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -973,34 +968,48 @@
                         <div class="container">
                             <div class="bg-light p-5 rounded">
                                 <div class="row g-4 justify-content-center">
-                                    <div class="col-md-6 col-lg-6 col-xl-3">
+                                    <!-- <div class="col-md-6 col-lg-6 col-xl-3">
                                         <div class="counter bg-white rounded p-5">
                                             <i class="fa fa-users text-secondary"></i>
                                             <h4>satisfied customers</h4>
                                             <h1>1963</h1>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-md-6 col-lg-6 col-xl-3">
                                         <div class="counter bg-white rounded p-5">
                                             <i class="fa fa-users text-secondary"></i>
-                                            <h4>quality of service</h4>
-                                            <h1>99%</h1>
+                                            <h4>Người dùng tích cực nhất</h4>
+                                            <h1>${isUser.fullname}</h1>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-xl-3">
                                         <div class="counter bg-white rounded p-5">
                                             <i class="fa fa-users text-secondary"></i>
-                                            <h4>quality certificates</h4>
-                                            <h1>33</h1>
+                                            <h4>Số lượng người dùng hiện có</h4>
+                                            <h1>${countUser}</h1>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-xl-3">
+                                        <div class="counter bg-white rounded p-5">
+                                            <i class="fa fa-user-circle text-secondary"></i>
+                                            <h4>Đơn hàng đã bán ra </h4>
+                                            <h1>${countOrder}</h1>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-xl-3">
+                                        <div class="counter bg-white rounded p-5">
+                                            <i class="fa fa-user-circle text-secondary"></i>
+                                            <h4>Người dùng đặc biệt nhất của cửa hàng</h4>
+                                            <h1>${isOrder.users.fullname}</h1>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-6 col-lg-6 col-xl-3">
                                         <div class="counter bg-white rounded p-5">
                                             <i class="fa fa-users text-secondary"></i>
                                             <h4>Available Products</h4>
                                             <h1>789</h1>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -1012,8 +1021,8 @@
                     <div class="container-fluid testimonial py-5">
                         <div class="container py-5">
                             <div class="testimonial-header text-center">
-                                <h4 class="text-primary">Our Testimonial</h4>
-                                <h1 class="display-5 mb-5 text-dark">Our Client Saying!</h1>
+                                <h4 class="text-primary">Giới Thiệu</h4>
+                                <h1 class="display-5 mb-5 text-dark">Giới Thiệu Về Cửa Hàng</h1>
                             </div>
                             <div class="owl-carousel testimonial-carousel">
                                 <div class="testimonial-item img-border-radius bg-light rounded p-4">
@@ -1021,20 +1030,19 @@
                                         <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
                                             style="bottom: 30px; right: 0;"></i>
                                         <div class="mb-4 pb-4 border-bottom border-secondary">
-                                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has
-                                                been
-                                                the
-                                                industry's standard dummy text ever since the 1500s,
+                                            <p class="mb-0">Cửa hàng Laptop XYZ chuyên cung cấp các dòng laptop chính
+                                                hãng với chất lượng vượt trội, từ những sản phẩm dành cho học sinh, sinh
+                                                viên đến các laptop cao cấp phục vụ công việc chuyên nghiệp.
                                             </p>
                                         </div>
                                         <div class="d-flex align-items-center flex-nowrap">
                                             <div class="bg-secondary rounded">
-                                                <img src="/images/product/testimonial-1.jpg" class="img-fluid rounded"
+                                                <img src="/images/avatar/${user.avatar}" class="img-fluid rounded"
                                                     style="width: 100px; height: 100px;" alt="">
                                             </div>
                                             <div class="ms-4 d-block">
-                                                <h4 class="text-dark">Client Name</h4>
-                                                <p class="m-0 pb-3">Profession</p>
+                                                <h4 class="text-dark">Cam kết</h4>
+                                                <p class="m-0 pb-3">Lời cam kết về chất lượng sản phẩm </p>
                                                 <div class="d-flex pe-5">
                                                     <i class="fas fa-star text-primary"></i>
                                                     <i class="fas fa-star text-primary"></i>
@@ -1051,20 +1059,20 @@
                                         <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
                                             style="bottom: 30px; right: 0;"></i>
                                         <div class="mb-4 pb-4 border-bottom border-secondary">
-                                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has
-                                                been
-                                                the
-                                                industry's standard dummy text ever since the 1500s,
+                                            <p class="mb-0">Tại đây, bạn sẽ tìm thấy những mẫu laptop mới nhất, được
+                                                trang bị các công nghệ hiện đại, giúp nâng cao hiệu suất làm việc và
+                                                giải trí. Laptop XYZ luôn cam kết mang đến cho bạn trải nghiệm mua sắm
+                                                tuyệt vời nhất.
                                             </p>
                                         </div>
                                         <div class="d-flex align-items-center flex-nowrap">
                                             <div class="bg-secondary rounded">
-                                                <img src="/images/product/testimonial-1.jpg" class="img-fluid rounded"
+                                                <img src="/images/avatar/${user.avatar}" class="img-fluid rounded"
                                                     style="width: 100px; height: 100px;" alt="">
                                             </div>
                                             <div class="ms-4 d-block">
-                                                <h4 class="text-dark">Client Name</h4>
-                                                <p class="m-0 pb-3">Profession</p>
+                                                <h4 class="text-dark">Cam kết</h4>
+                                                <p class="m-0 pb-3">Lời cam kết về chất lượng sản phẩm </p>
                                                 <div class="d-flex pe-5">
                                                     <i class="fas fa-star text-primary"></i>
                                                     <i class="fas fa-star text-primary"></i>
@@ -1076,36 +1084,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="testimonial-item img-border-radius bg-light rounded p-4">
-                                    <div class="position-relative">
-                                        <i class="fa fa-quote-right fa-2x text-secondary position-absolute"
-                                            style="bottom: 30px; right: 0;"></i>
-                                        <div class="mb-4 pb-4 border-bottom border-secondary">
-                                            <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has
-                                                been
-                                                the
-                                                industry's standard dummy text ever since the 1500s,
-                                            </p>
-                                        </div>
-                                        <div class="d-flex align-items-center flex-nowrap">
-                                            <div class="bg-secondary rounded">
-                                                <img src="/images/product/testimonial-1.jpg" class="img-fluid rounded"
-                                                    style="width: 100px; height: 100px;" alt="">
-                                            </div>
-                                            <div class="ms-4 d-block">
-                                                <h4 class="text-dark">Client Name</h4>
-                                                <p class="m-0 pb-3">Profession</p>
-                                                <div class="d-flex pe-5">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
