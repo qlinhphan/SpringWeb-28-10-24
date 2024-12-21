@@ -17,10 +17,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.springWEB.domain.OrderDetail;
 import com.example.springWEB.domain.Products;
+import com.example.springWEB.domain.cart.CartDetail;
+import com.example.springWEB.service.CartDetailService;
+import com.example.springWEB.service.OrderDetailService;
 import com.example.springWEB.service.ProductsService;
 
 import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -29,10 +34,16 @@ public class ProductControll {
 
     private ProductsService productsService;
     private ServletContext servletContext;
+    private CartDetailService cartDetailService;
+    private OrderDetailService orderDetailService;
 
-    public ProductControll(ProductsService productsService, ServletContext servletContext) {
+    public ProductControll(ProductsService productsService, ServletContext servletContext,
+            CartDetailService cartDetailService,
+            OrderDetailService orderDetailService) {
         this.productsService = productsService;
         this.servletContext = servletContext;
+        this.cartDetailService = cartDetailService;
+        this.orderDetailService = orderDetailService;
     }
 
     // @GetMapping("/adminProduct")
@@ -137,7 +148,32 @@ public class ProductControll {
     }
 
     @PostMapping("/del/finish")
-    public String delProductFinish(Model model, @ModelAttribute("product") Products pro) {
+    public String delProductFinish(Model model, @ModelAttribute("product") Products pro, HttpSession session) {
+        List<CartDetail> listCartDetail = this.cartDetailService.findAllCartDetail();
+        if (listCartDetail != null) {
+            for (CartDetail cartDetail : listCartDetail) {
+                if (cartDetail != null) {
+                    if (cartDetail.getProducts().getId() == pro.getId()) {
+                        session.setAttribute("war", "");
+                        return "redirect:/adminProduct";
+                    }
+                }
+            }
+        }
+        if (listCartDetail == null) {
+            List<OrderDetail> listOrderDetail = this.orderDetailService.findAllOrderDetail();
+            if (listOrderDetail != null) {
+                for (OrderDetail orderDetail : listOrderDetail) {
+                    if (orderDetail != null) {
+                        if (orderDetail.getProducts().getId() == pro.getId()) {
+                            session.setAttribute("war", "");
+                            return "redirect:/adminProduct";
+                        }
+                    }
+                }
+            }
+        }
+
         this.productsService.DeleteProductById(pro.getId());
         return "redirect:/adminProduct";
     }

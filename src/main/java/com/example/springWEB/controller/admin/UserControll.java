@@ -21,11 +21,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.springWEB.domain.Oders;
+import com.example.springWEB.domain.OrderDetail;
 import com.example.springWEB.domain.Users;
+import com.example.springWEB.domain.cart.Cart;
+import com.example.springWEB.domain.cart.CartDetail;
+import com.example.springWEB.service.CartDetailService;
+import com.example.springWEB.service.CartService;
+import com.example.springWEB.service.OrderDetailService;
+import com.example.springWEB.service.OrderService;
 import com.example.springWEB.service.RolesService;
 import com.example.springWEB.service.UserService;
 
 import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -34,14 +43,23 @@ public class UserControll {
     private UserService userService;
     private RolesService rolesService;
     private PasswordEncoder passwordEncoder;
+    private CartService cartService;
+    private CartDetailService cartDetailService;
+    private OrderService orderService;
+    private OrderDetailService orderDetailService;
 
     @Autowired
-    public UserControll(UserService userService, ServletContext servletContext, RolesService rolesService,
-            PasswordEncoder passwordEncoder) {
-        this.userService = userService;
+    public UserControll(ServletContext servletContext, UserService userService, RolesService rolesService,
+            PasswordEncoder passwordEncoder, CartService cartService, CartDetailService cartDetailService,
+            OrderService orderService, OrderDetailService orderDetailService) {
         this.servletContext = servletContext;
+        this.userService = userService;
         this.rolesService = rolesService;
         this.passwordEncoder = passwordEncoder;
+        this.cartService = cartService;
+        this.cartDetailService = cartDetailService;
+        this.orderService = orderService;
+        this.orderDetailService = orderDetailService;
     }
 
     @GetMapping("/create/user")
@@ -67,11 +85,10 @@ public class UserControll {
                 dir.mkdirs();
             }
 
-            File server = new File(dir.getAbsolutePath() + File.separator + System.currentTimeMillis() + "-"
+            File server = new File(dir.getAbsolutePath() + File.separator
                     + file.getOriginalFilename());
 
-            linkImage = System.currentTimeMillis() + "-"
-                    + file.getOriginalFilename();
+            linkImage = file.getOriginalFilename();
 
             BufferedOutputStream stream = new BufferedOutputStream(
                     new FileOutputStream(server));
@@ -91,14 +108,16 @@ public class UserControll {
 
     @GetMapping("/table/user")
     public String tableUser(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
-        Pageable pageable = PageRequest.of(page - 1, 3);
+
         System.out.println(page);
-        Page<Users> usP = this.userService.findAllPage(pageable);
-        List<Users> us = usP.getContent();
-        model.addAttribute("users", us);
+        // List<Users> usP = this.userService.findAllUser();
+        Pageable pa = PageRequest.of(page - 1, 5);
+        Page<Users> pageUser = this.userService.findAllPage(pa);
+        List<Users> usP = pageUser.getContent();
+
+        model.addAttribute("users", usP);
         model.addAttribute("currentPage", page);
-        model.addAttribute("totalPage", usP.getTotalPages());
-        // System.out.println("totalPage: " + pageable.getPageSize());
+        model.addAttribute("totalPage", pageUser.getTotalPages());
         return "/admin/user/table_fordash";
     }
 
@@ -120,8 +139,12 @@ public class UserControll {
 
     // chinh sua nguoi dung
     @PostMapping("/edit/user/finish")
-    public String postUserRepeat(Model model, @ModelAttribute("user") Users us) {
+    public String postUserRepeat(Model model, @ModelAttribute("user") Users us, HttpSession session) {
         Users searchUser = this.userService.findUserById(us.getId());
+        if (searchUser.getRoles().equals("Admin")) {
+            session.setAttribute("UserAd", "");
+            return "redirect:/table/user";
+        }
         if (searchUser != null) {
             searchUser.setEmail(us.getEmail());
             searchUser.setPassword(us.getPassword());
@@ -151,8 +174,30 @@ public class UserControll {
     }
 
     @PostMapping("/del/user/finish")
-    public String delUserFinish(Model model, @ModelAttribute("current") Users user) {
+    public String delUserFinish(Model model, @ModelAttribute("current") Users user, HttpSession session) {
         System.out.println(user.getId());
+
+        Users us = this.userService.findUserById(user.getId());
+        Cart cart = this.cartService.findCartByUser(us);
+        if (cart != null) {
+            if (us.getId() == cart.getUsers().getId()) {
+                session.setAttribute("alert", "Khong xoa duoc nguoi dung nay");
+                return "redirect:/table/user";
+            }
+        }
+        if (cart == null) {
+            List<Oders> od = this.orderService.findOrderByUser(user);
+            if (od != null) {
+                for (Oders oders : od) {
+                    if (oders.getUsers().getId() == us.getId()) {
+                        session.setAttribute("alert", "Khong xoa duoc nguoi dung nay");
+                        return "redirect:/table/user";
+                    }
+                }
+            }
+
+        }
+
         this.userService.deleteUserById(user.getId());
         return "redirect:/table/user";
     }

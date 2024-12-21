@@ -629,10 +629,12 @@
                                                                         <fmt:formatNumber type="number"
                                                                             value="${product.price}" />Vnd
                                                                     </p>
-                                                                    <a href="#"
+
+                                                                    <a href="/detail/product/client/${product.id}"
                                                                         class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                                                             class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                                        Add to cart</a>
+                                                                        View product</a>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -811,7 +813,8 @@
                             class="fa fa-arrow-up"></i></a>
 
 
-                    <!-- JavaScript Libraries -->
+
+
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
                     <script src="/js/client/easing.min.js"></script>

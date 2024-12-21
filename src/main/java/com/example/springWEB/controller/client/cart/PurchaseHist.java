@@ -45,8 +45,11 @@ public class PurchaseHist {
 
         List<OrderDetail> ord = new ArrayList<>();
         for (Oders oders : order) {
-            List<OrderDetail> orderDetails = this.orderDetailService.findOrderDetailByOrder(oders);
-            ord.addAll(orderDetails);
+            if (oders.getStatus().equals("Finish")) {
+                List<OrderDetail> orderDetails = this.orderDetailService.findOrderDetailByOrder(oders);
+                ord.addAll(orderDetails);
+            }
+
         }
 
         model.addAttribute("orderDetails", ord);

@@ -64,7 +64,7 @@
             <body>
                 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
                     <!-- Navbar Brand-->
-                    <a class="navbar-brand ps-3" href="index.html">Laptop Shop</a>
+                    <a class="navbar-brand ps-3" href="/adminDash">Laptop Shop</a>
                     <!-- Sidebar Toggle-->
                     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                             class="fas fa-bars"></i></button>
@@ -207,13 +207,17 @@
                                             <ul class="pagination">
 
 
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#" aria-label="Previous">
-                                                        <span aria-hidden="true">&laquo;</span>
-                                                        <span class="sr-only">Previous</span>
-                                                    </a>
-                                                </li>
-
+                                                <c:if test="${currentPage < 2}">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="">Trước</a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${currentPage > 1}">
+                                                    <li class="page-item">
+                                                        <a class="page-link"
+                                                            href="/table/user?page=${currentPage-1}">Trước</a>
+                                                    </li>
+                                                </c:if>
 
 
 
@@ -228,12 +232,18 @@
 
 
 
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#" aria-label="Next">
-                                                        <span aria-hidden="true">&raquo;</span>
-                                                        <span class="sr-only">Next</span>
-                                                    </a>
-                                                </li>
+                                                <c:if test="${currentPage == totalPage }">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="/">Tiếp</a>
+                                                    </li>
+                                                </c:if>
+
+                                                <c:if test="${currentPage < totalPage }">
+                                                    <li class="page-item">
+                                                        <a class="page-link"
+                                                            href="/table/user?page=${currentPage+1}">Tiếp</a>
+                                                    </li>
+                                                </c:if>
 
 
                                             </ul>
@@ -256,6 +266,8 @@
                         </footer>
                     </div>
                 </div>
+
+
 
 
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
